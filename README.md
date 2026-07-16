@@ -105,7 +105,7 @@ python scripts/track_literature.py
 5. 在 Actions 页面手动运行一次 **Daily LLM literature tracker**；
 6. 在 Settings → Pages 中选择 **GitHub Actions** 作为发布源。
 
-每日工作流会在生成日报后提交并推送 `reports/`、`data/` 和 `site/`；随后由独立的 `Deploy GitHub Pages` 工作流发布网页，避免同一次更新重复部署。
+每日工作流会生成日报、提交 `reports/`、`data/` 和 `site/`，并在同一次运行中发布 GitHub Pages。独立的 `Deploy GitHub Pages` 工作流继续负责人工推送到 `main` 时的网页发布；由 `GITHUB_TOKEN` 产生的自动提交不会重复触发它。
 
 ## 数据与核验边界
 
