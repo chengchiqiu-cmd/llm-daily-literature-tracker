@@ -1,0 +1,255 @@
+{
+  "tracker_name": "LLM 服务系统每日文献追踪",
+  "tracker_slug": "llm-service-ops",
+  "timezone": "Asia/Shanghai",
+  "default_lookback_days": 2,
+  "min_relevance_score": 7,
+  "max_results_per_query": 60,
+  "include_service_analogs": true,
+  "direct_llm_terms": [
+    "large language model",
+    "large language models",
+    "llm",
+    "llm inference",
+    "llm serving",
+    "language model serving",
+    "generative ai service",
+    "generative ai platform",
+    "generative ai",
+    "foundation model",
+    "foundation model inference",
+    "foundation model service",
+    "ai inference service"
+  ],
+  "method_terms": [
+    "analytical model",
+    "queueing model",
+    "stochastic model",
+    "optimization",
+    "mechanism design",
+    "game theory",
+    "equilibrium",
+    "dynamic programming",
+    "revenue management",
+    "market design",
+    "admission control",
+    "resource allocation"
+  ],
+  "service_operational_terms": [
+    "llm inference",
+    "inference service",
+    "inference serving",
+    "serving system",
+    "request scheduling",
+    "request arrival",
+    "workload",
+    "queue",
+    "batching",
+    "admission control",
+    "resource allocation",
+    "capacity planning",
+    "gpu cluster",
+    "latency slo",
+    "service level objective",
+    "service-level objective",
+    "throughput optimization",
+    "cost optimization",
+    "api pricing",
+    "token pricing",
+    "provider",
+    "customer",
+    "subscription",
+    "market mechanism"
+  ],
+  "exclusion_terms": [
+    "prompt engineering",
+    "jailbreak",
+    "hallucination detection",
+    "medical diagnosis",
+    "clinical",
+    "education benchmark",
+    "vision-language benchmark",
+    "question answering benchmark",
+    "sentiment analysis"
+  ],
+  "quality_venues": [
+    "Management Science",
+    "Operations Research",
+    "Manufacturing & Service Operations Management",
+    "Information Systems Research",
+    "Marketing Science",
+    "Production and Operations Management",
+    "American Economic Review",
+    "Econometrica",
+    "Journal of Political Economy",
+    "Quarterly Journal of Economics",
+    "Review of Economic Studies",
+    "RAND Journal of Economics",
+    "Journal of Economic Theory"
+  ],
+  "categories": [
+    {
+      "id": "token_pricing",
+      "name": "Token 定价、订阅与额度套餐",
+      "weight": 3,
+      "terms": [
+        "token pricing",
+        "llm pricing",
+        "generative ai pricing",
+        "pricing",
+        "subscription",
+        "tariff",
+        "quota",
+        "api pricing",
+        "usage-based pricing",
+        "two-part tariff",
+        "tiered pricing",
+        "subscription pricing",
+        "quota allocation",
+        "credit package",
+        "price discrimination"
+      ],
+      "reason": "关注按 token/请求计费、订阅与额度套餐、价格歧视及用户异质性。"
+    },
+    {
+      "id": "queue_scheduling",
+      "name": "LLM 推理排队与调度",
+      "weight": 3,
+      "terms": [
+        "queueing",
+        "queuing",
+        "scheduling",
+        "request scheduling",
+        "inference scheduling",
+        "llm scheduling",
+        "continuous batching",
+        "batch scheduling",
+        "prefill decode",
+        "prefill-decode",
+        "kv cache",
+        "latency throughput tradeoff",
+        "latency-throughput tradeoff",
+        "admission control",
+        "congestion control"
+      ],
+      "weak_terms": [
+        "latency",
+        "throughput"
+      ],
+      "reason": "关注请求到达、prefill/decode、批处理、KV cache 与时延—吞吐权衡。"
+    },
+    {
+      "id": "priority_slo",
+      "name": "优先权、SLO 与差异化服务",
+      "weight": 3,
+      "terms": [
+        "priority queue",
+        "priority scheduling",
+        "priority",
+        "slo",
+        "deadline",
+        "multi-priority",
+        "paid priority",
+        "priority pricing",
+        "service differentiation",
+        "differentiated service",
+        "service level objective",
+        "service-level objective",
+        "latency slo",
+        "deadline-aware",
+        "preemptive scheduling",
+        "express lane"
+      ],
+      "reason": "关注付费优先、SLO/截止期、抢占规则和不同等待成本用户的服务分层。"
+    },
+    {
+      "id": "capacity_cloud",
+      "name": "容量、云资源与服务运营",
+      "weight": 2,
+      "terms": [
+        "capacity planning",
+        "capacity allocation",
+        "resource allocation",
+        "compute allocation",
+        "gpu allocation",
+        "gpu capacity",
+        "cloud pricing",
+        "serverless inference",
+        "inference cluster",
+        "resource pooling",
+        "autoscaling",
+        "load balancing",
+        "service capacity"
+      ],
+      "weak_terms": [
+        "capacity",
+        "gpu"
+      ],
+      "reason": "关注 GPU/云容量配置、资源池化、扩缩容、拥堵和服务能力投资。"
+    },
+    {
+      "id": "energy_datacenter",
+      "name": "数据中心能源、碳与跨时段转移",
+      "weight": 2,
+      "terms": [
+        "llm energy",
+        "inference energy",
+        "energy consumption",
+        "power consumption",
+        "carbon emissions",
+        "data center energy",
+        "datacenter energy",
+        "carbon-aware scheduling",
+        "carbon aware scheduling",
+        "water-aware",
+        "demand response",
+        "workload shifting",
+        "temporal load shifting",
+        "electricity pricing"
+      ],
+      "reason": "关注 LLM 负载的电力、碳、水约束，以及跨地点/跨时段需求响应。"
+    },
+    {
+      "id": "market_mechanism",
+      "name": "平台经济、市场设计与竞争",
+      "weight": 2,
+      "terms": [
+        "mechanism design",
+        "market design",
+        "equilibrium",
+        "functional prices",
+        "budget constraint",
+        "production economy",
+        "system welfare",
+        "auction",
+        "strategic users",
+        "strategic customers",
+        "platform competition",
+        "platform pricing",
+        "vertical differentiation",
+        "information design",
+        "screening mechanism",
+        "incentive compatible"
+      ],
+      "reason": "关注模型供应商、平台和用户之间的定价、竞争、筛选与激励相容。"
+    }
+  ],
+  "source_queries": {
+    "arxiv": [
+      "(all:\"large language model\" OR all:\"generative AI\") AND (all:inference OR all:serving OR all:pricing OR all:queueing OR all:scheduling)",
+      "(all:\"large language model\" OR all:\"foundation model\") AND (all:capacity OR all:latency OR all:throughput OR all:SLO OR all:priority)",
+      "(all:\"large language model\" OR all:\"AI inference\") AND (all:energy OR all:carbon OR all:\"data center\" OR all:\"resource allocation\")"
+    ],
+    "openalex": [
+      "large language model inference serving scheduling",
+      "large language model pricing token subscription",
+      "generative AI capacity priority latency service",
+      "LLM data center energy resource allocation"
+    ],
+    "service_analog_openalex": [
+      "queueing priority pricing service differentiation",
+      "capacity pricing congested service admission control",
+      "cloud pricing resource allocation strategic customers"
+    ]
+  }
+}

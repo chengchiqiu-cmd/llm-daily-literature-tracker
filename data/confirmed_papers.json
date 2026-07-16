@@ -1,0 +1,55 @@
+{
+  "2026-07-15": [
+    {
+      "title": "A General Equilibrium Theory of Orchestrated AI Agent Systems",
+      "authors": ["Jean-Philippe Garnier"],
+      "abstract": "We establish a general equilibrium theory for systems of large language model (LLM) agents operating under centralized orchestration. The framework is a production economy in the sense of Arrow-Debreu (1954), extended to infinite-dimensional commodity spaces following Bewley (1972). Each LLM agent is modeled as a firm whose production set represents the feasible metric trajectories determined by its frozen model weights. The orchestrator is the consumer, choosing a routing policy over the agent DAG to maximize system welfare subject to a budget constraint evaluated at functional prices. We prove via Brouwer's theorem applied to a finite-dimensional approximation that every such economy admits at least one general equilibrium. A functional Walras' law holds, and we further establish welfare theorems, uniqueness and geometric convergence under a contraction condition. The framework admits a DSGE interpretation with SLO parameters as policy rates.",
+      "published": "2026-02-23",
+      "updated": "2026-07-13",
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2602.21255v2",
+      "pdf_url": "https://arxiv.org/pdf/2602.21255v2",
+      "source": "arXiv",
+      "external_id": "2602.21255v2",
+      "category_id": "market_mechanism",
+      "category_name": "平台经济、市场设计与竞争",
+      "track": "直接 LLM 服务研究",
+      "relevance_score": 17,
+      "matched_terms": ["large language model", "llm", "equilibrium", "functional prices", "budget constraint", "production economy", "system welfare", "slo"]
+    },
+    {
+      "title": "Automated Tensor Scheduling for Hybrid CPU-GPU LLM Inference on Consumer Devices",
+      "authors": ["Yangyijian Liu", "Hongyi Ye", "Mingyang Li", "Wu-jun Li"],
+      "abstract": "Running large language models on consumer devices such as laptops and desktops is challenging because model weights often exceed GPU memory capacity, making offloading inference necessary to extend effective model capacity with CPU memory. Existing offloading systems, however, typically rely on coarse layer-level or expert-level scheduling, which overlooks substantial heterogeneity among tensors within the same layer and adapts poorly to changing hardware load conditions on such devices. This paper presents ATSInfer, a hybrid CPU-GPU inference system for consumer devices that performs offloading at tensor granularity. ATSInfer combines static tensor placement with load-aware dynamic transfer, and introduces asynchronous CPU-GPU coordination to efficiently schedule hardware storage, data movement, and computation across heterogeneous backends. We implement ATSInfer and evaluate it on representative consumer platforms using both dense and MoE models. Compared with existing systems, ATSInfer improves prefill throughput by up to 1.94x and decode throughput by up to 3.29x, while also increasing GPU utilization and making more effective use of PCIe bandwidth.",
+      "published": "2026-07-11",
+      "updated": "2026-07-14",
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2607.10183v2",
+      "pdf_url": "https://arxiv.org/pdf/2607.10183v2",
+      "source": "arXiv",
+      "external_id": "2607.10183v2",
+      "category_id": "queue_scheduling",
+      "category_name": "LLM 推理排队与调度",
+      "track": "直接 LLM 服务研究",
+      "relevance_score": 10,
+      "matched_terms": ["large language model", "llm", "llm inference", "scheduling", "throughput"]
+    },
+    {
+      "title": "A Replicate-and-Quantize Strategy for Plug-and-Play Load Balancing of Sparse Mixture-of-Experts LLMs",
+      "authors": ["Zijie Liu", "Jie Peng", "Jinhao Duan", "Zirui Liu", "Kaixiong Zhou", "Mingfu Liang", "Luke Simon", "Xi Liu", "Zhaozhuo Xu", "Tianlong Chen"],
+      "abstract": "Sparse Mixture-of-Experts architectures are increasingly used to scale large language models efficiently, but often suffer from severe load imbalance across experts. We present a systematic analysis of expert routing during inference and identify that load imbalance persists and worsens with larger batch sizes, selection frequency does not reliably reflect expert importance, and workload and importance can be estimated using a small calibration set. We propose Replicate-and-Quantize, a training-free and near-lossless framework for dynamic workload rebalancing. In each layer, heavy-hitter experts are replicated to increase parallel capacity, while less critical experts and replicas are quantized to remain within the original memory budget. We also introduce a Load-Imbalance Score to compare heavy-hitter load with an equal allocation baseline. Experiments show up to 1.4x reduction in imbalance with accuracy maintained within +/-0.6%.",
+      "published": "2026-02-23",
+      "updated": "2026-02-23",
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2602.19938v1",
+      "pdf_url": "https://arxiv.org/pdf/2602.19938v1",
+      "source": "arXiv",
+      "external_id": "2602.19938v1",
+      "category_id": "capacity_cloud",
+      "category_name": "容量、云资源与服务运营",
+      "track": "直接 LLM 服务研究",
+      "relevance_score": 12,
+      "matched_terms": ["large language model", "llm", "inference", "load balancing", "capacity", "resource allocation"]
+    }
+  ]
+}

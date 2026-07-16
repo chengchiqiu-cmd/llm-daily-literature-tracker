@@ -1,0 +1,47 @@
+{
+  "reports": [
+    {
+      "date": "2026-07-15",
+      "window": "2026-07-14 至 2026-07-15（Asia/Shanghai）",
+      "file": "literature_tracking_2026-07-15.html",
+      "total": 3,
+      "sources": {
+        "arXiv": 3
+      },
+      "types": {
+        "平台经济、市场设计与竞争": 1,
+        "容量、云资源与服务运营": 1,
+        "LLM 推理排队与调度": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-07-15",
+          "file": "literature_tracking_2026-07-15.html",
+          "id": "paper-46723739f9",
+          "title": "编排式 AI 智能体系统的一般均衡理论",
+          "original_title": "A General Equilibrium Theory of Orchestrated AI Agent Systems",
+          "authors": "Jean-Philippe Garnier"
+        },
+        {
+          "date": "2026-07-15",
+          "file": "literature_tracking_2026-07-15.html",
+          "id": "paper-2ecfbea8ee",
+          "title": "稀疏 MoE LLM 的即插即用复制–量化负载均衡策略",
+          "original_title": "A Replicate-and-Quantize Strategy for Plug-and-Play Load Balancing of Sparse Mixture-of-Experts LLMs",
+          "authors": "Zijie Liu / Jie Peng / Jinhao Duan / Zirui Liu / Kaixiong Zhou / Mingfu Liang / Luke Simon / Xi Liu / Zhaozhuo Xu / Tianlong Chen"
+        },
+        {
+          "date": "2026-07-15",
+          "file": "literature_tracking_2026-07-15.html",
+          "id": "paper-3ce16c677c",
+          "title": "面向消费级设备混合 CPU–GPU LLM 推理的自动张量调度",
+          "original_title": "Automated Tensor Scheduling for Hybrid CPU-GPU LLM Inference on Consumer Devices",
+          "authors": "Yangyijian Liu / Hongyi Ye / Mingyang Li / Wu-jun Li"
+        }
+      ]
+    }
+  ]
+}

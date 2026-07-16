@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><style id="portal-target-style">article.paper{scroll-margin-top:24px}article.paper:target{outline:3px solid #d79565;outline-offset:8px;animation:portal-target-fade 2.8s ease-out}@keyframes portal-target-fade{0%,45%{background:#fff3cf}100%{background:transparent}}@media(prefers-reduced-motion:reduce){article.paper:target{animation:none;background:#fff3cf}}</style><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2212%22%20fill%3D%22%2317685f%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2220%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%223%22%20opacity%3D%22.45%22/%3E%3Cpath%20d%3D%22M32%2032%2051%2019%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2246%22%20cy%3D%2223%22%20r%3D%225%22%20fill%3D%22%23f0a391%22/%3E%3C/svg%3E">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-14 每日学术文献简报</title>
+  <style>
+    :root {
+      --ink: #182027;
+      --muted: #59636c;
+      --line: #dce2e5;
+      --paper: #ffffff;
+      --wash: #f5f7f7;
+      --green: #196b62;
+      --green-soft: #eaf5f2;
+      --coral: #a94635;
+      --coral-soft: #fff0ec;
+      --gold: #8a6415;
+      --gold-soft: #fff7df;
+      --navy: #294f70;
+      --navy-soft: #edf4f8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--wash);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+    a { color: var(--navy); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--coral); }
+    .page { width: min(1180px, calc(100% - 32px)); margin: 30px auto 72px; }
+    header, section, article { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+    header { padding: 42px 48px 38px; border-top: 5px solid var(--green); }
+    .eyebrow { color: var(--green); font-weight: 700; font-size: 13px; text-transform: uppercase; }
+    h1 { margin: 8px 0 10px; font-size: clamp(30px, 4vw, 48px); line-height: 1.16; letter-spacing: 0; }
+    h2 { margin: 0 0 16px; font-size: 25px; line-height: 1.3; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.36; letter-spacing: 0; }
+    h4 { margin: 20px 0 8px; font-size: 16px; letter-spacing: 0; }
+    p { margin: 0 0 12px; }
+    .scope { max-width: 920px; color: var(--muted); font-size: 17px; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+    .tag { display: inline-flex; align-items: center; min-height: 28px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--muted); font-size: 13px; }
+    .tag.model { background: var(--green-soft); color: var(--green); border-color: #c8e3dc; }
+    .tag.ai { background: var(--navy-soft); color: var(--navy); border-color: #d1e2ec; }
+    .tag.warn { background: var(--gold-soft); color: var(--gold); border-color: #eadba9; }
+    section { margin-top: 20px; padding: 34px 38px; }
+    .summary-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .summary-item { padding: 17px 18px; background: var(--wash); border-left: 4px solid var(--green); border-radius: 5px; }
+    .summary-item strong { display: block; margin-bottom: 3px; }
+    .summary-item span { color: var(--muted); font-size: 14px; }
+    .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
+    .metric { min-height: 94px; padding: 15px; background: #fff; border: 1px solid var(--line); border-radius: 6px; }
+    .metric b { display: block; font-size: 27px; line-height: 1.1; color: var(--coral); }
+    .metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
+    .bars { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+    .bar-row { display: grid; grid-template-columns: 92px 1fr 30px; gap: 10px; align-items: center; margin: 10px 0; font-size: 13px; }
+    .track { height: 9px; border-radius: 5px; background: #e6eaec; overflow: hidden; }
+    .fill { height: 100%; background: var(--green); border-radius: 5px; }
+    .fill.coral { background: var(--coral); }
+    .quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .quick-card { padding: 19px 20px; border: 1px solid var(--line); border-radius: 7px; background: #fff; }
+    .quick-card.top { border-top: 4px solid var(--green); }
+    .quick-card.ai-top { border-top: 4px solid var(--navy); }
+    .quick-card h3 { font-size: 18px; }
+    .authors { color: var(--muted); font-size: 13px; line-height: 1.55; margin: 7px 0 10px; }
+    .quick-facts { display: flex; flex-wrap: wrap; gap: 7px; margin: 9px 0; }
+    .one-line { margin-top: 9px; font-size: 14px; }
+    .paper { margin-top: 22px; padding: 34px 38px; }
+    .paper-head { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .paper-title { max-width: 900px; }
+    .paper-meta { color: var(--muted); font-size: 14px; }
+    .guide { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0 18px; }
+    .guide > div { min-height: 150px; padding: 17px 18px; border-radius: 6px; background: var(--wash); }
+    .guide b { display: block; margin-bottom: 6px; color: var(--green); }
+    .takeaways { margin: 0; padding: 14px 18px 14px 38px; background: var(--green-soft); border-radius: 6px; }
+    .takeaways li { margin: 5px 0; }
+    details { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 15px; }
+    summary { cursor: pointer; font-weight: 700; color: var(--navy); }
+    .detail-body { padding-top: 15px; }
+    .triptych, .empirical-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .mini { padding: 16px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+    .mini b { display: block; margin-bottom: 4px; font-size: 14px; color: var(--coral); }
+    .callout { margin: 18px 0; padding: 17px 18px; border-left: 4px solid var(--gold); background: var(--gold-soft); border-radius: 5px; }
+    .formula { margin: 16px 0; padding: 19px; overflow-x: auto; border: 1px solid #cbdcda; background: #fbfefe; border-radius: 6px; text-align: center; }
+    math { font-size: 1.08rem; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 18px; font-size: 14px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--wash); color: var(--muted); font-weight: 700; }
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; counter-reset: step; }
+    .timeline div { position: relative; padding: 16px 15px 16px 46px; background: var(--navy-soft); border-radius: 6px; }
+    .timeline div::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 15px; width: 23px; height: 23px; display: grid; place-items: center; border-radius: 50%; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; }
+    .note { color: var(--muted); font-size: 13px; }
+    .checklist { columns: 2; column-gap: 28px; margin: 0; padding-left: 22px; }
+    .checklist li { break-inside: avoid; margin-bottom: 8px; }
+    footer { margin-top: 22px; color: var(--muted); text-align: center; font-size: 13px; }
+    @media (max-width: 850px) {
+      .page { width: min(100% - 18px, 1180px); margin-top: 10px; }
+      header, section, .paper { padding: 24px 20px; }
+      .summary-list, .metrics, .quick-grid, .guide, .triptych, .empirical-grid, .timeline, .bars { grid-template-columns: 1fr; }
+      .guide > div { min-height: 0; }
+      .checklist { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <div class="eyebrow">Daily Literature Tracking · Beijing Time</div>
+    <h1>2026-07-14 每日学术文献简报</h1>
+    <p class="scope">检索窗口：2026-07-13 10:12 CST 至 2026-07-14 10:15 CST（北京时间 / Asia-Shanghai）。本期确认 7 篇白名单期刊新 online，并补回 4 篇在 arXiv 7 月 13 日新列表中公布、此前因接口失败漏检的预印本。</p>
+    <div class="meta-row">
+      <span class="tag model">模型与机制优先</span>
+      <span class="tag ai">AI / 平台其次</span>
+      <span class="tag">白名单期刊硬门槛已执行</span>
+      <span class="tag warn">SSRN 排序端点超时</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="executive-summary">
+    <h2 id="executive-summary">Executive Summary</h2>
+    <div class="summary-list">
+      <div class="summary-item"><strong>模型端最值得先读</strong><span>内容平台的广告订阅机制、数据交易信号博弈、平台互操作与中心性定价构成本期前三篇。</span></div>
+      <div class="summary-item"><strong>AI 证据更贴近组织与市场</strong><span>新增研究覆盖住房定价、企业 AI 采用、大学学习、社交交易与平台信息传播。</span></div>
+      <div class="summary-item"><strong>期刊资格已收紧</strong><span>本期所有期刊 online 均来自 MS 或 ISR；非白名单期刊为 0，未进入计数或待确认。</span></div>
+    </div>
+    <div class="metrics" aria-label="本期统计">
+      <div class="metric"><b>11</b><span>确认新增 / 补检条目</span></div>
+      <div class="metric"><b>7</b><span>白名单期刊新 online</span></div>
+      <div class="metric"><b>4</b><span>arXiv 新列表补检</span></div>
+      <div class="metric"><b>3</b><span>game theory / analytical / mechanism</span></div>
+      <div class="metric"><b>0</b><span>非白名单期刊</span></div>
+    </div>
+    <div class="bars">
+      <div>
+        <h3>来源</h3>
+        <div class="bar-row"><span>ISR</span><div class="track"><div class="fill" style="width:100%"></div></div><b>5</b></div>
+        <div class="bar-row"><span>MS</span><div class="track"><div class="fill" style="width:40%"></div></div><b>2</b></div>
+        <div class="bar-row"><span>arXiv</span><div class="track"><div class="fill" style="width:80%"></div></div><b>4</b></div>
+      </div>
+      <div>
+        <h3>研究类型</h3>
+        <div class="bar-row"><span>模型 / 机制</span><div class="track"><div class="fill coral" style="width:43%"></div></div><b>3</b></div>
+        <div class="bar-row"><span>AI / 平台实证</span><div class="track"><div class="fill coral" style="width:100%"></div></div><b>7</b></div>
+        <div class="bar-row"><span>概念理论</span><div class="track"><div class="fill coral" style="width:14%"></div></div><b>1</b></div>
+      </div>
+    </div>
+    <div class="callout"><b>SSRN 检索状态。</b> SSRN 单篇摘要页可访问，但按日期排序的检索端点本轮持续超时；因此没有把无法核验 posted / revised 日期的 SSRN 候选计入总数。</div>
+  </section>
+
+  <section aria-labelledby="quick-read">
+    <h2 id="quick-read">今日速览</h2>
+    <div class="quick-grid">
+      <div class="quick-card top"><h3>Hit the GAS: Designing Optimal Generalized Ad-supported Subscription Mechanisms</h3><p class="authors">Dominik Gutt（Erasmus RSM；ISR） / Sameer Mehta（Erasmus RSM；ISR） / Martin Quinn（Erasmus RSM；ISR）</p><div class="quick-facts"><span class="tag">ISR</span><span class="tag model">mechanism design</span><span class="tag">数字内容平台</span></div><p class="one-line">设计同时选择订阅费与广告强度的广义机制，并说明简单双层套餐何时已接近最优。</p></div>
+      <div class="quick-card top"><h3>Data Evaluation: Mechanisms and Implications</h3><p class="authors">Hong Zheng（北京理工大学；MS、POM） / Lin Tian（复旦大学；MS） / Guo Li（北京理工大学；MS）</p><div class="quick-facts"><span class="tag">MS</span><span class="tag model">signaling game</span><span class="tag">数据交易</span></div><p class="one-line">刻画竞争者之间的数据价值揭示机制，并比较部分出售与免费样本两种分离信号。</p></div>
+      <div class="quick-card top"><h3>From Centrality Discounts to Centrality Premia</h3><p class="authors">Weiming Li / Jing Sun / Xinxi Song / Bin Wu（首都经济贸易大学；均无已确认记录）</p><div class="quick-facts"><span class="tag">arXiv</span><span class="tag model">game theory</span><span class="tag">平台互操作</span></div><p class="one-line">证明互操作性超过产品替代性后，平台会把对中心用户的折扣反转为溢价。</p></div>
+      <div class="quick-card ai-top"><h3>Generative AI and Price Discrimination in the Housing Market</h3><p class="authors">Jitsama Tanlamai / Warut Khern-am-nuai / Maxime Cohen（McGill Desautels；均 ISR）</p><div class="quick-facts"><span class="tag">ISR</span><span class="tag ai">GenAI empirical</span><span class="tag">住房定价</span></div><p class="one-line">比较 284,749 套美国房产的人类与 AI 定价，发现 GenAI 可减弱住房价格歧视。</p></div>
+      <div class="quick-card ai-top"><h3>The Interplay of Opinions and Behavior in Social Trading</h3><p class="authors">Ye Liu / Mingwen Yang / Yong Tan（University of Washington；ISR） / Matthias Pelster（University of Duisburg-Essen；ISR）</p><div class="quick-facts"><span class="tag">ISR</span><span class="tag ai">platform + LLM</span><span class="tag">加密货币采用</span></div><p class="one-line">用社交交易平台数据和 LLM 文本特征识别“观点与真实交易一致”如何提升同伴信息可信度。</p></div>
+      <div class="quick-card ai-top"><h3>Bounded Rationality in the Digital Age</h3><p class="authors">Ning Jia / Sean Xin Xu（清华大学；ISR） / Zhitao Yin（HKUST；ISR） / Xiaoquan Michael Zhang（CUHK；ISR）</p><div class="quick-facts"><span class="tag">ISR</span><span class="tag ai">field experiment</span><span class="tag">Wikipedia</span></div><p class="one-line">在 Wikipedia 随机加入已公开的诉讼信息，证明醒目的二手旧闻仍会引发散户误反应。</p></div>
+      <div class="quick-card ai-top"><h3>AI Adoption in S&amp;P 500 Firms</h3><p class="authors">Yang Yu / Martin Fleming / Lucy Hampton / Neil Thompson（MIT FutureTech；均无已确认记录） / Christophe Combemale（Carnegie Mellon；无已确认记录）</p><div class="quick-facts"><span class="tag">arXiv</span><span class="tag ai">AI adoption</span><span class="tag">企业面板</span></div><p class="one-line">从 10-K 构建企业 AI 深度采用量表，追踪 2016–2025 年 S&amp;P 500 的采用扩散与财务相关性。</p></div>
+      <div class="quick-card ai-top"><h3>Experimental Evidence on the Learning Impact of Generative AI</h3><p class="authors">Zara Contractor（Middlebury College；无已确认记录） / Germán Reyes（Middlebury College、IZA；无已确认记录）</p><div class="quick-facts"><span class="tag">arXiv</span><span class="tag ai">GenAI RCT</span><span class="tag">学习与人力资本</span></div><p class="one-line">随机允许大学生使用 GenAI，发现即时知识成绩提高且一周后仍保留，但收益取决于增强式而非自动化式使用。</p></div>
+      <div class="quick-card"><h3>Does Modularity Coordinate?</h3><p class="authors">Amrit Tiwana（University of Georgia；ISR）</p><div class="quick-facts"><span class="tag">ISR</span><span class="tag">conceptual theory</span><span class="tag">平台模块化</span></div><p class="one-line">把模块化拆为解耦、接口和设计规则，说明协调对不同模块化维度可能是互补品也可能是替代品。</p></div>
+      <div class="quick-card"><h3>Executive Tweets</h3><p class="authors">Richard M. Crowley（SMU；MS） / Wenli Huang（HSUHK；MS） / Hai Lu（University of Toronto、Peking University；MS）</p><div class="quick-facts"><span class="tag">MS</span><span class="tag ai">ML empirical</span><span class="tag">高管社交媒体</span></div><p class="one-line">用机器学习衡量高管与公司推文相似度，区分可信度强化与新增信息两种市场反应机制。</p></div>
+      <div class="quick-card"><h3>Voting Biases in DAO Governance</h3><p class="authors">Stefano Balietti（Private Sector；无已确认记录） / Pietro Saggese（IMT Lucca、CSH Vienna；无已确认记录） / Markus Strohmaier（University of Mannheim、GESIS、CSH Vienna；无已确认记录）</p><div class="quick-facts"><span class="tag">arXiv</span><span class="tag">platform empirical</span><span class="tag">DAO 治理</span></div><p class="one-line">在 Snapshot 选择层面量化作者选择、赞成立场与首位展示对投票权份额的系统性关联。</p></div>
+    </div>
+    <p class="note" style="margin-top:16px">“无已确认记录”仅表示本次未在可查来源中确认到 UTD Top 24、经济学五大刊、JET、RAND 或 AEJ 系列记录，不代表作者没有其他发表。</p>
+  </section>
+
+  <article class="paper" id="hit-gas">
+    <div class="paper-head"><span class="tag model">1 · mechanism design</span><span class="tag">ISR · 2026-07-13 online</span></div>
+    <h2 class="paper-title">Hit the GAS: Designing Optimal Generalized Ad-supported Subscription Mechanisms</h2>
+    <p class="paper-meta">Dominik Gutt（Erasmus RSM；ISR） / Sameer Mehta（Erasmus RSM；ISR） / Martin Quinn（Erasmus RSM；ISR）</p>
+    <div class="guide"><div><b>背景问题</b>Netflix、Spotify 等平台不仅要选订阅费，还要决定每个套餐承载多少广告。传统“免费有广告 + 付费无广告”只覆盖少数离散选项，可能遗漏更精细的价格与广告强度组合。</div><div><b>文章怎么做</b>作者把订阅费和广告强度放进同一机制设计框架，让平台在从纯广告到纯订阅的连续机制空间中优化菜单，再把最优 GAS 与纯广告、纯订阅和双层机制比较。</div><div><b>最简单结论</b>完整 GAS 菜单理论上最优，但简单双层机制通常已接近最优；只有在特定用户异质性和收入条件下，精细菜单才产生实质增益。</div></div>
+    <ul class="takeaways"><li>传统广告模式、订阅模式和双层模式都是 GAS 的特例。</li><li>理论贡献在于把广告厌恶与支付意愿同时纳入最优筛选。</li><li>平台管理含义是先判断复杂菜单的增量收益是否足以覆盖实施与认知成本。</li><li>文章用视频点播平台情境估计参数并验证理论比较。</li></ul>
+    <details open><summary>模型设定、机制与可核验边界</summary><div class="detail-body">
+      <div class="triptych"><div class="mini"><b>参与者</b>单一数字内容平台与支付意愿、广告厌恶程度存在异质性的消费者。</div><div class="mini"><b>平台决策</b>设计由订阅费和广告强度共同构成的套餐菜单，并诱导不同类型消费者自我选择。</div><div class="mini"><b>结果</b>用户分配、订阅收入、广告收入，以及 GAS 相对简单机制的收入增量。</div></div>
+      <div class="timeline"><div>平台给定可行的价格与广告强度菜单。</div><div>消费者依据支付意愿与广告厌恶选择套餐或退出。</div><div>平台在激励相容与参与约束下最大化总收入。</div></div>
+      <div class="callout"><b>全文公式未能核验。</b> SSRN 摘要页可确认论文结构与版本信息，但本轮 PDF 下载端点持续超时。为避免把摘要支持的结构推断伪装成原文公式，本报告不复写效用函数、激励相容约束或闭式最优菜单。</div>
+      <table><thead><tr><th>需要全文确认的对象</th><th>本次可确认内容</th></tr></thead><tbody><tr><td>消费者效用</td><td>同时取决于订阅支付与广告暴露，但具体函数形式未核验。</td></tr><tr><td>平台目标</td><td>订阅收入与广告收入之和的最大化。</td></tr><tr><td>机制约束</td><td>包含消费者自我选择所需的激励相容与参与约束；原文写法未核验。</td></tr><tr><td>核心命题</td><td>GAS 在广义机制类中最优；双层机制可近似最优；文章给出 GAS 产生显著增益的条件。</td></tr></tbody></table>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/isre.2025.2329">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="data-evaluation">
+    <div class="paper-head"><span class="tag model">2 · signaling game</span><span class="tag">MS · 2026-07-13 online</span><span class="tag">OM</span></div>
+    <h2 class="paper-title">Data Evaluation: Mechanisms and Implications</h2>
+    <p class="paper-meta">Hong Zheng（北京理工大学；MS、POM） / Lin Tian（复旦大学；MS） / Guo Li（北京理工大学；MS）</p>
+    <div class="guide"><div><b>背景问题</b>数据买方在购买前难以知道数据价值，而完全展示数据又会使其失去可售性。这个 Arrow 信息悖论在买卖双方随后还要竞争产品市场时尤其尖锐。</div><div><b>文章怎么做</b>作者建立高价值与低价值数据卖方的信号博弈，比较“出售多少数据”与“提供多少免费样本”两种类型揭示机制，并把数据货币化收益与卖方在下游市场保留信息优势的收益放在一起。</div><div><b>最简单结论</b>高类型卖方通过只卖部分数据或提供达到阈值的免费样本来分离；低类型反而卖出全部数据或不送样本。揭示价值并不总对卖方有利。</div></div>
+    <ul class="takeaways"><li>低类型有冒充高类型的动机，因此交易量本身必须承担信号作用。</li><li>部分出售均衡中，高类型保留一部分数据，低类型出售全部数据。</li><li>免费样本均衡中，高类型必须提供足够样本，低类型不提供。</li><li>免费样本提高成交量和价格，却可能降低高类型卖方利润。</li></ul>
+    <details open><summary>模型结构与命题</summary><div class="detail-body">
+      <div class="triptych"><div class="mini"><b>参与者</b>拥有私人数据价值类型的卖方、无法直接观察类型的买方，以及随后发生竞争的产品市场。</div><div class="mini"><b>关键决策</b>卖方选择出售比例或免费样本量；买方依据观察到的信号更新对数据价值的信念并决定交易。</div><div class="mini"><b>两股力量</b>数据货币化推动卖方多卖；保留对买方的信息优势推动卖方少卖。</div></div>
+      <div class="timeline"><div>自然决定卖方数据是高价值或低价值，卖方私下观察类型。</div><div>卖方选择销售量或样本量，买方观察信号并形成后验信念。</div><div>双方完成数据交易，并在下游产品市场竞争。</div></div>
+      <div class="callout"><b>全文公式未能核验。</b> 官方摘要可支持参与者、信号方向、分离结果与管理含义；SSRN PDF 下载本轮超时。因此本报告不猜测利润函数、后验信念、激励相容约束或样本阈值的原文表达。</div>
+      <table><thead><tr><th>均衡对象</th><th>摘要可核验结论</th></tr></thead><tbody><tr><td>销售量信号</td><td>高类型出售部分数据以揭示类型；低类型出售全部数据。</td></tr><tr><td>免费样本信号</td><td>高类型提供达到分离要求的样本量；低类型不提供样本。</td></tr><tr><td>交易影响</td><td>免费样本提高销售量与价格，但削弱高类型利润。</td></tr><tr><td>政策含义</td><td>推动数据价值透明不一定改善所有卖方福利；保留买方不确定性有时使两类卖方都获益。</td></tr></tbody></table>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2025.01256">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="centrality">
+    <div class="paper-head"><span class="tag model">3 · game theory</span><span class="tag">arXiv v1 · Jul 13 new-list catch-up</span><span class="tag">Economics-IO</span></div>
+    <h2 class="paper-title">From Centrality Discounts to Centrality Premia: Interoperability and Platform Competition in Social Networks</h2>
+    <p class="paper-meta">Weiming Li / Jing Sun / Xinxi Song / Bin Wu（首都经济贸易大学，国际经济管理学院；均无已确认记录）</p>
+    <div class="guide"><div><b>背景问题</b>封闭平台会争夺网络中的中心用户，因为赢得这些用户能把其邻居锁在本平台。互操作政策让跨平台互动成为可能，这可能改变中心用户到底应该获得补贴还是被收取溢价。</div><div><b>文章怎么做</b>两家差异化平台观察任意消费者网络并同时设定个性化价格；消费者随后同时决定在两平台的连续消费量。模型同时包含同平台网络效应与由互操作产生的跨平台网络效应。</div><div><b>最简单结论</b>当互操作性低于产品替代性，中心用户获得折扣；两者相等时网络位置不影响价格；互操作性更高时，中心用户转而支付溢价。</div></div>
+    <ul class="takeaways"><li>均衡价格可在任意网络上写成闭式矩阵表达。</li><li>核心阈值只比较互操作性参数 θ 与替代性参数 β。</li><li>互操作削弱“抢走中心用户即可独占其邻居”的 business-stealing 动机。</li><li>价格歧视的福利方向也在同一阈值处反转。</li></ul>
+    <details open><summary>原文模型与关键公式</summary><div class="detail-body">
+      <div class="timeline"><div>平台 A、B 同时对每位消费者设定个性化价格向量。</div><div>消费者观察两组价格，同时选择两种平台服务的连续消费量。</div><div>以子博弈精炼纳什均衡求解消费阶段与定价阶段。</div></div>
+      <h4>消费者效用</h4>
+      <div class="formula">
+        <math display="block" aria-label="消费者效用函数">
+          <mrow><msub><mi>u</mi><mi>i</mi></msub><mo>=</mo><msubsup><mi>a</mi><mi>i</mi><mi>A</mi></msubsup><msubsup><mi>x</mi><mi>i</mi><mi>A</mi></msubsup><mo>+</mo><msubsup><mi>a</mi><mi>i</mi><mi>B</mi></msubsup><msubsup><mi>x</mi><mi>i</mi><mi>B</mi></msubsup></mrow>
+          <mrow><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mrow><mo>(</mo><msubsup><mi>x</mi><mi>i</mi><mi>A</mi></msubsup><mo>)</mo></mrow><mn>2</mn></msup><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mrow><mo>(</mo><msubsup><mi>x</mi><mi>i</mi><mi>B</mi></msubsup><mo>)</mo></mrow><mn>2</mn></msup><mo>−</mo><mi>β</mi><msubsup><mi>x</mi><mi>i</mi><mi>A</mi></msubsup><msubsup><mi>x</mi><mi>i</mi><mi>B</mi></msubsup></mrow>
+          <mrow><mo>+</mo><mi>δ</mi><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>N</mi></mrow></munder><msub><mi>g</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msubsup><mi>x</mi><mi>i</mi><mi>A</mi></msubsup><msubsup><mi>x</mi><mi>j</mi><mi>A</mi></msubsup><mo>+</mo><mi>δ</mi><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>N</mi></mrow></munder><msub><mi>g</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msubsup><mi>x</mi><mi>i</mi><mi>B</mi></msubsup><msubsup><mi>x</mi><mi>j</mi><mi>B</mi></msubsup></mrow>
+          <mrow><mo>+</mo><mi>θ</mi><mi>δ</mi><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>N</mi></mrow></munder><msub><mi>g</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msubsup><mi>x</mi><mi>i</mi><mi>A</mi></msubsup><msubsup><mi>x</mi><mi>j</mi><mi>B</mi></msubsup><mo>+</mo><mi>θ</mi><mi>δ</mi><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>N</mi></mrow></munder><msub><mi>g</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msubsup><mi>x</mi><mi>i</mi><mi>B</mi></msubsup><msubsup><mi>x</mi><mi>j</mi><mi>A</mi></msubsup></mrow>
+          <mrow><mo>−</mo><msubsup><mi>p</mi><mi>i</mi><mi>A</mi></msubsup><msubsup><mi>x</mi><mi>i</mi><mi>A</mi></msubsup><mo>−</mo><msubsup><mi>p</mi><mi>i</mi><mi>B</mi></msubsup><msubsup><mi>x</mi><mi>i</mi><mi>B</mi></msubsup><mo>.</mo></mrow>
+        </math>
+      </div>
+      <h4>平台利润</h4>
+      <div class="formula"><math display="block" aria-label="平台利润函数"><mrow><msup><mi>Π</mi><mi>k</mi></msup><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>N</mi></mrow></munder><mrow><mo>(</mo><msubsup><mi>p</mi><mi>i</mi><mi>k</mi></msubsup><mo>−</mo><msubsup><mi>c</mi><mi>i</mi><mi>k</mi></msubsup><mo>)</mo></mrow><msubsup><mi>x</mi><mi>i</mi><mi>k</mi></msubsup><mo>,</mo><mspace width="0.5em"/><mi>k</mi><mo>∈</mo><mo stretchy="false">{</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo stretchy="false">}</mo><mo>.</mo></mrow></math></div>
+      <h4>对称均衡价格</h4>
+      <div class="formula"><math display="block" aria-label="对称均衡价格"><mrow><msup><mi>p</mi><mo>∗</mo></msup><mo>=</mo><mi>c</mi><mo>+</mo><mrow><mo>[</mo><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>β</mi><mo>)</mo></mrow><mi>I</mi><mo>−</mo><mi>δ</mi><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>θ</mi><mo>)</mo></mrow><mi>G</mi><mo>]</mo></mrow><msup><mrow><mo>[</mo><mrow><mo>(</mo><mn>2</mn><mo>−</mo><mi>β</mi><mo>)</mo></mrow><mi>I</mi><mo>−</mo><mi>δ</mi><mrow><mo>(</mo><mn>2</mn><mo>−</mo><mi>θ</mi><mo>)</mo></mrow><mi>G</mi><mo>]</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mrow><mo>(</mo><mi>a</mi><mo>−</mo><mi>c</mi><mo>)</mo></mrow><mo>.</mo></mrow></math></div>
+      <table><thead><tr><th>符号</th><th>含义</th></tr></thead><tbody><tr><td>β</td><td>两平台服务的产品替代性，越高表示跨平台消费相互挤出越强。</td></tr><tr><td>θ</td><td>互操作程度，决定邻居在竞争平台上的消费能产生多少跨平台网络价值。</td></tr><tr><td>δ</td><td>局部网络效应强度。</td></tr><tr><td>G</td><td>消费者社会网络的加权邻接矩阵。</td></tr><tr><td>a、c</td><td>消费者固有边际效用向量与平台边际成本向量。</td></tr></tbody></table>
+      <div class="callout"><b>核心阈值。</b> θ ＜ β 时，中心性越高价格越低；θ ＝ β 时，网络位置项完全消失；θ ＞ β 时，中心性越高价格越高。这个符号反转对任意满足稳定条件的网络成立。</div>
+      <p class="note">版本说明：arXiv v1 时间戳为 2026-07-10，但论文进入 2026-07-13 的新列表；因前次 arXiv 接口失败，本期按补检项计入。</p>
+      <p><a href="https://arxiv.org/abs/2607.09269">arXiv 页面与全文</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="housing-ai">
+    <div class="paper-head"><span class="tag ai">4 · GenAI empirical</span><span class="tag">ISR · 2026-07-13 online</span><span class="tag">IS</span></div>
+    <h2 class="paper-title">Generative AI and Price Discrimination in the Housing Market</h2>
+    <p class="paper-meta">Jitsama Tanlamai / Warut Khern-am-nuai / Maxime Cohen（McGill Desautels；均 ISR）</p>
+    <div class="guide"><div><b>背景问题</b>在其他条件相近时，白人占比高社区的住房往往估值更高。传统算法也可能复制人类历史偏差，因此生成式 AI 会放大还是缓解价格歧视并不显然。</div><div><b>文章怎么做</b>作者使用 284,749 套美国房产，比较人类生成与 AI 生成的房价，并进一步检验社区种族构成与定价差异之间的关系及其潜在机制。</div><div><b>最简单结论</b>与“AI 必然复制偏差”的直觉相反，生成式 AI 在该样本中减弱了住房市场的价格歧视。</div></div>
+    <ul class="takeaways"><li>研究对象是房价判断，不是抵押贷款审批或成交概率。</li><li>核心比较是 AI 与人类定价在相似房产上的族群相关价差。</li><li>结果支持“GenAI 可缓解偏差”，但摘要不足以确认全部因果识别细节。</li><li>政策含义是评估 AI 时应比较具体任务中的人机基准，而非只看模型是否含有偏见。</li></ul>
+    <details><summary>研究设计、经验预测与结果</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>数据与样本</b>284,749 套美国房产；摘要未给出更细时间范围与平台来源。</div><div class="mini"><b>核心解释变量</b>定价者是生成式 AI 还是人类，以及社区人口构成。</div><div class="mini"><b>结果变量</b>房产价格及相似房产之间与社区族群构成相关的估值差距。</div></div>
+      <h4>可检验命题 / 经验预测（非原文编号假设）</h4><table><tbody><tr><td>预测 1</td><td>若人类偏差驱动传统价格歧视，人类定价中社区族群构成与估值差距应显著相关。</td></tr><tr><td>预测 2</td><td>若 GenAI 缓解该偏差，AI 定价中的族群相关差距应小于人类定价。</td></tr><tr><td>识别边界</td><td>官方摘要只确认比较设计与机制探索，未公开完整估计式、处理生成过程和稳健性清单；本报告不把它写成随机实验。</td></tr></tbody></table>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/isre.2024.1234">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="social-trading">
+    <div class="paper-head"><span class="tag ai">5 · platform + LLM empirical</span><span class="tag">ISR · 2026-07-13 online</span><span class="tag">IS</span></div>
+    <h2 class="paper-title">The Interplay of Opinions and Behavior in Social Trading: The Dynamics of Early Cryptocurrency Adoption</h2>
+    <p class="paper-meta">Ye Liu / Mingwen Yang / Yong Tan（University of Washington Foster；ISR） / Matthias Pelster（University of Duisburg-Essen；ISR）</p>
+    <div class="guide"><div><b>背景问题</b>加密货币缺乏标准化基本面信息，投资者高度依赖社交媒体；但只看别人说什么容易受低可信内容影响。</div><div><b>文章怎么做</b>作者使用大型社交交易平台的网络、发帖与交易数据，并用 LLM 提取文本特征，考察同伴真实采用行为与公开观点是否一致如何影响个人首次采用。</div><div><b>最简单结论</b>同伴采用会推动个人采用；当同伴的交易与其观点一致时影响更强，关键机制是可信度。</div></div>
+    <ul class="takeaways"><li>文章把意见传播与可观察行为放在同一社会学习框架。</li><li>观点和交易一致为信息提供了可验证的可信度信号。</li><li>高不确定性或正收益环境下，投资者更依赖正面观点，即使行为未完全一致。</li><li>LLM 用于提取文本特征，不是被研究的决策主体。</li></ul>
+    <details><summary>研究问题、变量与边界</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>数据</b>大型社交交易平台的用户网络、发帖意见、交易行为与首次加密货币采用；官方摘要未给样本量。</div><div class="mini"><b>核心变量</b>同伴是否采用、同伴观点方向、观点与交易是否一致、LLM 文本可信度特征。</div><div class="mini"><b>结果</b>个人早期采用加密货币的概率，以及不确定性、收益和人口特征的异质性。</div></div>
+      <h4>可检验命题 / 经验预测（非原文编号假设）</h4><table><tbody><tr><td>社会学习</td><td>同伴采用越多，个人采用概率越高。</td></tr><tr><td>可信度机制</td><td>同伴观点与交易一致时，社会学习效应更强。</td></tr><tr><td>环境异质性</td><td>不确定性或正收益较高时，正面观点的作用增强。</td></tr><tr><td>识别边界</td><td>官方摘要未展示完整识别策略与稳健性表；结果应理解为论文报告的经验关系，不在本报告中升级为随机因果效应。</td></tr></tbody></table>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/isre.2024.1300">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="bounded-rationality">
+    <div class="paper-head"><span class="tag ai">6 · randomized field experiment</span><span class="tag">ISR · 2026-07-13 online</span><span class="tag">IS / behavioral finance</span></div>
+    <h2 class="paper-title">Bounded Rationality in the Digital Age: How Salient Negative Secondhand Information on Knowledge-Sharing Platforms Triggers Investor Mis-Reactions</h2>
+    <p class="paper-meta">Ning Jia / Sean Xin Xu（清华大学；ISR） / Zhitao Yin（HKUST；ISR） / Xiaoquan Michael Zhang（CUHK；ISR）</p>
+    <div class="guide"><div><b>背景问题</b>Wikipedia 等知识平台常重新呈现早已公开的信息。有效市场假说预测这些旧闻不应再次影响价格，但醒目的负面内容可能重新吸引散户注意。</div><div><b>文章怎么做</b>作者在 2013 年 6 月 15 日至 7 月 13 日开展 Wikipedia 随机场实验，把已公开诉讼新闻加入处理公司页面，与未编辑匹配控制组和加入运营新闻的安慰剂组比较。</div><div><b>最简单结论</b>即使投资者知道信息是旧闻，醒目的二手诉讼信息仍提高关注和散户交易，并改善短期流动性，表现出可识别的行为误反应。</div></div>
+    <ul class="takeaways"><li>随机编辑 Wikipedia 页面提供比纯观察数据更强的因果识别。</li><li>处理使散户交易量提高 15.7%，买卖价差下降 6.9 个基点。</li><li>诉讼越严重或越近、公司信息环境越显眼，效应越强。</li><li>注意力是中介渠道之一，治理弱点相关诉讼更符合代表性判断机制。</li></ul>
+    <details><summary>实验设计、经验预测与稳健性</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>处理</b>在选定上市公司 Wikipedia 页面加入已公开的诉讼信息。</div><div class="mini"><b>对照</b>匹配公司页面不编辑；另设加入运营新闻的安慰剂组。</div><div class="mini"><b>结果</b>Wikipedia 浏览量、散户交易量、买卖价差及其异质性。</div></div>
+      <table><thead><tr><th>经验预测</th><th>论文结果</th></tr></thead><tbody><tr><td>醒目二手负面信息提高注意力</td><td>处理公司 Wikipedia 浏览量显著增加。</td></tr><tr><td>注意力触发散户反应</td><td>散户交易量相对控制组提高 15.7%。</td></tr><tr><td>交易反应改变流动性</td><td>买卖价差下降 6.9 个基点。</td></tr><tr><td>代表性判断强化</td><td>诉讼更严重、更新近或更能暗示治理薄弱时效应更强。</td></tr></tbody></table>
+      <p><b>机制与稳健性：</b>文章报告注意力中介分析、严重度与时效性异质性、信息环境异质性，并用运营新闻安慰剂组排除“任何页面编辑都有效”的解释。</p>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/isre.2024.1248">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="ai-adoption">
+    <div class="paper-head"><span class="tag ai">7 · AI adoption empirical</span><span class="tag">arXiv v1 · Jul 13 new-list catch-up</span><span class="tag">Economics / firm adoption</span></div>
+    <h2 class="paper-title">AI Adoption in S&amp;P 500 Firms</h2>
+    <p class="paper-meta">Yang Yu / Martin Fleming / Lucy Hampton / Neil Thompson（MIT FutureTech；均无已确认记录） / Christophe Combemale（Carnegie Mellon University；无已确认记录）</p>
+    <div class="guide"><div><b>背景问题</b>企业提到 AI 不等于真正把 AI 嵌入生产和业务流程。要判断 AI 对生产率和组织的影响，首先需要把“宣传”与深度采用分开。</div><div><b>文章怎么做</b>作者提取 2016–2025 年 S&amp;P 500 公司 10-K 中的 AI 相关段落，用五级量表和 GPT-5-mini 分类采用深度，并与 Compustat 财务数据匹配。</div><div><b>最简单结论</b>2025 年 11% 的企业已深度集成 AI，另有 10% 用于生产或服务；采用与利润率呈 J 型关系，但尚未观察到资本开支或生产率差异。</div></div>
+    <ul class="takeaways"><li>样本含 510 家曾进入 S&amp;P 500 的公司，覆盖十年企业年度观察。</li><li>采用率从 2022 年的 5% 增长到 2025 年的 21%（生产采用或深度集成）。</li><li>科技部门占深度采用者约三分之二。</li><li>论文明确把回归结果解释为描述性相关，而非因果效应。</li></ul>
+    <details><summary>数据、测量与结果</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>数据</b>SEC EDGAR 10-K 文本、Compustat 财务与公司特征，2016–2025 年，510 家公司。</div><div class="mini"><b>核心变量</b>五级 AI 采用量表：无提及、探索、试点、生产部署、深度嵌入。</div><div class="mini"><b>结果变量</b>净利润率、每员工收入、资本开支、Tobin’s q 与就业规模。</div></div>
+      <h4>经验预测（非原文编号假设）</h4><table><tbody><tr><td>扩散</td><td>ChatGPT 发布后企业采用加速，科技行业领先。</td></tr><tr><td>组织互补</td><td>深度采用需要管理实践与业务流程调整，因此财务结果可能呈 J 型。</td></tr><tr><td>验证</td><td>行业聚合量表与 Census BTOS 的相关系数为 0.76，与 Ramp 指标在 2025 年为 0.87。</td></tr><tr><td>因果边界</td><td>作者明确声明不作因果主张；利润、生产率和资本开支结果是条件相关性。</td></tr></tbody></table>
+      <p class="note">版本说明：arXiv v1 时间戳为 2026-07-09，进入 2026-07-13 新列表；本期按此前接口失败的补检项计入。</p>
+      <p><a href="https://arxiv.org/abs/2607.08920">arXiv 页面与全文</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="genai-learning">
+    <div class="paper-head"><span class="tag ai">8 · GenAI randomized experiment</span><span class="tag">arXiv v1 · Jul 13 new-list catch-up</span><span class="tag">Economics of education</span></div>
+    <h2 class="paper-title">Experimental Evidence on the Learning Impact of Generative AI</h2>
+    <p class="paper-meta">Zara Contractor（Middlebury College；无已确认记录） / Germán Reyes（Middlebury College、IZA；无已确认记录）</p>
+    <div class="guide"><div><b>背景问题</b>GenAI 可提高当下任务表现，却可能通过认知卸载削弱真正学习。关键不是学生交出什么，而是 AI 移除后还剩下多少知识与能力。</div><div><b>文章怎么做</b>211 名本科生随机进入允许或禁止 AI 的现场学习任务；完成即时无辅助测试后，约一周后所有人都在无 AI、无外部资料条件下再次测试并写作。</div><div><b>最简单结论</b>允许 AI 使即时知识测试提高 0.27 个标准差，约 76% 的效果一周后仍在；增强式使用带来持久收益，自动化式使用的短期写作收益会消失。</div></div>
+    <ul class="takeaways"><li>处理组 68% 实际使用 GenAI，控制组接近 0。</li><li>即时测试提高 6.7 个百分点；一周后保留测试提高 5.1 个百分点。</li><li>AI 没有改变总学习时间，但减少 12% 写作时间、增加 10% 阅读与搜索时间。</li><li>学习享受度提高 13%，是作者识别的另一机制。</li></ul>
+    <details><summary>实验、估计与机制</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>处理与样本</b>211 名本科生；八个时段内随机分配至 AI-allowed 或 AI-forbidden 实验室。</div><div class="mini"><b>结果</b>即时与一周后知识测试、当期与延迟作文质量、时间分配、学习享受度。</div><div class="mini"><b>估计</b>意向处理效应；时段固定效应；double-lasso 选择精度控制；异方差稳健标准误。</div></div>
+      <h4>原文估计式</h4>
+      <div class="formula"><math display="block" aria-label="实验估计式"><mrow><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mi>α</mi><mo>+</mo><mi>β</mi><msub><mtext>AI-Allowed</mtext><mi>i</mi></msub><mo>+</mo><msubsup><mi>X</mi><mi>i</mi><mi>′</mi></msubsup><mi>γ</mi><mo>+</mo><msub><mi>ε</mi><mi>i</mi></msub><mo>.</mo></mrow></math></div>
+      <table><thead><tr><th>对象</th><th>解释</th></tr></thead><tbody><tr><td>β</td><td>被随机允许使用 AI 的意向处理效应，不要求每位处理组学生实际使用。</td></tr><tr><td>即时知识</td><td>提高 6.7 个百分点，相当于控制组标准差的 0.27。</td></tr><tr><td>延迟知识</td><td>一周后提高 5.1 个百分点，约保留即时效应的 76%。</td></tr><tr><td>使用方式</td><td>增强式用户主要让 AI 解释概念；自动化式用户主要让 AI 代写。前者收益更持久。</td></tr></tbody></table>
+      <p><b>稳健性与边界：</b>处理前 GPA 与 SAT 基本平衡，联合平衡检验不拒绝；两次实验之间无差异流失。作者同时使用人工与 AI 评分、客观文本特征和聊天记录，但增强式 / 自动化式异质性来自处理组内行为分类，因而不等同于再次随机化。</p>
+      <p class="note">版本说明：arXiv v1 时间戳为 2026-07-09，进入 2026-07-13 新列表；本期按补检项计入。</p>
+      <p><a href="https://arxiv.org/abs/2607.08849">arXiv 页面与全文</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="modularity">
+    <div class="paper-head"><span class="tag">9 · conceptual theory</span><span class="tag">ISR · 2026-07-13 online</span><span class="tag">platform governance</span></div>
+    <h2 class="paper-title">Does Modularity Coordinate? Disentangling Decoupling, Interfaces, and Design Rules via Simon’s Theory of the Artifact</h2>
+    <p class="paper-meta">Amrit Tiwana（University of Georgia；ISR）</p>
+    <div class="guide"><div><b>背景问题</b>平台研究常把模块化当作天然协调机制，却混淆了减少依赖、实现集成与约束模块内部设计三种不同功能。</div><div><b>文章怎么做</b>作者基于 Simon 的 artifact theory，把模块化拆为 decoupling、interfaces 和 design rules，并逐一判断额外协调与这些维度是互补还是替代。</div><div><b>最简单结论</b>“模块化是否协调”没有统一答案：协调补充促进分离的维度，却可被促进集成的维度替代；流动的设计规则还会制造需要协调消解的歧义。</div></div>
+    <ul class="takeaways"><li>文章新增 design rules 作为模块化的第三个理论维度。</li><li>decoupling 通过减少 app-platform 依赖促进可分离性。</li><li>interfaces 通过连接模块促进集成，可能替代部分协调。</li><li>对 agentic AI 与混合平台，平台主需要按模块化维度配置协调资源。</li></ul>
+    <details><summary>理论命题结构</summary><div class="detail-body">
+      <table><thead><tr><th>模块化维度</th><th>功能</th><th>与协调的关系</th></tr></thead><tbody><tr><td>Decoupling</td><td>最小化 app 与平台的依赖，提升可分离性。</td><td>协调是互补项，用于处理仍然存在的跨边界依赖。</td></tr><tr><td>Interfaces</td><td>允许 app 与平台集成。</td><td>集成功能可替代部分人工或组织协调。</td></tr><tr><td>Design rules</td><td>规定 app 内部可以和不可以怎样设计。</td><td>规则的 prescriptive fluidity 会制造歧义，增加协调需求。</td></tr></tbody></table>
+      <p><b>理论含义：</b>平台不应把“加强模块化”当作单一治理动作，而应明确是在解耦、连接还是约束内部设计；否则可能对本来已由接口完成的集成过度协调，或对设计规则造成的歧义投入不足。</p>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/isre.2022.0444">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="executive-tweets">
+    <div class="paper-head"><span class="tag ai">10 · ML empirical</span><span class="tag">MS · 2026-07-13 online</span><span class="tag">Accounting / digital platforms</span></div>
+    <h2 class="paper-title">Executive Tweets</h2>
+    <p class="paper-meta">Richard M. Crowley（Singapore Management University；MS） / Wenli Huang（Hang Seng University of Hong Kong；MS） / Hai Lu（University of Toronto、Peking University；MS）</p>
+    <div class="guide"><div><b>背景问题</b>CEO 与 CFO 推文可能只是重复公司披露，也可能提供新增信息。市场究竟为何反应，需要区分信息新颖性与高管背书带来的可信度。</div><div><b>文章怎么做</b>作者收集 2011–2018 年 S&amp;P 1500 公司高管推文与公司推文，识别财务内容，并用机器学习构建两类推文的内容相似度。</div><div><b>最简单结论</b>大多数高管推文不引发市场反应；财务推文例外。它们既可通过重复公司信息增强可信度，也可在公司未披露时提供新增信息。</div></div>
+    <ul class="takeaways"><li>略少于一半高管推文涉及商业事项，但只有财务信息子集产生增量市场反应。</li><li>反应伴随交易量和散户活动上升。</li><li>与先前公司推文越相似，反应越强，支持可信度机制。</li><li>公司没有对应披露时仍有反应，支持新增信息机制。</li></ul>
+    <details><summary>数据、识别与经验预测</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>样本</b>2011–2018 年 S&amp;P 1500 公司 CEO、CFO 及公司官方 Twitter 内容。</div><div class="mini"><b>核心变量</b>高管推文是否含财务信息，与先前公司推文的 ML 内容相似度，公司是否另有披露。</div><div class="mini"><b>结果</b>市场反应、交易量与散户投资者活动。</div></div>
+      <h4>可检验命题 / 经验预测（非原文编号假设）</h4><table><tbody><tr><td>可信度</td><td>高管财务推文与先前公司信息越相似，投资者反应越强。</td></tr><tr><td>新增信息</td><td>即使没有公司层面披露，高管财务推文仍可引发反应。</td></tr><tr><td>边界</td><td>官方摘要使用“associated with”描述结果；本报告不把观察性市场反应写成完全随机因果效应。</td></tr></tbody></table>
+      <p><a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2024.05510">官方论文页</a></p>
+    </div></details>
+  </article>
+
+  <article class="paper" id="dao-voting">
+    <div class="paper-head"><span class="tag">11 · platform governance empirical</span><span class="tag">arXiv v1 · Jul 13 new-list catch-up</span><span class="tag">DAO</span></div>
+    <h2 class="paper-title">Voting Biases in Decentralized Autonomous Organization (DAO) Governance</h2>
+    <p class="paper-meta">Stefano Balietti（Private Sector；无已确认记录） / Pietro Saggese（IMT School for Advanced Studies Lucca、Complexity Science Hub Vienna；无已确认记录） / Markus Strohmaier（University of Mannheim、GESIS、Complexity Science Hub Vienna；无已确认记录）</p>
+    <div class="guide"><div><b>背景问题</b>DAO 投票常高度集中于一个选项。除了偏好本身，界面排序、赞成立场和提案作者的公开选择都可能影响投票权如何聚集。</div><div><b>文章怎么做</b>作者分析 Snapshot 从 2020 年 10 月至 2023 年 11 月的选择层面数据，用 fractional logit 同时估计作者选择、赞成立场与位置的关联，并做多种样本与固定效应稳健性。</div><div><b>最简单结论</b>作者选择与投票权份额的关系最大，其次是赞成立场和首位展示；但作者明确把这些称为描述性偏差，不宣称界面或作者信号造成了因果扭曲。</div></div>
+    <ul class="takeaways"><li>清洗后包含 19,201 个 DAO spaces、127,281 个提案、398,218 个选择和约 5,076 万票。</li><li>主样本为 293,816 个单偏好选择。</li><li>平均边际效应：作者选择 58.8 个百分点、赞成立场 27.1 个百分点、首位相对第二位 7.7 个百分点。</li><li>减去作者自己的投票权后，作者选择关联仍为正，但结果仍非随机因果证据。</li></ul>
+    <details><summary>数据、模型与稳健性</summary><div class="detail-body">
+      <div class="empirical-grid"><div class="mini"><b>数据</b>Snapshot.org，2020-10 至 2023-11；选择层面投票权份额。</div><div class="mini"><b>模型</b>fractional logit；DAO-space 固定效应；标准误按 space 聚类。</div><div class="mini"><b>核心解释变量</b>是否作者选择、是否赞成立场、选择排序及其平方项。</div></div>
+      <table><thead><tr><th>检验</th><th>做法与结果</th></tr></thead><tbody><tr><td>替代结果</td><td>改用票数份额，排序与主要结论保持。</td></tr><tr><td>参与控制</td><td>限制作者投票提案、排除极低参与、控制总票数。</td></tr><tr><td>固定效应</td><td>用 proposal 固定效应替代 space 固定效应，比较同一提案内选择。</td></tr><tr><td>样本扩展</td><td>加入 approval、ranked-choice、weighted 和 quadratic voting。</td></tr><tr><td>作者机械效应</td><td>从投票权中扣除作者自己的票，作者选择关联仍存在。</td></tr><tr><td>外部治理规模</td><td>与 DefiLlama 的 Top 25、50、100 TVL 协议匹配后重复估计。</td></tr></tbody></table>
+      <div class="callout"><b>因果边界。</b> 作者把 bias 定义为系统性关联，不是已证明的偏好扭曲。公开投票、作者声誉、提案筛选和早期社会影响都可能共同解释结果。</div>
+      <p class="note">版本说明：arXiv v1 时间戳为 2026-07-10，进入 2026-07-13 新列表；本期按补检项计入。</p>
+      <p><a href="https://arxiv.org/abs/2607.09435">arXiv 页面与全文</a></p>
+    </div></details>
+  </article>
+
+  <section aria-labelledby="audit">
+    <h2 id="audit">最终审核清单</h2>
+    <ul class="checklist">
+      <li>检索窗口连续覆盖 2026-07-13 10:12 至 2026-07-14 10:15 CST。</li>
+      <li>7 篇期刊 online 全部来自 UTD24 白名单：MS 2 篇、ISR 5 篇。</li>
+      <li>非白名单期刊 0 篇，未计数、未进入待确认。</li>
+      <li>经济学五大、RAND、JET、AEJ 本窗口未发现实质相关新 online。</li>
+      <li>SSRN 完成关键词与作者组合检索；排序端点超时，无法核验日期者未计入。</li>
+      <li>排序为模型 / 机制优先，其次 AI 与平台研究，概念与其他平台文章靠后。</li>
+      <li>同一论文的期刊与旧 SSRN 版本合并，不重复计数。</li>
+      <li>模型公式只在全文可核验时展示，并用 MathML 排版。</li>
+      <li>无法下载全文的两篇模型论文已明确标注公式未核验，没有结构性猜测冒充原文。</li>
+      <li>实证论文无原文编号假设时统一标为“经验预测”，并标明非原文假设。</li>
+      <li>随机实验与观察性研究的因果边界已区分。</li>
+      <li>作者单位逐一核查；指定期刊记录至少由当前 MS / ISR 文章确认。</li>
+      <li>“无已确认记录”不代表没有其他发表。</li>
+    </ul>
+  </section>
+  <footer>生成于 2026-07-14 10:15 CST · 北京时间 / Asia-Shanghai · 单文件离线 HTML</footer>
+</main>
+<script type="application/json" id="report-metadata">
+{
+  "date": "2026-07-14",
+  "window": "2026-07-13 10:12 至 2026-07-14 10:15（北京时间 / Asia-Shanghai）",
+  "file": "literature_tracking_2026-07-14.html",
+  "total": 11,
+  "sources": {"ISR": 5, "MS": 2, "arXiv": 4},
+  "types": {"模型 / 机制": 3, "AI / 平台实证": 7, "概念理论": 1},
+  "statuses": {"白名单期刊 online": 7, "预印本新增 / 更新": 4}
+}
+</script>
+</body>
+</html>
