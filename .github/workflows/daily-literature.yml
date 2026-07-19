@@ -2,8 +2,8 @@ name: Daily LLM literature tracker
 
 on:
   schedule:
-    # 08:00 Asia/Shanghai every day. GitHub Actions cron uses UTC.
-    - cron: "10 0 * * *"
+    # 05:10 Asia/Shanghai every day. GitHub Actions cron uses UTC.
+    - cron: "10 21 * * *"
   workflow_dispatch:
 
 permissions:
