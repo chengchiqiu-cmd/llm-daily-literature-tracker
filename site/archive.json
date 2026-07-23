@@ -1,6 +1,82 @@
 {
   "reports": [
     {
+      "date": "2026-07-23",
+      "window": "2026-07-22 至 2026-07-23（Asia/Shanghai）",
+      "file": "literature_tracking_2026-07-23.html",
+      "total": 7,
+      "sources": {
+        "arXiv": 7
+      },
+      "types": {
+        "LLM 推理排队与调度": 4,
+        "容量、云资源与服务运营": 1,
+        "Token 定价、订阅与额度套餐": 1,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 7
+      },
+      "papers": [
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-01e2bae8b7",
+          "title": "Efficient and Privacy Aware Edge Cloud Collaborative Inference for Large Language Models",
+          "original_title": "Efficient and Privacy Aware Edge Cloud Collaborative Inference for Large Language Models",
+          "authors": "Chen Li / Jiexiong Liu / Yixuan Chen / Yi Li"
+        },
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-d6be8c5b13",
+          "title": "HijackKV: New Threat in Position-Independent KV Cache Reuse",
+          "original_title": "HijackKV: New Threat in Position-Independent KV Cache Reuse",
+          "authors": "Yichi Zhang / Zhiqi Wang / Huan Zhang / Yuchen Yang"
+        },
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-d04d84ffff",
+          "title": "Look Less, Think Faster: Joint Token-Compute Adaptation for Multimodal LLMs",
+          "original_title": "Look Less, Think Faster: Joint Token-Compute Adaptation for Multimodal LLMs",
+          "authors": "Pengcheng Wang / Zhiquan Wang / Jayoung Lee / Zhuoyan Xu / Ran Xu / Saurabh Bagchi / Yin Li / Somali Chaterji"
+        },
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-6491ef0a8c",
+          "title": "WARA: A Closed-Loop Multi-Agent Framework for Wireless Optimization Autoresearch",
+          "original_title": "WARA: A Closed-Loop Multi-Agent Framework for Wireless Optimization Autoresearch",
+          "authors": "Yuan Guo / Yilong Chen / Chao Hu / Xianghao Yu / Liang Hong / Jie Xu"
+        },
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-6db89b4b88",
+          "title": "Harmonia: Algorithm-Hardware Co-Design for Memory- and Compute-Efficient BFP-based LLM Inference",
+          "original_title": "Harmonia: Algorithm-Hardware Co-Design for Memory- and Compute-Efficient BFP-based LLM Inference",
+          "authors": "Xinyu Wang / Jieyu Li / Yanan Sun / Weifeng He"
+        },
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-2c8beabe07",
+          "title": "Generative Augmented Inference of LLM-generated Data for Market Research: Theory and Empirical Evidence",
+          "original_title": "Generative Augmented Inference of LLM-generated Data for Market Research: Theory and Empirical Evidence",
+          "authors": "Cheng Lu / Mengxin Wang / Dennis J. Zhang / Heng Zhang"
+        },
+        {
+          "date": "2026-07-23",
+          "file": "literature_tracking_2026-07-23.html",
+          "id": "paper-4093d30edf",
+          "title": "When Shippers Become Algorithms: Candidate Exposure, Information Design, and the Concentration of LLM-Mediated Freight Markets",
+          "original_title": "When Shippers Become Algorithms: Candidate Exposure, Information Design, and the Concentration of LLM-Mediated Freight Markets",
+          "authors": "Takahiro Ezaki / Naoto Imura / Katsuhiro Nishinari"
+        }
+      ]
+    },
+    {
       "date": "2026-07-22",
       "window": "2026-07-21 至 2026-07-22（Asia/Shanghai）",
       "file": "literature_tracking_2026-07-22.html",
