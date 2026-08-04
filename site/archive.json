@@ -1,6 +1,98 @@
 {
   "reports": [
     {
+      "date": "2026-08-04",
+      "window": "2026-08-03 至 2026-08-04（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-04.html",
+      "total": 9,
+      "sources": {
+        "arXiv": 9
+      },
+      "types": {
+        "LLM 推理排队与调度": 4,
+        "优先权、SLO 与差异化服务": 2,
+        "容量、云资源与服务运营": 2,
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 9
+      },
+      "papers": [
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-609a8cd6f7",
+          "title": "HorizonServe: Coordinating Request Scheduling with GPU Sharing for Omni-Model Serving",
+          "original_title": "HorizonServe: Coordinating Request Scheduling with GPU Sharing for Omni-Model Serving",
+          "authors": "Yuning Zhang / Dong Yuan"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-8efedb5b68",
+          "title": "AIC-VDS: Attention-Based In-Context Learning for Joint Velocity Control and Data Collection Scheduling in Multi-UAV-Assisted Pipeline Monitoring",
+          "original_title": "AIC-VDS: Attention-Based In-Context Learning for Joint Velocity Control and Data Collection Scheduling in Multi-UAV-Assisted Pipeline Monitoring",
+          "authors": "Yousef Emami / Miguel Gutierrez Gaitan / Atefeh Hajijamali Arani / Jingjing Zheng / Hao Zhou"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-40cbb8a5db",
+          "title": "Bole: Efficient Tree Speculation for Hybrid-Attention Language Models",
+          "original_title": "Bole: Efficient Tree Speculation for Hybrid-Attention Language Models",
+          "authors": "Li Wang / Yi Su / Xiabao Wu / Chiran You / Yongchao Liu / Zhan Qiu / Juelu Zhang / Jiajun Zheng / Fangxin Liu / Jie Zhang / Chen Tian / Chengying Huan"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-d5183efc43",
+          "title": "Efficiency and Cost Alignment in Batched LLM Serving via Resource-Fair Scheduling",
+          "original_title": "Efficiency and Cost Alignment in Batched LLM Serving via Resource-Fair Scheduling",
+          "authors": "Dayi Yao / Zijie Zhou"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-51ddb51844",
+          "title": "Energy-Efficient LLM Serving via Disaggregated Attention--FFN and Flexible Frequency Scaling",
+          "original_title": "Energy-Efficient LLM Serving via Disaggregated Attention--FFN and Flexible Frequency Scaling",
+          "authors": "Cunchen Hu / Liangliang Xu / Tian Liu / Min Lyu / Yongkun Li / Sa Wang / Shuo Quan / Yanan Yang / Wenda Tang / Yiduo Wang / Fu Yu / Jie Wu"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-154f64e56d",
+          "title": "Learning-Based Collaborative MEC for LLM Inference with Soft-Deadline Awareness via Transformer-Enhanced PPO",
+          "original_title": "Learning-Based Collaborative MEC for LLM Inference with Soft-Deadline Awareness via Transformer-Enhanced PPO",
+          "authors": "Ngoc Hung Nguyen / Bjorn Landfeldt"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-942f2e0209",
+          "title": "EdgeCoInfer: Hierarchical Collaborative Inference for On-Device Multimodal Large Models",
+          "original_title": "EdgeCoInfer: Hierarchical Collaborative Inference for On-Device Multimodal Large Models",
+          "authors": "Lin Tan / Songtao Guo / Mingyan Li / David K. Y. Yau"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-175d397aee",
+          "title": "What is the Role of Small Models in the LLM Era: A Survey",
+          "original_title": "What is the Role of Small Models in the LLM Era: A Survey",
+          "authors": "Lihu Chen / Gaël Varoquaux"
+        },
+        {
+          "date": "2026-08-04",
+          "file": "literature_tracking_2026-08-04.html",
+          "id": "paper-164aa58f9f",
+          "title": "TELLER: Non-intrusive Cross-Layer Root-Cause Analysis for LLM Inference",
+          "original_title": "TELLER: Non-intrusive Cross-Layer Root-Cause Analysis for LLM Inference",
+          "authors": "Ruilin Xu / Junyi Li / Pengfei Chen / Zongxuan Xie"
+        }
+      ]
+    },
+    {
       "date": "2026-08-03",
       "window": "2026-08-02 至 2026-08-03（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-03.html",
