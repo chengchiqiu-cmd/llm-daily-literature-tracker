@@ -1,6 +1,82 @@
 {
   "reports": [
     {
+      "date": "2026-08-05",
+      "window": "2026-08-04 至 2026-08-05（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-05.html",
+      "total": 7,
+      "sources": {
+        "arXiv": 7
+      },
+      "types": {
+        "LLM 推理排队与调度": 3,
+        "Token 定价、订阅与额度套餐": 1,
+        "优先权、SLO 与差异化服务": 1,
+        "容量、云资源与服务运营": 2
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 7
+      },
+      "papers": [
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-ae95932734",
+          "title": "The Agent Operating System (AOS): A Reference Operating Architecture for Distributed Agentic Systems",
+          "original_title": "The Agent Operating System (AOS): A Reference Operating Architecture for Distributed Agentic Systems",
+          "authors": "Ankur Sharma / Deep Shah"
+        },
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-c5b2a73f18",
+          "title": "Separating quantum circuits from classical LLMs",
+          "original_title": "Separating quantum circuits from classical LLMs",
+          "authors": "Srinivasan Arunachalam / Arkopal Dutt / Hari Krovi / Rik Sengupta"
+        },
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-a1d51f2c07",
+          "title": "TaskPress: Query-Agnostic KV Cache Compression via Task-Guided Pruning",
+          "original_title": "TaskPress: Query-Agnostic KV Cache Compression via Task-Guided Pruning",
+          "authors": "Wonpyo Park / Seung-won Hwang"
+        },
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-d4186dc75a",
+          "title": "MerchantBench: Benchmarking LLM Agents for Long-Term Coherence in E-Commerce Operations",
+          "original_title": "MerchantBench: Benchmarking LLM Agents for Long-Term Coherence in E-Commerce Operations",
+          "authors": "Qiming Shi / Yulong Tao / Linbo Jin / Zhaolu Kang / Yibo Dou / Jiawen Zhu / Tianjun Pan / Shaokang Fu / Chengyu Wang / Siyue Li / Yaping Cheng / Di Weng / Chengfu Huo"
+        },
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-f603b5b9a5",
+          "title": "Shorter Reasoning, Earlier Answers? An Evaluation of Reasoning Interfaces",
+          "original_title": "Shorter Reasoning, Earlier Answers? An Evaluation of Reasoning Interfaces",
+          "authors": "Francesca Carlon / Vincent Ginis / Andres Algaba"
+        },
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-6de91e9f94",
+          "title": "ParVL: Parallel Scaling and Expandable Compute Allocation for Multimodal LLMs",
+          "original_title": "ParVL: Parallel Scaling and Expandable Compute Allocation for Multimodal LLMs",
+          "authors": "Yang Yang / Qinyu Zhao / Mouxiang Chen / Xiaohui Li / Lixin Gu / Wenhai Wang / Hongjie Zhang / Wenwei Zhang"
+        },
+        {
+          "date": "2026-08-05",
+          "file": "literature_tracking_2026-08-05.html",
+          "id": "paper-439b1f7e5c",
+          "title": "Test-Time Scalable AI-RAN: Inference Time Allocation for Cell-Free MIMO",
+          "original_title": "Test-Time Scalable AI-RAN: Inference Time Allocation for Cell-Free MIMO",
+          "authors": "Seonghoon Yoo / Sangwoo Park / Seok-Hwan Park / Joonhyuk Kang"
+        }
+      ]
+    },
+    {
       "date": "2026-08-04",
       "window": "2026-08-03 至 2026-08-04（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-04.html",
