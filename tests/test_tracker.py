@@ -82,8 +82,13 @@ class ScoringTests(unittest.TestCase):
 
 class DeduplicationTests(unittest.TestCase):
     def test_same_title_is_merged(self):
-        first = paper("LLM Serving at Scale", "Short abstract", source="arXiv")
-        second = paper("LLM Serving at Scale", "A much longer abstract about inference scheduling.", source="OpenAlex")
+        first = paper("LLM Serving at Scale", "Short abstract", doi="10.1/first", source="arXiv")
+        second = paper(
+            "LLM Serving at Scale",
+            "A much longer abstract about inference scheduling.",
+            doi="10.1/second",
+            source="OpenAlex",
+        )
         first.relevance_score = 8
         second.relevance_score = 10
         merged = tracker.merge_papers([first, second])
@@ -99,6 +104,38 @@ class DeduplicationTests(unittest.TestCase):
             tracker.display_dates(candidate),
             "首次发布 2026-02-23；最近更新 2026-07-15",
         )
+
+
+class SourceTests(unittest.TestCase):
+    def test_ssrn_crossref_metadata_includes_abstract(self):
+        payload = {
+            "message": {
+                "items": [
+                    {
+                        "DOI": "10.2139/ssrn.1234567",
+                        "title": ["Pricing Large Language Model Services"],
+                        "author": [{"given": "Test", "family": "Author"}],
+                        "abstract": "<jats:p>We study token pricing and subscription design.</jats:p>",
+                        "posted": {"date-parts": [[2026, 8, 12]]},
+                        "URL": "https://doi.org/10.2139/ssrn.1234567",
+                    }
+                ]
+            }
+        }
+        original = tracker.request_bytes
+        tracker.request_bytes = lambda *args, **kwargs: json.dumps(payload).encode("utf-8")
+        try:
+            papers = tracker.fetch_ssrn(
+                "large language model pricing",
+                tracker.dt.date(2026, 8, 11),
+                tracker.dt.date(2026, 8, 12),
+                10,
+            )
+        finally:
+            tracker.request_bytes = original
+        self.assertEqual(len(papers), 1)
+        self.assertEqual(papers[0].venue, "SSRN working paper")
+        self.assertEqual(papers[0].abstract, "We study token pricing and subscription design.")
 
 
 class HomepageTests(unittest.TestCase):
@@ -130,11 +167,12 @@ class HomepageTests(unittest.TestCase):
         self.assertIn("Executive Summary", report_page)
         self.assertNotIn("<h2>执行摘要", report_page)
         self.assertIn("今日速览", report_page)
-        self.assertIn("最终审核清单", report_page)
-        self.assertIn("研究问题", report_page)
-        self.assertIn("文章怎么做", report_page)
-        self.assertIn("研究启示", report_page)
-        self.assertIn("英文原摘要与来源链接（补充）", report_page)
+        self.assertIn("阅读说明", report_page)
+        self.assertIn("一两句话看懂", report_page)
+        self.assertIn("原始摘要", report_page)
+        self.assertIn(candidate.abstract, report_page)
+        self.assertNotIn("待全文核验", report_page)
+        self.assertNotIn("核心公式", report_page)
 
     def test_confirmed_daily_papers_survive_source_fluctuation(self):
         confirmed = tracker.load_confirmed_papers(tracker.dt.date(2026, 7, 15))
@@ -152,12 +190,23 @@ class HomepageTests(unittest.TestCase):
             analyses,
         )
         self.assertIn("编排式 AI 智能体系统的一般均衡理论", report_page)
-        self.assertIn("核心公式", report_page)
-        self.assertIn("中文深度分析", report_page)
-        self.assertIn("tex-mml-chtml.js", report_page)
-        self.assertIn(r"\(\pi_a(p)=\sup", report_page)
+        self.assertIn("一两句话看懂", report_page)
+        self.assertIn("原始摘要", report_page)
+        self.assertNotIn("tex-mml-chtml.js", report_page)
+        self.assertNotIn(r"\(\pi_a(p)=\sup", report_page)
         self.assertNotIn("<b>背景问题</b>", report_page)
         self.assertNotIn("<b>读前提示</b>", report_page)
+
+    def test_fallback_uses_available_abstract_instead_of_full_text_warning(self):
+        candidate = paper(
+            "Queueing-Aware Scheduling for Large Language Model Inference",
+            "We propose a scheduling system and evaluate latency and throughput on production traces.",
+        )
+        tracker.score_paper(candidate, CONFIG)
+        item = tracker.fallback_analysis(candidate, CONFIG)
+        self.assertEqual(item["analysis_type"], "摘要速读")
+        self.assertIn("从摘要看", item["one_line"])
+        self.assertNotIn("待全文核验", item["one_line"])
 
 
 if __name__ == "__main__":

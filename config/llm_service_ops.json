@@ -70,7 +70,10 @@
     "education benchmark",
     "vision-language benchmark",
     "question answering benchmark",
-    "sentiment analysis"
+    "sentiment analysis",
+    "metaheuristic generation",
+    "algorithm generation",
+    "llm code generation"
   ],
   "quality_venues": [
     "Management Science",
@@ -245,6 +248,11 @@
       "large language model pricing token subscription",
       "generative AI capacity priority latency service",
       "LLM data center energy resource allocation"
+    ],
+    "ssrn": [
+      "large language model pricing service operations",
+      "generative AI platform queue capacity",
+      "LLM inference scheduling priority"
     ],
     "service_analog_openalex": [
       "queueing priority pricing service differentiation",

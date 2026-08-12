@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Daily LLM service-operations literature tracker.
 
-Uses only the Python standard library. It queries arXiv and OpenAlex, applies a
-configurable relevance/quality filter, deduplicates results, and writes both a
-Markdown report and a small static HTML site.
+Uses only the Python standard library. It queries arXiv, OpenAlex, and SSRN
+metadata registered with Crossref, applies a configurable relevance/quality
+filter, deduplicates results, and writes both a Markdown report and a small
+static HTML site.
 """
 
 from __future__ import annotations
@@ -13,7 +14,6 @@ import dataclasses
 import datetime as dt
 import hashlib
 import html
-import io
 import json
 import os
 import re
@@ -59,6 +59,10 @@ class Paper:
 
 def compact_space(value: str) -> str:
     return re.sub(r"\s+", " ", html.unescape(value or "")).strip()
+
+
+def clean_abstract(value: str) -> str:
+    return compact_space(re.sub(r"<[^>]+>", " ", html.unescape(value or "")))
 
 
 def normalized_title(value: str) -> str:
@@ -208,6 +212,84 @@ def fetch_openalex(query: str, start_date: dt.date, end_date: dt.date, max_resul
     return papers
 
 
+def crossref_date(
+    item: dict[str, Any],
+    fields: tuple[str, ...] = ("posted", "published", "created", "issued"),
+) -> str:
+    for field in fields:
+        value = item.get(field) or {}
+        parts = value.get("date-parts") or []
+        if parts and parts[0]:
+            original_values = [int(part) for part in parts[0][:3]]
+            if len(original_values) == 1:
+                return f"{original_values[0]:04d}"
+            if len(original_values) == 2:
+                return f"{original_values[0]:04d}-{original_values[1]:02d}"
+            values = original_values
+            while len(values) < 3:
+                values.append(1)
+            try:
+                return dt.date(*values).isoformat()
+            except ValueError:
+                continue
+        if value.get("date-time"):
+            parsed = parse_iso_date(value["date-time"])
+            if parsed:
+                return parsed.isoformat()
+    return ""
+
+
+def fetch_ssrn(query: str, start_date: dt.date, end_date: dt.date, max_results: int) -> list[Paper]:
+    """Fetch SSRN working-paper metadata through its Crossref DOI prefix."""
+    params = {
+        "query": query,
+        "filter": (
+            f"from-created-date:{start_date.isoformat()},"
+            f"until-created-date:{end_date.isoformat()}"
+        ),
+        "sort": "created",
+        "order": "desc",
+        "rows": min(max_results, 100),
+    }
+    email = os.environ.get("OPENALEX_EMAIL", "").strip()
+    if email:
+        params["mailto"] = email
+    url = "https://api.crossref.org/prefixes/10.2139/works?" + urllib.parse.urlencode(params)
+    raw = request_bytes(url, attempts=2)
+    items = json.loads(raw.decode("utf-8")).get("message", {}).get("items", [])
+    papers: list[Paper] = []
+    for item in items:
+        titles = item.get("title") or []
+        title = clean_abstract(titles[0] if titles else "")
+        if not title:
+            continue
+        activity_date = crossref_date(item, ("created", "indexed", "posted"))
+        published_date = crossref_date(item, ("posted", "published", "issued", "created"))
+        parsed_date = parse_iso_date(activity_date)
+        if not parsed_date or parsed_date < start_date or parsed_date > end_date:
+            continue
+        doi = compact_space(item.get("DOI", ""))
+        authors = [
+            compact_space(" ".join(part for part in (author.get("given", ""), author.get("family", "")) if part))
+            for author in item.get("author", [])
+        ]
+        papers.append(
+            Paper(
+                title=title,
+                authors=[author for author in authors if author],
+                abstract=clean_abstract(item.get("abstract", "")),
+                published=published_date or activity_date,
+                updated=activity_date,
+                venue="SSRN working paper",
+                url=item.get("URL") or (f"https://doi.org/{doi}" if doi else ""),
+                doi=doi,
+                source="SSRN/Crossref",
+                external_id=doi,
+            )
+        )
+    return papers
+
+
 def venue_is_quality(venue: str, config: dict[str, Any]) -> bool:
     venue_key = compact_space(venue).casefold()
     return bool(venue_key) and any(
@@ -267,7 +349,7 @@ def merge_papers(papers: Iterable[Paper]) -> list[Paper]:
     for paper in papers:
         doi_key = f"doi:{paper.doi.lower()}" if paper.doi else ""
         title_key = f"title:{normalized_title(paper.title)}"
-        key = doi_key or title_aliases.get(title_key) or title_key
+        key = title_aliases.get(title_key) or doi_key or title_key
         if key not in merged:
             merged[key] = paper
             title_aliases[title_key] = key
@@ -354,24 +436,48 @@ def load_confirmed_papers(
 
 def fallback_analysis(paper: Paper, config: dict[str, Any]) -> dict[str, Any]:
     relation = category_reason(paper.category_id, config)
+    abstract_lower = paper.abstract.lower()
+    if any(term in abstract_lower for term in ("analytical model", "equilibrium", "game theory", "queueing model")):
+        method_hint = "建立理论或分析模型"
+    elif any(term in abstract_lower for term in ("experiment", "evaluate", "benchmark", "simulation")):
+        method_hint = "通过实验、仿真或系统测试进行评估"
+    elif any(term in abstract_lower for term in ("empirical", "dataset", "data from", "regression")):
+        method_hint = "使用数据开展实证分析"
+    elif any(term in abstract_lower for term in ("propose", "present", "introduce", "develop")):
+        method_hint = "提出并评估一种新方法或系统"
+    else:
+        method_hint = "围绕摘要中的研究对象展开分析"
+    matched = "、".join(paper.matched_terms[:4]) or paper.category_name
+    if paper.abstract:
+        simple_summary = (
+            f"这篇论文关注“{paper.category_name}”，重点涉及 {matched}。"
+            f"从摘要看，作者{method_hint}；下方附有数据源提供的完整原始摘要，可直接核对研究内容。"
+        )
+        verification = "已取得并展示数据源摘要；中文概括仅依据摘要生成，未据此虚构全文细节。"
+    else:
+        simple_summary = (
+            f"这篇论文被归入“{paper.category_name}”，但当前数据源没有返回摘要。"
+            "日报保留题录和原文链接，便于后续补查。"
+        )
+        verification = "当前数据源没有提供摘要，仅保留题录与来源链接。"
     return {
         "title_zh": paper.title,
-        "analysis_type": "待全文核验",
-        "research_question": f"这篇论文讨论与“{paper.category_name}”相关的什么问题，以及它如何影响 LLM 服务系统的运营表现？",
-        "method": "当前数据源仅提供英文题录或摘要，尚未生成可靠的中文全文模型解读；自动报告不会据此虚构模型、公式或结论。",
-        "research_insight": relation or "需要阅读全文后判断它与我们的定价、排队、优先权和容量研究有何关系。",
-        "one_line": relation or "该论文命中 LLM 服务运营主题，但中文深度分析尚待全文核验。",
-        "chinese_abstract": "中文深度摘要尚未生成。请配置自动分析 API，或在阅读全文后补充研究问题、模型设定、求解方法和主要结论。",
-        "model_summary": "模型设定尚待全文核验。",
-        "participants": ["尚待全文核验"],
-        "decisions": ["尚待全文核验"],
-        "primitives": ["尚待全文核验"],
-        "sequence": ["获取全文", "核验模型设定与公式", "生成中文研究解读"],
+        "analysis_type": "摘要速读",
+        "research_question": f"这篇论文研究与“{paper.category_name}”相关的什么问题？",
+        "method": f"从摘要看，作者{method_hint}。",
+        "research_insight": relation or "需要结合原始摘要判断它与我们的 LLM 服务运营研究有何关系。",
+        "one_line": simple_summary,
+        "chinese_abstract": simple_summary,
+        "model_summary": "每日速读不从摘要复原模型设定；需要模型细节时再单独精读全文。",
+        "participants": [],
+        "decisions": [],
+        "primitives": [],
+        "sequence": [],
         "equations": [],
-        "solution": "尚待全文核验。",
-        "findings": ["尚待全文核验"],
-        "limitations": ["当前仅凭题录或摘要，不能可靠复原模型。"],
-        "verification": "未完成全文核验；英文原摘要仅作为补充材料展示。",
+        "solution": "每日速读不展开求解过程。",
+        "findings": [],
+        "limitations": ["中文概括仅依据摘要，不能替代全文阅读。"],
+        "verification": verification,
     }
 
 
@@ -383,88 +489,21 @@ def analysis_for(
     return (analyses or {}).get(stable_anchor(paper)) or fallback_analysis(paper, config)
 
 
-def extract_pdf_text(paper: Paper, max_chars: int = 60000) -> str:
-    """Download and extract a paper when pypdf is available; fail closed to the abstract."""
-    if not paper.pdf_url:
-        return ""
-    try:
-        import pypdf  # type: ignore
-    except ImportError:
-        return ""
-    urls = [paper.pdf_url]
-    if "arxiv.org/pdf/" in paper.pdf_url:
-        urls.append(paper.pdf_url.replace("https://arxiv.org/pdf/", "https://export.arxiv.org/pdf/"))
-    raw = b""
-    for url in dict.fromkeys(urls):
-        try:
-            candidate = request_bytes(url, attempts=2)
-            if candidate.startswith(b"%PDF-"):
-                raw = candidate
-                break
-        except RuntimeError:
-            continue
-    if not raw:
-        return ""
-    try:
-        reader = pypdf.PdfReader(io.BytesIO(raw))
-        text = "\n\n".join((page.extract_text() or "") for page in reader.pages)
-    except Exception:
-        return ""
-    return compact_space(text)[:max_chars]
-
-
-def analysis_json_schema() -> dict[str, Any]:
-    text_array = {"type": "array", "items": {"type": "string"}}
-    equation = {
-        "type": "object",
-        "additionalProperties": False,
-        "properties": {
-            "label": {"type": "string"},
-            "latex": {"type": "string"},
-            "explanation": {"type": "string"},
-        },
-        "required": ["label", "latex", "explanation"],
-    }
-    properties: dict[str, Any] = {
-        "title_zh": {"type": "string"},
-        "analysis_type": {"type": "string"},
-        "research_question": {"type": "string"},
-        "method": {"type": "string"},
-        "research_insight": {"type": "string"},
-        "one_line": {"type": "string"},
-        "chinese_abstract": {"type": "string"},
-        "model_summary": {"type": "string"},
-        "participants": text_array,
-        "decisions": text_array,
-        "primitives": text_array,
-        "sequence": text_array,
-        "equations": {"type": "array", "items": equation},
-        "solution": {"type": "string"},
-        "findings": text_array,
-        "limitations": text_array,
-        "verification": {"type": "string"},
-    }
-    return {
-        "type": "object",
-        "additionalProperties": False,
-        "properties": properties,
-        "required": list(properties),
-    }
-
-
 def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str) -> dict[str, Any]:
-    full_text = extract_pdf_text(paper)
-    evidence = full_text or paper.abstract
-    evidence_label = "论文全文提取文本" if full_text else "数据源摘要（不得据此虚构未出现的公式）"
-    prompt = f"""请用中文分析下面的学术论文，服务于 LLM 服务运营、Token/API 定价、排队调度、优先权/SLO、GPU 容量与平台机制研究。
-必须遵守：假设读者刚接触这个方向，不熟悉经济学、运筹学或计算机系统术语；先用日常语言讲清楚，再在括号中补充必要的专业名词。避免连续堆砌术语，每出现一个不可避免的专业词，都要立即解释它在这篇论文里是什么意思。研究问题只写一句话；“文章怎么做”必须说明作者先做什么、再做什么、最后得到什么；重点复原参与者、决策、参数、时序、目标函数/约束、求解方法和主要结论；公式说明必须逐个解释符号以及公式想表达的直观意思；只写证据支持的公式；明确它与我们研究的关系和核验边界。英文仅可作为专有名词补充。
+    evidence = paper.abstract or "数据源未提供摘要。"
+    prompt = f"""请只根据下面的数据源摘要，为每日文献速读生成中文内容。
+要求：
+1. title_zh：准确、自然的中文标题；专有名词可保留英文。
+2. simple_summary：用 1—2 句话说明论文研究什么、用了什么大类方法、摘要报告了什么主要结果。普通读者也能看懂，不堆砌术语。
+3. research_question：用一句话写研究问题。
+4. method：用一句话写作者怎么做；只说摘要明确支持的内容。
+不得补写摘要没有出现的模型、公式、因果关系或结论；信息不够时直接说明摘要未提供。
 
-标题：{paper.title}
+原标题：{paper.title}
 作者：{', '.join(paper.authors)}
 来源：{paper.venue} / {paper.source}
-分类提示：{paper.category_name}；{category_reason(paper.category_id, config)}
-证据口径：{evidence_label}
-证据文本：
+主题：{paper.category_name}
+原始摘要：
 {evidence}
 """
     model = os.environ.get("OPENAI_ANALYSIS_MODEL", "gpt-5.6-luna").strip() or "gpt-5.6-luna"
@@ -477,12 +516,22 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
         "text": {
             "format": {
                 "type": "json_schema",
-                "name": "chinese_paper_analysis",
+                "name": "chinese_abstract_brief",
                 "strict": True,
-                "schema": analysis_json_schema(),
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": False,
+                    "properties": {
+                        "title_zh": {"type": "string"},
+                        "simple_summary": {"type": "string"},
+                        "research_question": {"type": "string"},
+                        "method": {"type": "string"},
+                    },
+                    "required": ["title_zh", "simple_summary", "research_question", "method"],
+                },
             }
         },
-        "max_output_tokens": 7000,
+        "max_output_tokens": 900,
     }
     request = urllib.request.Request(
         "https://api.openai.com/v1/responses",
@@ -501,7 +550,29 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
     parsed = json.loads(output_text)
     if not isinstance(parsed, dict):
         raise ValueError("OpenAI analysis response was not a JSON object")
-    return parsed
+    relation = category_reason(paper.category_id, config)
+    summary = compact_space(parsed.get("simple_summary", ""))
+    if not summary:
+        raise ValueError("OpenAI abstract summary was empty")
+    return {
+        "title_zh": compact_space(parsed.get("title_zh", "")) or paper.title,
+        "analysis_type": "摘要速读",
+        "research_question": compact_space(parsed.get("research_question", "")),
+        "method": compact_space(parsed.get("method", "")),
+        "research_insight": relation,
+        "one_line": summary,
+        "chinese_abstract": summary,
+        "model_summary": "每日速读仅依据摘要，不从摘要复原完整模型设定。",
+        "participants": [],
+        "decisions": [],
+        "primitives": [],
+        "sequence": [],
+        "equations": [],
+        "solution": "每日速读不展开求解过程。",
+        "findings": [],
+        "limitations": ["中文概括仅依据数据源摘要，不能替代全文阅读。"],
+        "verification": "已依据数据源摘要生成中文速读；未从摘要推断全文细节。",
+    }
 
 
 def ensure_chinese_analyses(
@@ -708,7 +779,7 @@ def build_markdown(
         "",
         "## Executive Summary",
         "",
-        "本报告用中文说明论文研究什么、怎样建模、如何求解，以及它能怎样进入我们的 LLM 服务运营研究；英文内容仅作为原文补充。",
+        "本报告用于快速筛选：每篇论文附数据源原始摘要，并用一两句话概括研究内容。模型、公式和完整结论留到后续精读。",
         "",
     ]
     if not papers:
@@ -723,73 +794,25 @@ def build_markdown(
             "",
             f"> 英文原标题：{paper.title}",
             "",
-            f"- **研究问题：** {item['research_question']}",
-            f"- **文章怎么做：** {item['method']}",
-            f"- **研究启示：** {item['research_insight']}",
             f"- **作者：** {authors}",
             f"- **来源/日期：** {paper.venue}；{display_dates(paper)}；{paper.source}",
-            f"- **研究类型：** {item['analysis_type']}；{paper.track}；相关性评分 {paper.relevance_score}",
-            "",
-            "### 中文内容总结",
-            "",
-            item["chinese_abstract"],
-            "",
-            "### 模型设定",
-            "",
-            f"**模型主线：** {item['model_summary']}",
-            "",
-            "**参与者 / 系统组件**",
-            "",
-            *markdown_list(item["participants"]),
-            "",
-            "**决策变量**",
-            "",
-            *markdown_list(item["decisions"]),
-            "",
-            "**关键参数与状态**",
-            "",
-            *markdown_list(item["primitives"]),
-            "",
-            "**研究时序**",
-            "",
-            *[f"{number}. {value}" for number, value in enumerate(item["sequence"], 1)],
-            "",
-            "### 公式与求解",
-            "",
-        ]
-        if item["equations"]:
-            for equation in item["equations"]:
-                lines += [
-                    f"- **{equation['label']}：** `{equation['latex']}`",
-                    f"  - {equation['explanation']}",
-                ]
-        else:
-            lines.append("- 现有证据不足以可靠复原公式。")
-        lines += [
-            "",
-            f"**如何求解：** {item['solution']}",
-            "",
-            "### 主要结果",
-            "",
-            *markdown_list(item["findings"]),
-            "",
-            "### 局限与核验边界",
-            "",
-            *markdown_list(item["limitations"]),
-            f"- **核验说明：** {item['verification']}",
+            f"- **分类：** {paper.category_name}；{paper.track}；相关性评分 {paper.relevance_score}",
             f"- **链接：** {paper_links_markdown(paper)}",
             "",
-            "<details><summary>英文原摘要（补充）</summary>",
+            "### 一两句话看懂",
+            "",
+            item["one_line"],
+            "",
+            "### 原始摘要",
             "",
             paper.abstract or "数据源未提供摘要。",
             "",
-            "</details>",
-            "",
         ]
     lines += [
-        "## 最终审核说明",
+        "## 阅读说明",
         "",
-        "- 中文研究问题、方法、模型与结论优先依据可访问全文生成；未取得全文时会明确标注，不从摘要猜公式。",
+        "- 中文概括仅依据数据源摘要，用于快速判断是否值得精读，不代表完成全文核验。",
+        "- 原始摘要完整保留；如果数据源没有摘要，会明确显示“数据源未提供摘要”。",
         "- 同题名、同 DOI 的预印本与期刊版本会合并；首次发布日期与最近更新日期分开显示。",
         "- 机制桥接条目不是直接研究 LLM，而是可迁移到 LLM 服务系统的高质量模型论文。",
         "",
@@ -812,7 +835,7 @@ def build_html(
     type_counts: Counter[str] = Counter(
         analysis_for(paper, config, analyses)["analysis_type"] for paper in papers
     )
-    deep_count = sum(stable_anchor(paper) in (analyses or {}) for paper in papers)
+    summary_count = sum(bool(analysis_for(paper, config, analyses)["one_line"]) for paper in papers)
     themes = []
     quick_cards = []
     paper_articles = []
@@ -842,38 +865,19 @@ def build_html(
         if paper.doi:
             links.append(f'<a href="https://doi.org/{html.escape(paper.doi, quote=True)}">DOI</a>')
         terms = "".join(f'<span class="tag">{html.escape(term)}</span>' for term in paper.matched_terms)
-        equations = []
-        for equation in item["equations"]:
-            equations.append(
-                f'<div class="formula"><b>{html.escape(equation["label"])}</b>'
-                f'<div class="math">\\({html.escape(equation["latex"])}\\)</div>'
-                f'<p>{html.escape(equation["explanation"])}</p></div>'
-            )
-        equation_block = "".join(equations) or '<p class="muted">现有证据不足以可靠复原公式。</p>'
         paper_articles.append(
             f'<article class="paper" id="{stable_anchor(paper)}">'
             f'<div class="paper-head"><span class="tag model">{html.escape(paper.track)}</span>'
-            f'<span class="tag">{html.escape(paper.source)}</span><span class="tag">{html.escape(item["analysis_type"])}</span>'
+            f'<span class="tag">{html.escape(paper.source)}</span><span class="tag">摘要速读</span>'
             f'<span class="tag">相关性 {paper.relevance_score}</span></div>'
             f'<h2 class="paper-title">{title_zh}</h2><p class="original-title">英文原标题：{title_en}</p>'
             f'<p class="paper-meta">{html.escape(authors)} · {html.escape(paper.venue)} · {html.escape(display_dates(paper))}</p>'
-            f'<div class="guide"><div><b>研究问题</b><p>{html.escape(item["research_question"])}</p></div>'
-            f'<div><b>文章怎么做</b><p>{html.escape(item["method"])}</p></div>'
-            f'<div><b>研究启示</b><p>{html.escape(item["research_insight"])}</p></div></div>'
+            f'<div class="model-lead"><b>一两句话看懂</b><p>{html.escape(item["one_line"])}</p></div>'
             f'<div class="matched"><b>命中主题</b><div class="quick-facts">{terms}</div></div>'
-            f'<details open><summary>中文内容总结与模型主线</summary><div class="detail-body">'
-            f'<p>{html.escape(item["chinese_abstract"])}</p><div class="model-lead"><b>模型主线</b><p>{html.escape(item["model_summary"])}</p></div>'
-            f'<div class="model-grid"><div><h3>参与者 / 系统组件</h3>{html_list(item["participants"])}</div>'
-            f'<div><h3>决策变量</h3>{html_list(item["decisions"])}</div>'
-            f'<div><h3>关键参数与状态</h3>{html_list(item["primitives"])}</div></div></div></details>'
-            f'<details open><summary>研究时序、公式与求解</summary><div class="detail-body">'
-            f'<h3>研究时序</h3>{html_list(item["sequence"], ordered=True)}<h3>核心公式</h3>'
-            f'<div class="formula-grid">{equation_block}</div><div class="solution"><b>如何求解</b><p>{html.escape(item["solution"])}</p></div>'
-            f'</div></details><details open><summary>主要结果、局限与核验边界</summary><div class="detail-body split">'
-            f'<div><h3>主要结果</h3>{html_list(item["findings"])}</div><div><h3>局限与可扩展方向</h3>{html_list(item["limitations"])}</div>'
-            f'</div><div class="callout"><b>核验说明：</b>{html.escape(item["verification"])}</div></details>'
-            f'<details><summary>英文原摘要与来源链接（补充）</summary><div class="detail-body">'
-            f'<p class="english-abstract">{html.escape(paper.abstract or "数据源未提供摘要。")}</p><p>{" · ".join(links)}</p></div></details>'
+            f'<details open><summary>原始摘要</summary><div class="detail-body">'
+            f'<p class="english-abstract">{html.escape(paper.abstract or "数据源未提供摘要。")}</p>'
+            f'<div class="callout">中文概括仅依据上述摘要，用于快速筛选，不代表完成全文精读。</div>'
+            f'<p>{" · ".join(links)}</p></div></details>'
             f'</article>'
         )
     if not themes:
@@ -883,17 +887,17 @@ def build_html(
     template = """<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="tracker" content="__SLUG__"><title>__DATE__ LLM 服务系统每日文献简报</title>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
 :root{--ink:#172126;--muted:#5f6b72;--line:#d9e0e2;--paper:#fff;--wash:#f4f7f6;--green:#17685f;--green-soft:#e8f3f0;--coral:#b24b38;--blue:#315c78;--gold:#8a681f;--gold-soft:#fff7df}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.72 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--blue);text-underline-offset:3px}.page{width:min(1120px,calc(100% - 32px));margin:28px auto 72px}.back{display:inline-block;margin-bottom:11px}header,section,article{background:var(--paper);border:1px solid var(--line);border-radius:8px}header{padding:40px 46px 36px;border-top:5px solid var(--green)}.eyebrow{color:var(--green);font-weight:750;font-size:13px}h1{margin:7px 0 10px;font-size:clamp(31px,4.3vw,47px);line-height:1.15}h2{margin:0 0 15px;font-size:25px;line-height:1.32}h3{margin:0 0 8px;font-size:17px;line-height:1.4}p{margin:0 0 12px}.scope{max-width:920px;color:var(--muted);font-size:16px}.meta-row,.paper-head,.quick-facts{display:flex;flex-wrap:wrap;gap:8px}.meta-row{margin-top:21px}.tag{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--muted);font-size:13px}.tag.model{background:var(--green-soft);color:var(--green);border-color:#c8e3dc}section{margin-top:20px;padding:33px 36px}.summary-list{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.summary-item{padding:17px 18px;background:var(--wash);border-left:4px solid var(--green);border-radius:5px}.summary-item strong{display:block;margin-bottom:5px}.summary-item span{color:var(--muted);font-size:14px}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:18px}.metric{min-height:88px;padding:14px;border:1px solid var(--line);border-radius:6px}.metric b{display:block;color:var(--coral);font-size:25px;line-height:1.1}.metric span{display:block;margin-top:7px;color:var(--muted);font-size:12px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:23px}.bar-group h3{font-size:18px}.bar-row{display:grid;grid-template-columns:88px 1fr 24px;gap:9px;align-items:center;margin:9px 0;font-size:13px}.bar-track{height:8px;background:#e2e7e8;border-radius:5px;overflow:hidden}.bar-track i{display:block;height:100%;border-radius:5px}.bar-track .green{background:var(--green)}.bar-track .coral{background:var(--coral)}.status-note{margin-top:24px;padding:16px 18px;border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:5px}.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.quick-card{display:block;padding:18px 19px;border:1px solid var(--line);border-radius:7px;background:#fff;color:inherit;text-decoration:none}.quick-card.top{border-top:4px solid var(--green)}.quick-card.bridge-top{border-top:4px solid var(--blue)}.quick-card:hover h3{color:var(--coral)}.english-title,.original-title{color:var(--muted);font-size:13px}.authors,.paper-meta{color:var(--muted);font-size:13px}.one-line{margin-top:9px;font-size:14px}.paper{margin-top:22px;padding:33px 36px;scroll-margin-top:22px}.paper:target{outline:3px solid #d79565;outline-offset:7px}.paper-head{margin-bottom:12px}.paper-title{max-width:900px}.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:22px 0 18px}.guide>div{min-height:190px;padding:17px 18px;border-radius:6px;background:var(--wash)}.guide b{display:block;margin-bottom:7px;color:var(--green)}.guide p{font-size:14px}.matched{padding:14px 18px;background:var(--green-soft);border-radius:6px}.matched>b{display:block;margin-bottom:7px}details{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}summary{cursor:pointer;font-weight:750;color:var(--blue)}.detail-body{padding-top:15px}.model-lead,.solution{margin:17px 0;padding:16px 18px;border-left:4px solid var(--green);background:var(--green-soft);border-radius:5px}.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px}.model-grid>div{padding:17px;background:var(--wash);border-radius:6px}.model-grid ul,.split ul{padding-left:20px;margin:8px 0}.model-grid li,.split li{margin:5px 0}.formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formula{padding:16px 17px;border:1px solid var(--line);border-radius:6px}.formula b{color:var(--green)}.math{margin:9px 0;padding:10px 12px;background:#f1f4f4;border-radius:5px;font-family:Cambria Math,"Times New Roman",serif;font-size:16px;overflow:auto}.formula p{font-size:14px;color:var(--muted)}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.callout{margin:16px 0;padding:16px 18px;border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:5px}.english-abstract{color:#3e494f}.muted{color:var(--muted)}
+.metrics{grid-template-columns:repeat(4,1fr)}
 @media(max-width:780px){header,section,.paper{padding:25px 21px}.summary-list,.metrics,.charts,.quick-grid,.guide,.model-grid,.formula-grid,.split{grid-template-columns:1fr}.guide>div{min-height:0}.bar-row{grid-template-columns:80px 1fr 24px}}
 </style></head><body><main class="page"><a class="back" href="index.html">← 返回研究归档首页</a>
-<header><div class="eyebrow">每日文献追踪 · 北京时间</div><h1>__DATE__ 每日学术文献简报</h1><p class="scope">检索窗口：__START__ 至 __DATE__（北京时间 / __TIMEZONE__）。本期确认 __TOTAL__ 篇，中文优先解读研究问题、模型设定、求解方法和研究启示。</p><div class="meta-row"><span class="tag model">模型与机制优先</span><span class="tag">直接 LLM __DIRECT__ 篇</span><span class="tag">机制桥接 __ANALOG__ 篇</span><span class="tag">全文核验与版本边界</span></div></header>
-<section><h2>Executive Summary</h2><div class="summary-list">__THEMES__</div><div class="metrics"><div class="metric"><b>__TOTAL__</b><span>确认新增 / 更新</span></div><div class="metric"><b>__DIRECT__</b><span>直接 LLM 服务研究</span></div><div class="metric"><b>__ANALOG__</b><span>高质量机制桥接</span></div><div class="metric"><b>__MODEL_COUNT__</b><span>模型 / 机制条目</span></div><div class="metric"><b>__DEEP__</b><span>中文深度分析</span></div></div><div class="charts">__CHARTS__</div><div class="status-note"><b>检索状态：</b>题录经主题、来源、日期与重复版本筛选；正文以中文分析为主，英文原标题和原摘要仅作为补充。公式只在全文或可靠原文证据支持时写入。</div></section>
+<header><div class="eyebrow">每日文献追踪 · 北京时间</div><h1>__DATE__ 每日学术文献简报</h1><p class="scope">检索窗口：__START__ 至 __DATE__（北京时间 / __TIMEZONE__）。本期确认 __TOTAL__ 篇；每篇均保留数据源摘要，并提供一两句话中文速读。</p><div class="meta-row"><span class="tag model">摘要速读</span><span class="tag">直接 LLM __DIRECT__ 篇</span><span class="tag">机制桥接 __ANALOG__ 篇</span><span class="tag">原始摘要可核对</span></div></header>
+<section><h2>Executive Summary</h2><div class="summary-list">__THEMES__</div><div class="metrics"><div class="metric"><b>__TOTAL__</b><span>确认新增 / 更新</span></div><div class="metric"><b>__DIRECT__</b><span>直接 LLM 服务研究</span></div><div class="metric"><b>__ANALOG__</b><span>高质量机制桥接</span></div><div class="metric"><b>__SUMMARY_COUNT__</b><span>摘要速读条目</span></div></div><div class="charts">__CHARTS__</div><div class="status-note"><b>阅读口径：</b>中文内容仅依据数据源摘要，用于快速判断是否值得精读；页面完整保留原始摘要和论文链接。</div></section>
 <section><h2>今日速览</h2><div class="quick-grid">__QUICK__</div></section>
 __ARTICLES__
-<section><h2>最终审核清单</h2><ul><li>同 DOI 或同题名版本已合并。</li><li>泛 benchmark、提示工程和非服务运营应用已降权或排除。</li><li>首次发布日期与最近更新日期分开显示。</li><li>每篇论文均按“研究问题—文章怎么做—研究启示”呈现，模型条目另列参与者、决策、参数、公式、求解、结果和边界。</li><li>无法从全文核验的内容会明确标为待核验，不自动补写。</li></ul></section>
+<section><h2>阅读说明</h2><ul><li>同 DOI 或同题名版本已合并。</li><li>泛 benchmark、提示工程和非服务运营应用已降权或排除。</li><li>首次发布日期与最近更新日期分开显示。</li><li>中文速读仅概括摘要明确支持的信息，不复原全文公式与模型细节。</li><li>需要进一步研究时，可通过论文页、PDF 或 DOI 链接阅读全文。</li></ul></section>
 </main></body></html>"""
     replacements = {
         "__SLUG__": html.escape(config["tracker_slug"]),
@@ -903,8 +907,7 @@ __ARTICLES__
         "__TOTAL__": str(len(papers)),
         "__DIRECT__": str(direct),
         "__ANALOG__": str(analog),
-        "__MODEL_COUNT__": str(sum(value for value in type_counts.values() if value)),
-        "__DEEP__": str(deep_count),
+        "__SUMMARY_COUNT__": str(summary_count),
         "__THEMES__": "".join(themes[:3]),
         "__CHARTS__": charts,
         "__QUICK__": "".join(quick_cards),
@@ -1041,6 +1044,18 @@ def collect(
                             candidates.append(scored)
                 except Exception as exc:
                     errors.append(f"OpenAlex analog query '{query}': {exc}")
+    if source in {"all", "ssrn"}:
+        ssrn_queries = config["source_queries"].get("ssrn", [])
+        query_count += len(ssrn_queries)
+        for query in ssrn_queries:
+            try:
+                for paper in fetch_ssrn(query, start_date, end_date, max_results):
+                    scored = score_paper(paper, config)
+                    if scored is not None:
+                        candidates.append(scored)
+            except Exception as exc:
+                errors.append(f"SSRN/Crossref query '{query}': {exc}")
+            time.sleep(1)
     if errors:
         print("\n".join(f"WARNING: {error}" for error in errors), file=sys.stderr)
     if not candidates and query_count and len(errors) >= query_count:
@@ -1053,7 +1068,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--date", help="Report date in YYYY-MM-DD; defaults to today in the configured timezone")
     parser.add_argument("--lookback-days", type=int, help="Override the configured lookback window")
-    parser.add_argument("--source", choices=("all", "arxiv", "openalex"), default="all")
+    parser.add_argument("--source", choices=("all", "arxiv", "openalex", "ssrn"), default="all")
     parser.add_argument("--max-per-query", type=int, help="Override max results fetched per source query")
     parser.add_argument("--reports-dir", type=Path, default=ROOT / "reports")
     parser.add_argument("--site-dir", type=Path, default=ROOT / "site")
