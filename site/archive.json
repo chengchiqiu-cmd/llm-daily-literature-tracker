@@ -1,6 +1,49 @@
 {
   "reports": [
     {
+      "date": "2026-08-14",
+      "window": "2026-08-13 至 2026-08-14（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-14.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "优先权、SLO 与差异化服务": 1,
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-08-14",
+          "file": "literature_tracking_2026-08-14.html",
+          "id": "paper-545f31f00b",
+          "title": "Right-Sized Distillation of an Edge Large Language Model for Live Multi-Protocol IoT Traffic Classification",
+          "original_title": "Right-Sized Distillation of an Edge Large Language Model for Live Multi-Protocol IoT Traffic Classification",
+          "authors": "Dimitris Koutras / Vangelis Paklatzis / Panayiotis Kotzanikolaou"
+        },
+        {
+          "date": "2026-08-14",
+          "file": "literature_tracking_2026-08-14.html",
+          "id": "paper-bee6e958fb",
+          "title": "Asterism: A Hebbian-Weighted Knowledge Graph as a Priority Index over Long-Term LLM Memory",
+          "original_title": "Asterism: A Hebbian-Weighted Knowledge Graph as a Priority Index over Long-Term LLM Memory",
+          "authors": "Bidit Das"
+        },
+        {
+          "date": "2026-08-14",
+          "file": "literature_tracking_2026-08-14.html",
+          "id": "paper-d45b279295",
+          "title": "Vertical Integration and Pricing in the AI Industry:Evidence from Foundation Model Markets",
+          "original_title": "Vertical Integration and Pricing in the AI Industry:Evidence from Foundation Model Markets",
+          "authors": "Nuwan Indika / Adeel Faheem"
+        }
+      ]
+    },
+    {
       "date": "2026-08-13",
       "window": "2026-08-12 至 2026-08-13（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-13.html",
