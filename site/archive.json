@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-08-17",
+      "window": "2026-08-16 至 2026-08-17（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-17.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-08-17",
+          "file": "literature_tracking_2026-08-17.html",
+          "id": "paper-e180ff80b4",
+          "title": "打破记忆墙:对高效的大语言模型 (LLM) 输入的关键值 (KV) 缓存压缩的调查",
+          "original_title": "Breaking the Memory Wall: A Survey of Key-Value (KV) Cache Compression for Efficient Large Language Model (LLM) Inference",
+          "authors": "Manpreet Singh / Yash Jajoo / Rohith Reddy Bellibatlu"
+        },
+        {
+          "date": "2026-08-17",
+          "file": "literature_tracking_2026-08-17.html",
+          "id": "paper-a78942dd15",
+          "title": "大型语言模型推理树 具有阶段过渡保证的控制分支过程框架",
+          "original_title": "OQTOPUS: Optimal Query-Time Optimization for Probabilistic Utility Search inLarge Language Model Reasoning Trees — A Controlled Branching ProcessFramework with Phase-Transition Guarantees",
+          "authors": "Soumyapriya Goswami / Raj Ganesh Jayaraman / Partha Sarathi Banerjee / Amruutha Chandrasekar Rao"
+        }
+      ]
+    },
+    {
       "date": "2026-08-16",
       "window": "2026-08-15 至 2026-08-16（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-16.html",
