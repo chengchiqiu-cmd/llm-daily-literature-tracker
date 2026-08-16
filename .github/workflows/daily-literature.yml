@@ -1,6 +1,13 @@
 name: Daily LLM literature tracker
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/daily-literature.yml"
+      - "config/**"
+      - "scripts/**"
+      - "templates/**"
   schedule:
     # Primary run at 05:10 Asia/Shanghai. Backups run at 05:40 and 06:10.
     # GitHub Actions cron uses UTC, so these times are on the previous UTC day.
