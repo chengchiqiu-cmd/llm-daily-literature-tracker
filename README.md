@@ -14,7 +14,7 @@
 下载到的公开仓库只包含 `site/` 静态网页和 GitHub Pages 部署流程，README 中提到的私有日报生成器不在仓库中。因此，本项目新增了一套独立、可运行的替代实现：
 
 - `config/llm_service_ops.json`：研究主题、关键词、排除词、期刊白名单和检索式；
-- `scripts/track_literature.py`：查询 arXiv、OpenAlex 和 Crossref 中的 SSRN working paper，筛选、评分、去重、分类并生成报告；
+- `scripts/track_literature.py`：查询 arXiv、OpenAlex、UTD24 正式期刊和 Crossref 中的 SSRN working paper，筛选、评分、去重、分类并生成报告；
 - `data/paper_analysis_zh.json`：根据数据源摘要生成的中文速读缓存；
 - `data/confirmed_papers.json`：已经人工确认的当日论文集合；来源接口临时漏报时，同一天的已发布论文不会被自动删掉；
 - `tests/test_tracker.py`：防止泛 LLM benchmark 或低质量类比论文混入；
@@ -22,7 +22,7 @@
 - `reports/`：Markdown 日报；
 - `site/`：可由 GitHub Pages 直接发布的 HTML 日报和索引。
 
-检索与网页生成使用 Python 标准库。日报完整保留数据源摘要，并用一两句话生成中文速读；配置 OpenAI API key 后可获得更自然的中文标题和摘要概括。API 临时失败时，页面仍会保留原始摘要和规则生成的中文说明。
+检索与网页生成使用 Python 标准库。每篇日报固定包含“一两句话看懂”、忠实的中文摘要翻译和英文原摘要。翻译优先使用已配置的 OpenAI API；自动任务还会使用 GitHub Models 作为备用通道。
 
 ## 筛选逻辑
 
@@ -53,6 +53,9 @@ python scripts/track_literature.py --source openalex --max-per-query 20
 # 只测试 SSRN/Crossref working paper 补充来源
 python scripts/track_literature.py --source ssrn --max-per-query 20
 
+# 只扫描 UTD24 正式期刊的新发表论文
+python scripts/track_literature.py --source utd24 --max-per-query 60
+
 # 运行单元测试
 python -m unittest discover -s tests -v
 ```
@@ -66,7 +69,7 @@ python scripts/track_literature.py
 
 ## 摘要速读
 
-日报主体以中文输出，并完整附上数据源提供的原始摘要。每篇论文固定包含题录、来源链接、“一两句话看懂”和原始摘要，不再要求每日任务复原模型、公式和完整求解过程。需要模型细节时，应把选中的论文另行精读。
+日报主体以中文输出。每篇论文固定包含题录、来源链接、“一两句话看懂”、“中文摘要（翻译）”和“英文原摘要”，不再要求每日任务复原模型、公式和完整求解过程。需要模型细节时，应把选中的论文另行精读。
 
 对新论文自动生成中文分析时，设置：
 
@@ -76,7 +79,7 @@ $env:OPENAI_ANALYSIS_MODEL="gpt-5.6-luna"  # 可替换为账号可用的兼容�
 python scripts/track_literature.py
 ```
 
-没有 API key 或 API 临时失败时，检索和网页仍会运行；新论文会显示规则生成的中文速读，同时保留原始摘要，不再整页显示“待全文核验”。
+OpenAI API 临时失败时，GitHub Actions 会使用自带的 `GITHUB_TOKEN` 调用 GitHub Models 生成中文翻译，无需再添加一个 secret。两个通道都失败时，检索和网页仍会运行，并明确提示翻译暂未生成，不会把模板句伪装成翻译。
 
 ## 调整关键词
 
@@ -86,6 +89,8 @@ python scripts/track_literature.py
 - `categories[].terms`：六条研究主线各自的关键词；
 - `exclusion_terms`：需要降分的泛 AI 主题；
 - `quality_venues`：机制桥接条目的期刊白名单；
+- `utd24_venues`：每天独立扫描的 UTD24 正式期刊列表；
+- `utd24_openalex_source_ids`：已核验的 UTD24 OpenAlex 标识，避免每天重新解析期刊名；
 - `source_queries`：真正发送给 arXiv、OpenAlex 和 SSRN/Crossref 的检索式；
 - `min_relevance_score`：越高越精确，越低召回越多。
 
@@ -93,7 +98,7 @@ python scripts/track_literature.py
 
 1. 把本目录作为一个 GitHub 仓库推送；
 2. 在仓库 Settings → Actions → General 中允许 Actions 写入仓库；
-3. 添加 `OPENAI_API_KEY` repository secret，使新论文自动生成自然的中文摘要速读；`OPENALEX_EMAIL` 为可选 secret；
+3. 可选添加 `OPENAI_API_KEY` repository secret；没有或临时失败时会自动改用 GitHub Models；`OPENALEX_EMAIL` 为可选 secret；
 4. 可选：添加 `OPENAI_ANALYSIS_MODEL` repository variable；默认使用工作流内配置的成本敏感型模型；
 5. 在 Actions 页面手动运行一次 **Daily LLM literature tracker**；
 6. 在 Settings → Pages 中选择 **GitHub Actions** 作为发布源。
@@ -102,4 +107,4 @@ python scripts/track_literature.py
 
 ## 数据与核验边界
 
-日报中的题录和摘要来自 arXiv、OpenAlex，以及 Crossref 登记的 SSRN working paper 元数据。Crossref 只提供 SSRN 已登记的元数据，不能保证覆盖 SSRN 上所有新上传或尚未登记 DOI 的工作论文。中文速读只概括摘要明确支持的信息，不复原摘要未提供的公式、模型或因果结论，也不能替代全文阅读。
+日报中的题录和摘要来自 arXiv、OpenAlex（含独立 UTD24 期刊扫描），以及 Crossref 登记的 SSRN working paper 元数据。UTD24 列表按 UT Dallas 官方 24 种期刊维护，正式发表条目会标注“UTD24 正式发表/OpenAlex”。Crossref 只提供 SSRN 已登记的元数据，不能保证覆盖 SSRN 上所有新上传或尚未登记 DOI 的工作论文。中文速读和翻译只处理摘要明确提供的信息，不复原摘要未提供的公式、模型或因果结论，也不能替代全文阅读。

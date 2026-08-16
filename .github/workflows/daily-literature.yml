@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  models: read
   pages: write
   id-token: write
 
@@ -65,6 +66,8 @@ jobs:
           OPENALEX_EMAIL: ${{ secrets.OPENALEX_EMAIL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_ANALYSIS_MODEL: ${{ vars.OPENAI_ANALYSIS_MODEL || 'gpt-5.6-luna' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ANALYSIS_MODEL: ${{ vars.GITHUB_ANALYSIS_MODEL || 'openai/gpt-4.1' }}
         run: python scripts/track_literature.py
 
       - name: Commit the daily report

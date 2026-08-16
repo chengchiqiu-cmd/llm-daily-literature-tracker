@@ -168,20 +168,7 @@ def abstract_from_inverted_index(index: dict[str, list[int]] | None) -> str:
     return compact_space(" ".join(word for _, word in sorted(positions)))
 
 
-def fetch_openalex(query: str, start_date: dt.date, end_date: dt.date, max_results: int) -> list[Paper]:
-    filters = f"from_publication_date:{start_date.isoformat()},to_publication_date:{end_date.isoformat()}"
-    params = {
-        "search": query,
-        "filter": filters,
-        "sort": "publication_date:desc",
-        "per-page": min(max_results, 100),
-        "select": "id,doi,title,publication_date,authorships,abstract_inverted_index,primary_location,best_oa_location",
-    }
-    email = os.environ.get("OPENALEX_EMAIL", "").strip()
-    if email:
-        params["mailto"] = email
-    raw = request_bytes("https://api.openalex.org/works?" + urllib.parse.urlencode(params))
-    results = json.loads(raw.decode("utf-8")).get("results", [])
+def openalex_results_to_papers(results: list[dict[str, Any]], source_label: str = "OpenAlex") -> list[Paper]:
     papers: list[Paper] = []
     for work in results:
         primary = work.get("primary_location") or {}
@@ -205,10 +192,85 @@ def fetch_openalex(query: str, start_date: dt.date, end_date: dt.date, max_resul
                 url=landing,
                 pdf_url=pdf_url,
                 doi=doi,
-                source="OpenAlex",
+                source=source_label,
                 external_id=(work.get("id") or "").rsplit("/", 1)[-1],
             )
         )
+    return papers
+
+
+def fetch_openalex(query: str, start_date: dt.date, end_date: dt.date, max_results: int) -> list[Paper]:
+    filters = f"from_publication_date:{start_date.isoformat()},to_publication_date:{end_date.isoformat()}"
+    params = {
+        "search": query,
+        "filter": filters,
+        "sort": "publication_date:desc",
+        "per-page": min(max_results, 100),
+        "select": "id,doi,title,publication_date,authorships,abstract_inverted_index,primary_location,best_oa_location",
+    }
+    email = os.environ.get("OPENALEX_EMAIL", "").strip()
+    if email:
+        params["mailto"] = email
+    raw = request_bytes("https://api.openalex.org/works?" + urllib.parse.urlencode(params))
+    results = json.loads(raw.decode("utf-8")).get("results", [])
+    return openalex_results_to_papers(results)
+
+
+def resolve_openalex_source_id(venue: str) -> str:
+    params = {"search": venue, "per-page": 5, "select": "id,display_name,type"}
+    email = os.environ.get("OPENALEX_EMAIL", "").strip()
+    if email:
+        params["mailto"] = email
+    raw = request_bytes("https://api.openalex.org/sources?" + urllib.parse.urlencode(params))
+    results = json.loads(raw.decode("utf-8")).get("results", [])
+    target = normalized_title(venue)
+    for source in results:
+        if normalized_title(source.get("display_name", "")) == target:
+            return (source.get("id") or "").rsplit("/", 1)[-1]
+    raise ValueError(f"OpenAlex source not found for UTD24 venue: {venue}")
+
+
+def fetch_utd24_openalex(
+    venues: list[str],
+    start_date: dt.date,
+    end_date: dt.date,
+    max_results: int,
+    source_id_map: dict[str, str] | None = None,
+) -> list[Paper]:
+    """Fetch all recent publications from the official UTD24 journal set."""
+    source_ids = []
+    for venue in venues:
+        cached_id = (source_id_map or {}).get(venue, "").strip()
+        if cached_id:
+            source_ids.append(cached_id.rsplit("/", 1)[-1])
+            continue
+        try:
+            source_ids.append(resolve_openalex_source_id(venue))
+        except Exception as exc:
+            print(f"WARNING: UTD24 source resolution failed for {venue}: {exc}", file=sys.stderr)
+    if not source_ids:
+        raise RuntimeError("No UTD24 journal identifiers could be resolved through OpenAlex")
+    papers: list[Paper] = []
+    select = "id,doi,title,publication_date,authorships,abstract_inverted_index,primary_location,best_oa_location"
+    for offset in range(0, len(source_ids), 10):
+        batch = source_ids[offset : offset + 10]
+        filters = (
+            f"from_publication_date:{start_date.isoformat()},"
+            f"to_publication_date:{end_date.isoformat()},"
+            f"primary_location.source.id:{'|'.join(batch)}"
+        )
+        params = {
+            "filter": filters,
+            "sort": "publication_date:desc",
+            "per-page": min(max(max_results, 60), 100),
+            "select": select,
+        }
+        email = os.environ.get("OPENALEX_EMAIL", "").strip()
+        if email:
+            params["mailto"] = email
+        raw = request_bytes("https://api.openalex.org/works?" + urllib.parse.urlencode(params))
+        results = json.loads(raw.decode("utf-8")).get("results", [])
+        papers.extend(openalex_results_to_papers(results, "UTD24 正式发表/OpenAlex"))
     return papers
 
 
@@ -292,8 +354,9 @@ def fetch_ssrn(query: str, start_date: dt.date, end_date: dt.date, max_results: 
 
 def venue_is_quality(venue: str, config: dict[str, Any]) -> bool:
     venue_key = compact_space(venue).casefold()
+    quality_venues = [*config["quality_venues"], *config.get("utd24_venues", [])]
     return bool(venue_key) and any(
-        venue_key == compact_space(name).casefold() for name in config["quality_venues"]
+        venue_key == compact_space(name).casefold() for name in quality_venues
     )
 
 
@@ -468,6 +531,7 @@ def fallback_analysis(paper: Paper, config: dict[str, Any]) -> dict[str, Any]:
         "research_insight": relation or "需要结合原始摘要判断它与我们的 LLM 服务运营研究有何关系。",
         "one_line": simple_summary,
         "chinese_abstract": simple_summary,
+        "abstract_zh": "中文摘要翻译暂未生成，请参考下方英文原摘要。" if paper.abstract else "数据源未提供摘要，无法翻译。",
         "model_summary": "每日速读不从摘要复原模型设定；需要模型细节时再单独精读全文。",
         "participants": [],
         "decisions": [],
@@ -489,14 +553,15 @@ def analysis_for(
     return (analyses or {}).get(stable_anchor(paper)) or fallback_analysis(paper, config)
 
 
-def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str) -> dict[str, Any]:
+def chinese_analysis_prompt(paper: Paper) -> str:
     evidence = paper.abstract or "数据源未提供摘要。"
-    prompt = f"""请只根据下面的数据源摘要，为每日文献速读生成中文内容。
+    return f"""请只根据下面的数据源摘要，为每日文献速读生成中文内容。
 要求：
 1. title_zh：准确、自然的中文标题；专有名词可保留英文。
 2. simple_summary：用 1—2 句话说明论文研究什么、用了什么大类方法、摘要报告了什么主要结果。普通读者也能看懂，不堆砌术语。
 3. research_question：用一句话写研究问题。
 4. method：用一句话写作者怎么做；只说摘要明确支持的内容。
+5. abstract_zh：把原始摘要完整、忠实地翻译成通顺中文。不得概括、删减、添加或改变数字、限定条件和结论；专业术语第一次出现时可写“中文（English）”。若数据源未提供摘要，写“数据源未提供摘要，无法翻译。”
 不得补写摘要没有出现的模型、公式、因果关系或结论；信息不够时直接说明摘要未提供。
 
 原标题：{paper.title}
@@ -506,6 +571,40 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
 原始摘要：
 {evidence}
 """
+
+
+def normalize_generated_analysis(paper: Paper, config: dict[str, Any], parsed: dict[str, Any]) -> dict[str, Any]:
+    relation = category_reason(paper.category_id, config)
+    summary = compact_space(parsed.get("simple_summary", ""))
+    abstract_zh = compact_space(parsed.get("abstract_zh", ""))
+    if not summary:
+        raise ValueError("Generated abstract summary was empty")
+    if paper.abstract and not abstract_zh:
+        raise ValueError("Generated Chinese abstract translation was empty")
+    return {
+        "title_zh": compact_space(parsed.get("title_zh", "")) or paper.title,
+        "analysis_type": "摘要速读",
+        "research_question": compact_space(parsed.get("research_question", "")),
+        "method": compact_space(parsed.get("method", "")),
+        "research_insight": relation,
+        "one_line": summary,
+        "chinese_abstract": summary,
+        "abstract_zh": abstract_zh or "数据源未提供摘要，无法翻译。",
+        "model_summary": "每日速读仅依据摘要，不从摘要复原完整模型设定。",
+        "participants": [],
+        "decisions": [],
+        "primitives": [],
+        "sequence": [],
+        "equations": [],
+        "solution": "每日速读不展开求解过程。",
+        "findings": [],
+        "limitations": ["中文概括与翻译仅依据数据源摘要，不能替代全文阅读。"],
+        "verification": "已依据数据源摘要生成中文速读并翻译摘要；未从摘要推断全文细节。",
+    }
+
+
+def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str) -> dict[str, Any]:
+    prompt = chinese_analysis_prompt(paper)
     model = os.environ.get("OPENAI_ANALYSIS_MODEL", "gpt-5.6-luna").strip() or "gpt-5.6-luna"
     payload = {
         "model": model,
@@ -526,12 +625,13 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
                         "simple_summary": {"type": "string"},
                         "research_question": {"type": "string"},
                         "method": {"type": "string"},
+                        "abstract_zh": {"type": "string"},
                     },
-                    "required": ["title_zh", "simple_summary", "research_question", "method"],
+                    "required": ["title_zh", "simple_summary", "research_question", "method", "abstract_zh"],
                 },
             }
         },
-        "max_output_tokens": 900,
+        "max_output_tokens": 3000,
     }
     request = urllib.request.Request(
         "https://api.openai.com/v1/responses",
@@ -550,29 +650,44 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
     parsed = json.loads(output_text)
     if not isinstance(parsed, dict):
         raise ValueError("OpenAI analysis response was not a JSON object")
-    relation = category_reason(paper.category_id, config)
-    summary = compact_space(parsed.get("simple_summary", ""))
-    if not summary:
-        raise ValueError("OpenAI abstract summary was empty")
-    return {
-        "title_zh": compact_space(parsed.get("title_zh", "")) or paper.title,
-        "analysis_type": "摘要速读",
-        "research_question": compact_space(parsed.get("research_question", "")),
-        "method": compact_space(parsed.get("method", "")),
-        "research_insight": relation,
-        "one_line": summary,
-        "chinese_abstract": summary,
-        "model_summary": "每日速读仅依据摘要，不从摘要复原完整模型设定。",
-        "participants": [],
-        "decisions": [],
-        "primitives": [],
-        "sequence": [],
-        "equations": [],
-        "solution": "每日速读不展开求解过程。",
-        "findings": [],
-        "limitations": ["中文概括仅依据数据源摘要，不能替代全文阅读。"],
-        "verification": "已依据数据源摘要生成中文速读；未从摘要推断全文细节。",
+    return normalize_generated_analysis(paper, config, parsed)
+
+
+def generate_github_model_analysis(paper: Paper, config: dict[str, Any], token: str) -> dict[str, Any]:
+    prompt = chinese_analysis_prompt(paper) + "\n只输出一个合法 JSON 对象，不要使用 Markdown 代码块。"
+    payload = {
+        "model": os.environ.get("GITHUB_ANALYSIS_MODEL", "openai/gpt-4.1").strip() or "openai/gpt-4.1",
+        "messages": [
+            {"role": "system", "content": "你是严谨的学术摘要翻译员和面向初学者的论文解说员。所有字段使用中文，翻译完整忠实，不增删原意。"},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.1,
+        "max_tokens": 3000,
     }
+    request = urllib.request.Request(
+        "https://models.github.ai/inference/chat/completions",
+        data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github+json",
+            "User-Agent": USER_AGENT,
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(request, timeout=180) as response:
+        result = json.loads(response.read().decode("utf-8"))
+    output_text = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
+    if output_text.startswith("```"):
+        output_text = re.sub(r"^```(?:json)?\s*|\s*```$", "", output_text, flags=re.IGNORECASE)
+    if not output_text.startswith("{"):
+        start, end = output_text.find("{"), output_text.rfind("}")
+        if start >= 0 and end > start:
+            output_text = output_text[start : end + 1]
+    parsed = json.loads(output_text)
+    if not isinstance(parsed, dict):
+        raise ValueError("GitHub Models response was not a JSON object")
+    return normalize_generated_analysis(paper, config, parsed)
 
 
 def ensure_chinese_analyses(
@@ -582,17 +697,30 @@ def ensure_chinese_analyses(
 ) -> dict[str, dict[str, Any]]:
     analyses = load_analysis_cache(cache_path)
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    github_token = os.environ.get("GITHUB_TOKEN", "").strip()
     changed = False
-    if api_key:
+    if api_key or github_token:
         for paper in papers:
             key = stable_anchor(paper)
-            if key in analyses:
+            if key in analyses and (not paper.abstract or analyses[key].get("abstract_zh")):
                 continue
-            try:
-                analyses[key] = generate_chinese_analysis(paper, config, api_key)
-                changed = True
-            except Exception as exc:
-                print(f"WARNING: Chinese analysis failed for {paper.title}: {exc}", file=sys.stderr)
+            errors = []
+            if api_key:
+                try:
+                    analyses[key] = generate_chinese_analysis(paper, config, api_key)
+                    changed = True
+                    continue
+                except Exception as exc:
+                    errors.append(f"OpenAI: {exc}")
+            if github_token:
+                try:
+                    analyses[key] = generate_github_model_analysis(paper, config, github_token)
+                    changed = True
+                    continue
+                except Exception as exc:
+                    errors.append(f"GitHub Models: {exc}")
+            detail = "; ".join(errors) or "no translation provider configured"
+            print(f"WARNING: Chinese analysis failed for {paper.title}: {detail}", file=sys.stderr)
     if changed:
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         cache_path.write_text(json.dumps(analyses, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -779,7 +907,7 @@ def build_markdown(
         "",
         "## Executive Summary",
         "",
-        "本报告用于快速筛选：每篇论文附数据源原始摘要，并用一两句话概括研究内容。模型、公式和完整结论留到后续精读。",
+        "本报告用于快速筛选：每篇论文先用一两句话概括研究内容，再附完整中文摘要翻译和英文原摘要。模型、公式和完整结论留到后续精读。",
         "",
     ]
     if not papers:
@@ -803,7 +931,11 @@ def build_markdown(
             "",
             item["one_line"],
             "",
-            "### 原始摘要",
+            "### 中文摘要（翻译）",
+            "",
+            item.get("abstract_zh") or "中文摘要翻译暂未生成，请参考下方英文原摘要。",
+            "",
+            "### 英文原摘要",
             "",
             paper.abstract or "数据源未提供摘要。",
             "",
@@ -812,7 +944,7 @@ def build_markdown(
         "## 阅读说明",
         "",
         "- 中文概括仅依据数据源摘要，用于快速判断是否值得精读，不代表完成全文核验。",
-        "- 原始摘要完整保留；如果数据源没有摘要，会明确显示“数据源未提供摘要”。",
+        "- 每篇先展示忠实的中文摘要翻译，再完整保留英文原摘要；如果数据源没有摘要，会明确说明。",
         "- 同题名、同 DOI 的预印本与期刊版本会合并；首次发布日期与最近更新日期分开显示。",
         "- 机制桥接条目不是直接研究 LLM，而是可迁移到 LLM 服务系统的高质量模型论文。",
         "",
@@ -874,9 +1006,12 @@ def build_html(
             f'<p class="paper-meta">{html.escape(authors)} · {html.escape(paper.venue)} · {html.escape(display_dates(paper))}</p>'
             f'<div class="model-lead"><b>一两句话看懂</b><p>{html.escape(item["one_line"])}</p></div>'
             f'<div class="matched"><b>命中主题</b><div class="quick-facts">{terms}</div></div>'
-            f'<details open><summary>原始摘要</summary><div class="detail-body">'
+            f'<details open><summary>中文摘要（翻译）</summary><div class="detail-body">'
+            f'<p>{html.escape(item.get("abstract_zh") or "中文摘要翻译暂未生成，请参考下方英文原摘要。")}</p>'
+            f'<div class="callout">中文摘要由数据源英文摘要忠实翻译，用于阅读便利；论文结论仍以英文原文和全文为准。</div>'
+            f'</div></details>'
+            f'<details><summary>英文原摘要</summary><div class="detail-body">'
             f'<p class="english-abstract">{html.escape(paper.abstract or "数据源未提供摘要。")}</p>'
-            f'<div class="callout">中文概括仅依据上述摘要，用于快速筛选，不代表完成全文精读。</div>'
             f'<p>{" · ".join(links)}</p></div></details>'
             f'</article>'
         )
@@ -893,8 +1028,8 @@ def build_html(
 .metrics{grid-template-columns:repeat(4,1fr)}
 @media(max-width:780px){header,section,.paper{padding:25px 21px}.summary-list,.metrics,.charts,.quick-grid,.guide,.model-grid,.formula-grid,.split{grid-template-columns:1fr}.guide>div{min-height:0}.bar-row{grid-template-columns:80px 1fr 24px}}
 </style></head><body><main class="page"><a class="back" href="index.html">← 返回研究归档首页</a>
-<header><div class="eyebrow">每日文献追踪 · 北京时间</div><h1>__DATE__ 每日学术文献简报</h1><p class="scope">检索窗口：__START__ 至 __DATE__（北京时间 / __TIMEZONE__）。本期确认 __TOTAL__ 篇；每篇均保留数据源摘要，并提供一两句话中文速读。</p><div class="meta-row"><span class="tag model">摘要速读</span><span class="tag">直接 LLM __DIRECT__ 篇</span><span class="tag">机制桥接 __ANALOG__ 篇</span><span class="tag">原始摘要可核对</span></div></header>
-<section><h2>Executive Summary</h2><div class="summary-list">__THEMES__</div><div class="metrics"><div class="metric"><b>__TOTAL__</b><span>确认新增 / 更新</span></div><div class="metric"><b>__DIRECT__</b><span>直接 LLM 服务研究</span></div><div class="metric"><b>__ANALOG__</b><span>高质量机制桥接</span></div><div class="metric"><b>__SUMMARY_COUNT__</b><span>摘要速读条目</span></div></div><div class="charts">__CHARTS__</div><div class="status-note"><b>阅读口径：</b>中文内容仅依据数据源摘要，用于快速判断是否值得精读；页面完整保留原始摘要和论文链接。</div></section>
+<header><div class="eyebrow">每日文献追踪 · 北京时间</div><h1>__DATE__ 每日学术文献简报</h1><p class="scope">检索窗口：__START__ 至 __DATE__（北京时间 / __TIMEZONE__）。本期确认 __TOTAL__ 篇；每篇均提供通俗速读、中文摘要翻译和英文原摘要。</p><div class="meta-row"><span class="tag model">摘要速读</span><span class="tag">直接 LLM __DIRECT__ 篇</span><span class="tag">机制桥接 __ANALOG__ 篇</span><span class="tag">中文翻译 + 英文原文</span></div></header>
+<section><h2>Executive Summary</h2><div class="summary-list">__THEMES__</div><div class="metrics"><div class="metric"><b>__TOTAL__</b><span>确认新增 / 更新</span></div><div class="metric"><b>__DIRECT__</b><span>直接 LLM 服务研究</span></div><div class="metric"><b>__ANALOG__</b><span>高质量机制桥接</span></div><div class="metric"><b>__SUMMARY_COUNT__</b><span>摘要速读条目</span></div></div><div class="charts">__CHARTS__</div><div class="status-note"><b>阅读口径：</b>中文速读和摘要翻译仅依据数据源英文摘要；页面同时保留英文原摘要和论文链接。</div></section>
 <section><h2>今日速览</h2><div class="quick-grid">__QUICK__</div></section>
 __ARTICLES__
 <section><h2>阅读说明</h2><ul><li>同 DOI 或同题名版本已合并。</li><li>泛 benchmark、提示工程和非服务运营应用已降权或排除。</li><li>首次发布日期与最近更新日期分开显示。</li><li>中文速读仅概括摘要明确支持的信息，不复原全文公式与模型细节。</li><li>需要进一步研究时，可通过论文页、PDF 或 DOI 链接阅读全文。</li></ul></section>
@@ -1044,6 +1179,21 @@ def collect(
                             candidates.append(scored)
                 except Exception as exc:
                     errors.append(f"OpenAlex analog query '{query}': {exc}")
+    if source in {"all", "utd24"}:
+        query_count += 1
+        try:
+            for paper in fetch_utd24_openalex(
+                config.get("utd24_venues", []),
+                start_date,
+                end_date,
+                max_results,
+                config.get("utd24_openalex_source_ids", {}),
+            ):
+                scored = score_paper(paper, config, analog_query=True)
+                if scored is not None:
+                    candidates.append(scored)
+        except Exception as exc:
+            errors.append(f"UTD24/OpenAlex journal scan: {exc}")
     if source in {"all", "ssrn"}:
         ssrn_queries = config["source_queries"].get("ssrn", [])
         query_count += len(ssrn_queries)
@@ -1068,7 +1218,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--date", help="Report date in YYYY-MM-DD; defaults to today in the configured timezone")
     parser.add_argument("--lookback-days", type=int, help="Override the configured lookback window")
-    parser.add_argument("--source", choices=("all", "arxiv", "openalex", "ssrn"), default="all")
+    parser.add_argument("--source", choices=("all", "arxiv", "openalex", "utd24", "ssrn"), default="all")
     parser.add_argument("--max-per-query", type=int, help="Override max results fetched per source query")
     parser.add_argument("--reports-dir", type=Path, default=ROOT / "reports")
     parser.add_argument("--site-dir", type=Path, default=ROOT / "site")

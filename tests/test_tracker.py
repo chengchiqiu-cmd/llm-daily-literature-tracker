@@ -137,6 +137,42 @@ class SourceTests(unittest.TestCase):
         self.assertEqual(papers[0].venue, "SSRN working paper")
         self.assertEqual(papers[0].abstract, "We study token pricing and subscription design.")
 
+    def test_utd24_scan_fetches_formally_published_journal_papers(self):
+        source_payload = {
+            "results": [{"id": "https://openalex.org/S33323087", "display_name": "Management Science"}]
+        }
+        works_payload = {
+            "results": [{
+                "id": "https://openalex.org/W123",
+                "doi": "https://doi.org/10.1287/mnsc.2026.1",
+                "title": "Pricing Generative AI Services",
+                "publication_date": "2026-08-16",
+                "authorships": [{"author": {"display_name": "Test Author"}}],
+                "abstract_inverted_index": {"We": [0], "study": [1], "token": [2], "pricing": [3]},
+                "primary_location": {
+                    "landing_page_url": "https://doi.org/10.1287/mnsc.2026.1",
+                    "source": {"display_name": "Management Science"},
+                },
+                "best_oa_location": {},
+            }]
+        }
+        original = tracker.request_bytes
+        tracker.request_bytes = lambda url, **kwargs: json.dumps(
+            source_payload if "/sources?" in url else works_payload
+        ).encode("utf-8")
+        try:
+            papers = tracker.fetch_utd24_openalex(
+                ["Management Science"],
+                tracker.dt.date(2026, 8, 15),
+                tracker.dt.date(2026, 8, 16),
+                10,
+            )
+        finally:
+            tracker.request_bytes = original
+        self.assertEqual(len(papers), 1)
+        self.assertEqual(papers[0].venue, "Management Science")
+        self.assertEqual(papers[0].source, "UTD24 正式发表/OpenAlex")
+
 
 class HomepageTests(unittest.TestCase):
     def test_original_archive_interactions_are_preserved(self):
@@ -169,7 +205,12 @@ class HomepageTests(unittest.TestCase):
         self.assertIn("今日速览", report_page)
         self.assertIn("阅读说明", report_page)
         self.assertIn("一两句话看懂", report_page)
-        self.assertIn("原始摘要", report_page)
+        self.assertIn("中文摘要（翻译）", report_page)
+        self.assertIn("英文原摘要", report_page)
+        self.assertLess(
+            report_page.index("<summary>中文摘要（翻译）</summary>"),
+            report_page.index("<summary>英文原摘要</summary>"),
+        )
         self.assertIn(candidate.abstract, report_page)
         self.assertNotIn("待全文核验", report_page)
         self.assertNotIn("核心公式", report_page)
@@ -191,7 +232,8 @@ class HomepageTests(unittest.TestCase):
         )
         self.assertIn("编排式 AI 智能体系统的一般均衡理论", report_page)
         self.assertIn("一两句话看懂", report_page)
-        self.assertIn("原始摘要", report_page)
+        self.assertIn("中文摘要（翻译）", report_page)
+        self.assertIn("英文原摘要", report_page)
         self.assertNotIn("tex-mml-chtml.js", report_page)
         self.assertNotIn(r"\(\pi_a(p)=\sup", report_page)
         self.assertNotIn("<b>背景问题</b>", report_page)
@@ -207,6 +249,21 @@ class HomepageTests(unittest.TestCase):
         self.assertEqual(item["analysis_type"], "摘要速读")
         self.assertIn("从摘要看", item["one_line"])
         self.assertNotIn("待全文核验", item["one_line"])
+
+    def test_generated_analysis_keeps_full_chinese_abstract_translation(self):
+        candidate = paper(
+            "Pricing Large Language Model Services",
+            "We study token pricing and report that usage-based pricing improves welfare.",
+        )
+        tracker.score_paper(candidate, CONFIG)
+        item = tracker.normalize_generated_analysis(candidate, CONFIG, {
+            "title_zh": "大语言模型服务定价",
+            "simple_summary": "这篇论文研究大语言模型服务如何定价。",
+            "research_question": "平台应如何定价？",
+            "method": "作者建立定价模型。",
+            "abstract_zh": "我们研究 Token 定价，并发现按使用量定价可以提高福利。",
+        })
+        self.assertIn("按使用量定价", item["abstract_zh"])
 
 
 if __name__ == "__main__":
