@@ -21,7 +21,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-f583f36952",
-          "title": "OpenAI API compatible AI Inference Service support in HPC environment",
+          "title": "在HPC环境中支持OpenAI API兼容的AI推理服务",
           "original_title": "OpenAI API compatible AI Inference Service support in HPC environment",
           "authors": "Adam Matuš / Tomáš Martinovič / Arif Görkem Özer / Jakub Konvička / Firat Cekinel / Pinar Karagoz / Ismail Hakki Toroslu / Jakub Krejčí / Jan Martinovič"
         },
@@ -29,7 +29,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-e180ff80b4",
-          "title": "Breaking the Memory Wall: A Survey of Key-Value (KV) Cache Compression for Efficient Large Language Model (LLM) Inference",
+          "title": "打破记忆墙:对高效的大语言模型 (LLM) 输入的关键值 (KV) 缓存压缩的调查",
           "original_title": "Breaking the Memory Wall: A Survey of Key-Value (KV) Cache Compression for Efficient Large Language Model (LLM) Inference",
           "authors": "Manpreet Singh / Yash Jajoo / Rohith Reddy Bellibatlu"
         },
@@ -37,7 +37,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-3fde4d8528",
-          "title": "JaccardServe: Cross-Request Prefill Acceleration in LLM Serving via MinHash-LSH Token Shingling",
+          "title": "JaccardServe:通过MINHash-LSH代币屏幕服务在LLM服务中跨请求预填加快",
           "original_title": "JaccardServe: Cross-Request Prefill Acceleration in LLM Serving via MinHash-LSH Token Shingling",
           "authors": "Anmol Sureshkumar Panchal"
         },
@@ -45,7 +45,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-6a99c349c1",
-          "title": "Adaptive Weather-Aware Home Energy Management through Large Language Model-Based Appliance Scheduling",
+          "title": "通过基于大型语言模型的设备规划来适应天气的家庭能源管理",
           "original_title": "Adaptive Weather-Aware Home Energy Management through Large Language Model-Based Appliance Scheduling",
           "authors": "sokipriala jonah / Queen Moses / Abiola Babatunde / Michael Ajao-Olarinoye / Daniel Bammeke"
         },
@@ -53,7 +53,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-a78942dd15",
-          "title": "OQTOPUS: Optimal Query-Time Optimization for Probabilistic Utility Search inLarge Language Model Reasoning Trees — A Controlled Branching ProcessFramework with Phase-Transition Guarantees",
+          "title": "大型语言模型推理树 具有阶段过渡保证的控制分支过程框架",
           "original_title": "OQTOPUS: Optimal Query-Time Optimization for Probabilistic Utility Search inLarge Language Model Reasoning Trees — A Controlled Branching ProcessFramework with Phase-Transition Guarantees",
           "authors": "Soumyapriya Goswami / Raj Ganesh Jayaraman / Partha Sarathi Banerjee / Amruutha Chandrasekar Rao"
         },
@@ -61,7 +61,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-452a045e82",
-          "title": "Backfilling, Not Prediction: A Cluster-Size Sweep and Cross-Trace Bootstrap of Forecast-Driven GPU Scheduling in the LLM Era",
+          "title": "预测不是预测:在LLM时代的预测驱动GPU规划的集群尺寸扫描和交叉追踪启动",
           "original_title": "Backfilling, Not Prediction: A Cluster-Size Sweep and Cross-Trace Bootstrap of Forecast-Driven GPU Scheduling in the LLM Era",
           "authors": "Don Harl C. Malabanan"
         },
@@ -69,7 +69,7 @@
           "date": "2026-08-16",
           "file": "literature_tracking_2026-08-16.html",
           "id": "paper-ba2f1ac69a",
-          "title": "Economic Integrity in Production LLM Pipelines: Measuring Attempt Amplification, Discarded Reasoning, and Retry Cost",
+          "title": "在生产LLM管道中的经济完整性:测量尝试扩大,丢弃推理和反试成本",
           "original_title": "Economic Integrity in Production LLM Pipelines: Measuring Attempt Amplification, Discarded Reasoning, and Retry Cost",
           "authors": "Sean Halverson"
         }
