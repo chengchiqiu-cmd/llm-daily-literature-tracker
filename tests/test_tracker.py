@@ -250,6 +250,19 @@ class HomepageTests(unittest.TestCase):
         self.assertIn("从摘要看", item["one_line"])
         self.assertNotIn("待全文核验", item["one_line"])
 
+    def test_local_translation_polishes_common_llm_terms(self):
+        translated = tracker.polish_local_translation(
+            "高电荷环境中的AI推论服务支持基因化使用案例。"
+        )
+        self.assertEqual(
+            translated,
+            "高性能计算环境中的AI推理服务支持生成式应用场景。",
+        )
+
+    def test_contains_chinese_detects_translated_title(self):
+        self.assertTrue(tracker.contains_chinese("大语言模型服务定价"))
+        self.assertFalse(tracker.contains_chinese("Pricing LLM Services"))
+
     def test_generated_analysis_keeps_full_chinese_abstract_translation(self):
         candidate = paper(
             "Pricing Large Language Model Services",

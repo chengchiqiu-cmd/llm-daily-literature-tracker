@@ -71,7 +71,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface/hub
-          key: huggingface-opus-mt-en-zh-v1
+          key: huggingface-nllb-200-distilled-600m-v1
 
       - name: Install local translation fallback
         run: |
@@ -84,7 +84,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_ANALYSIS_MODEL: ${{ vars.OPENAI_ANALYSIS_MODEL || 'gpt-5.6-luna' }}
           ENABLE_LOCAL_TRANSLATION: "1"
-          LOCAL_TRANSLATION_MODEL: Helsinki-NLP/opus-mt-en-zh
+          LOCAL_TRANSLATION_MODEL: facebook/nllb-200-distilled-600M
         run: python scripts/track_literature.py
 
       - name: Commit the daily report

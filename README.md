@@ -22,7 +22,7 @@
 - `reports/`：Markdown 日报；
 - `site/`：可由 GitHub Pages 直接发布的 HTML 日报和索引。
 
-检索与网页生成核心使用 Python 标准库。每篇日报固定包含“一两句话看懂”、忠实的中文摘要翻译和英文原摘要。翻译优先使用已配置的 OpenAI API；自动任务在接口限流时会加载开源英译中模型 `Helsinki-NLP/opus-mt-en-zh` 本地翻译，不需要额外 API key。
+检索与网页生成核心使用 Python 标准库。每篇日报固定包含“一两句话看懂”、忠实的中文摘要翻译和英文原摘要。翻译优先使用已配置的 OpenAI API；自动任务在接口限流时会加载开源多语言模型 `facebook/nllb-200-distilled-600M` 本地翻译，不需要额外 API key。
 
 ## 筛选逻辑
 
@@ -79,7 +79,7 @@ $env:OPENAI_ANALYSIS_MODEL="gpt-5.6-luna"  # 可替换为账号可用的兼容�
 python scripts/track_literature.py
 ```
 
-OpenAI API 临时失败或额度不足时，GitHub Actions 会在运行器本地使用开源英译中模型生成完整翻译。模型文件会被缓存，后续运行不必重复下载。只有 OpenAI 和本地模型都失败时，页面才会明确提示翻译暂未生成，不会把模板句伪装成翻译。
+OpenAI API 临时失败或额度不足时，GitHub Actions 会在运行器本地使用 NLLB 多语言模型生成中文标题和完整摘要翻译。模型文件会被缓存，后续运行不必重复下载。只有 OpenAI 和本地模型都失败时，页面才会明确提示翻译暂未生成，不会把模板句伪装成翻译。
 
 ## 调整关键词
 

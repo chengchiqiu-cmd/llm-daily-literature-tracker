@@ -653,7 +653,7 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
     return normalize_generated_analysis(paper, config, parsed)
 
 
-_LOCAL_TRANSLATOR: tuple[Any, Any] | None = None
+_LOCAL_TRANSLATOR: tuple[Any, Any, str] | None = None
 
 
 def split_translation_chunks(text: str, max_chars: int = 420) -> list[str]:
@@ -676,30 +676,61 @@ def split_translation_chunks(text: str, max_chars: int = 420) -> list[str]:
     return chunks
 
 
+def contains_chinese(text: str) -> bool:
+    return re.search(r"[\u3400-\u9fff]", text or "") is not None
+
+
+def polish_local_translation(text: str) -> str:
+    replacements = (
+        ("高电荷环境", "高性能计算环境"),
+        ("高性能计算机(HPC)", "高性能计算（HPC）"),
+        ("大语言模型(LLMs)", "大语言模型（LLM）"),
+        ("大型语言模型(LLMs)", "大语言模型（LLM）"),
+        ("应用编程界面(API)", "应用程序编程接口（API）"),
+        ("推论服务", "推理服务"),
+        ("AI推论", "AI 推理"),
+        ("推论-时间", "推理时"),
+        ("基因化使用案例", "生成式应用场景"),
+        ("管弦管理", "编排管理"),
+    )
+    polished = compact_space(text)
+    for source, target in replacements:
+        polished = polished.replace(source, target)
+    return polished
+
+
 def generate_local_translation_analysis(paper: Paper, config: dict[str, Any]) -> dict[str, Any]:
     """Translate the complete abstract locally when hosted text-generation APIs are unavailable."""
-    if not paper.abstract:
-        item = fallback_analysis(paper, config)
-        item["abstract_zh"] = "数据源未提供摘要，无法翻译。"
-        return item
     global _LOCAL_TRANSLATOR
     if _LOCAL_TRANSLATOR is None:
         from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-        model_name = os.environ.get("LOCAL_TRANSLATION_MODEL", "Helsinki-NLP/opus-mt-en-zh").strip()
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model_name = os.environ.get("LOCAL_TRANSLATION_MODEL", "facebook/nllb-200-distilled-600M").strip()
+        tokenizer_kwargs = {"src_lang": "eng_Latn"} if "nllb" in model_name.lower() else {}
+        tokenizer = AutoTokenizer.from_pretrained(model_name, **tokenizer_kwargs)
         model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
         model.eval()
-        _LOCAL_TRANSLATOR = tokenizer, model
-    tokenizer, model = _LOCAL_TRANSLATOR
-    chunks = [f">>cmn_Hans<< {chunk}" for chunk in split_translation_chunks(paper.abstract)]
-    encoded = tokenizer(chunks, return_tensors="pt", padding=True, truncation=True, max_length=512)
-    generated = model.generate(**encoded, max_new_tokens=512, num_beams=4)
-    translated = " ".join(tokenizer.batch_decode(generated, skip_special_tokens=True)).strip()
-    if not translated:
+        _LOCAL_TRANSLATOR = tokenizer, model, model_name
+    tokenizer, model, model_name = _LOCAL_TRANSLATOR
+    chunks = split_translation_chunks(paper.abstract) if paper.abstract else []
+    inputs = [paper.title, *chunks]
+    if "nllb" not in model_name.lower():
+        inputs = [f">>cmn_Hans<< {text}" for text in inputs]
+    encoded = tokenizer(inputs, return_tensors="pt", padding=True, truncation=True, max_length=512)
+    generation_kwargs: dict[str, Any] = {"max_new_tokens": 512, "num_beams": 4}
+    if "nllb" in model_name.lower():
+        generation_kwargs["forced_bos_token_id"] = tokenizer.convert_tokens_to_ids("zho_Hans")
+    generated = model.generate(**encoded, **generation_kwargs)
+    translated_parts = [polish_local_translation(text) for text in tokenizer.batch_decode(generated, skip_special_tokens=True)]
+    if not translated_parts or not translated_parts[0]:
         raise ValueError("Local translation model returned an empty translation")
     item = fallback_analysis(paper, config)
-    item["abstract_zh"] = compact_space(translated)
+    item["title_zh"] = translated_parts[0]
+    item["abstract_zh"] = (
+        " ".join(translated_parts[1:]).strip()
+        if paper.abstract
+        else "数据源未提供摘要，无法翻译。"
+    )
     item["verification"] = "已使用本地英译中模型完整翻译数据源摘要；一两句话速读仍由规则生成。"
     return item
 
@@ -712,20 +743,25 @@ def ensure_chinese_analyses(
     analyses = load_analysis_cache(cache_path)
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
     local_translation = os.environ.get("ENABLE_LOCAL_TRANSLATION", "").strip().lower() in {"1", "true", "yes"}
+    openai_available = bool(api_key)
     changed = False
     if api_key or local_translation:
         for paper in papers:
             key = stable_anchor(paper)
-            if key in analyses and (not paper.abstract or analyses[key].get("abstract_zh")):
+            cached = analyses.get(key, {})
+            needs_chinese_title = bool(paper.title) and not contains_chinese(cached.get("title_zh", ""))
+            if cached and (not paper.abstract or cached.get("abstract_zh")) and not needs_chinese_title:
                 continue
             errors = []
-            if api_key:
+            if openai_available:
                 try:
                     analyses[key] = generate_chinese_analysis(paper, config, api_key)
                     changed = True
                     continue
                 except Exception as exc:
                     errors.append(f"OpenAI: {exc}")
+                    if isinstance(exc, urllib.error.HTTPError) and exc.code in {401, 403, 429}:
+                        openai_available = False
             if local_translation:
                 try:
                     analyses[key] = generate_local_translation_analysis(paper, config)
