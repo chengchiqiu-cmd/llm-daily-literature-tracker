@@ -22,7 +22,7 @@
 - `reports/`：Markdown 日报；
 - `site/`：可由 GitHub Pages 直接发布的 HTML 日报和索引。
 
-检索与网页生成使用 Python 标准库。每篇日报固定包含“一两句话看懂”、忠实的中文摘要翻译和英文原摘要。翻译优先使用已配置的 OpenAI API；自动任务还会使用 GitHub Models 作为备用通道。
+检索与网页生成核心使用 Python 标准库。每篇日报固定包含“一两句话看懂”、忠实的中文摘要翻译和英文原摘要。翻译优先使用已配置的 OpenAI API；自动任务在接口限流时会加载开源英译中模型 `Helsinki-NLP/opus-mt-en-zh` 本地翻译，不需要额外 API key。
 
 ## 筛选逻辑
 
@@ -79,7 +79,7 @@ $env:OPENAI_ANALYSIS_MODEL="gpt-5.6-luna"  # 可替换为账号可用的兼容�
 python scripts/track_literature.py
 ```
 
-OpenAI API 临时失败时，GitHub Actions 会使用自带的 `GITHUB_TOKEN` 调用 GitHub Models 生成中文翻译，无需再添加一个 secret。两个通道都失败时，检索和网页仍会运行，并明确提示翻译暂未生成，不会把模板句伪装成翻译。
+OpenAI API 临时失败或额度不足时，GitHub Actions 会在运行器本地使用开源英译中模型生成完整翻译。模型文件会被缓存，后续运行不必重复下载。只有 OpenAI 和本地模型都失败时，页面才会明确提示翻译暂未生成，不会把模板句伪装成翻译。
 
 ## 调整关键词
 
@@ -98,7 +98,7 @@ OpenAI API 临时失败时，GitHub Actions 会使用自带的 `GITHUB_TOKEN` �
 
 1. 把本目录作为一个 GitHub 仓库推送；
 2. 在仓库 Settings → Actions → General 中允许 Actions 写入仓库；
-3. 可选添加 `OPENAI_API_KEY` repository secret；没有或临时失败时会自动改用 GitHub Models；`OPENALEX_EMAIL` 为可选 secret；
+3. 可选添加 `OPENAI_API_KEY` repository secret；没有、限流或额度不足时会自动改用本地开源翻译模型；`OPENALEX_EMAIL` 为可选 secret；
 4. 可选：添加 `OPENAI_ANALYSIS_MODEL` repository variable；默认使用工作流内配置的成本敏感型模型；
 5. 在 Actions 页面手动运行一次 **Daily LLM literature tracker**；
 6. 在 Settings → Pages 中选择 **GitHub Actions** 作为发布源。

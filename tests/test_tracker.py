@@ -265,6 +265,12 @@ class HomepageTests(unittest.TestCase):
         })
         self.assertIn("按使用量定价", item["abstract_zh"])
 
+    def test_long_abstract_is_split_without_dropping_text(self):
+        abstract = "First sentence explains the setting. " + "A" * 500 + " Final sentence reports results."
+        chunks = tracker.split_translation_chunks(abstract, max_chars=120)
+        self.assertGreater(len(chunks), 2)
+        self.assertEqual("".join(chunks).replace(" ", ""), abstract.replace(" ", ""))
+
 
 if __name__ == "__main__":
     unittest.main()

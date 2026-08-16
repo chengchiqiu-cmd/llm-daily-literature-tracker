@@ -653,41 +653,55 @@ def generate_chinese_analysis(paper: Paper, config: dict[str, Any], api_key: str
     return normalize_generated_analysis(paper, config, parsed)
 
 
-def generate_github_model_analysis(paper: Paper, config: dict[str, Any], token: str) -> dict[str, Any]:
-    prompt = chinese_analysis_prompt(paper) + "\n只输出一个合法 JSON 对象，不要使用 Markdown 代码块。"
-    payload = {
-        "model": os.environ.get("GITHUB_ANALYSIS_MODEL", "openai/gpt-4.1").strip() or "openai/gpt-4.1",
-        "messages": [
-            {"role": "system", "content": "你是严谨的学术摘要翻译员和面向初学者的论文解说员。所有字段使用中文，翻译完整忠实，不增删原意。"},
-            {"role": "user", "content": prompt},
-        ],
-        "temperature": 0.1,
-        "max_tokens": 3000,
-    }
-    request = urllib.request.Request(
-        "https://models.github.ai/inference/chat/completions",
-        data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-            "Accept": "application/vnd.github+json",
-            "User-Agent": USER_AGENT,
-        },
-        method="POST",
-    )
-    with urllib.request.urlopen(request, timeout=180) as response:
-        result = json.loads(response.read().decode("utf-8"))
-    output_text = result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
-    if output_text.startswith("```"):
-        output_text = re.sub(r"^```(?:json)?\s*|\s*```$", "", output_text, flags=re.IGNORECASE)
-    if not output_text.startswith("{"):
-        start, end = output_text.find("{"), output_text.rfind("}")
-        if start >= 0 and end > start:
-            output_text = output_text[start : end + 1]
-    parsed = json.loads(output_text)
-    if not isinstance(parsed, dict):
-        raise ValueError("GitHub Models response was not a JSON object")
-    return normalize_generated_analysis(paper, config, parsed)
+_LOCAL_TRANSLATOR: tuple[Any, Any] | None = None
+
+
+def split_translation_chunks(text: str, max_chars: int = 420) -> list[str]:
+    sentences = re.split(r"(?<=[.!?])\s+", compact_space(text))
+    chunks: list[str] = []
+    current = ""
+    for sentence in sentences:
+        if len(sentence) > max_chars:
+            if current:
+                chunks.append(current)
+                current = ""
+            chunks.extend(sentence[i : i + max_chars] for i in range(0, len(sentence), max_chars))
+        elif current and len(current) + 1 + len(sentence) > max_chars:
+            chunks.append(current)
+            current = sentence
+        else:
+            current = f"{current} {sentence}".strip()
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def generate_local_translation_analysis(paper: Paper, config: dict[str, Any]) -> dict[str, Any]:
+    """Translate the complete abstract locally when hosted text-generation APIs are unavailable."""
+    if not paper.abstract:
+        item = fallback_analysis(paper, config)
+        item["abstract_zh"] = "数据源未提供摘要，无法翻译。"
+        return item
+    global _LOCAL_TRANSLATOR
+    if _LOCAL_TRANSLATOR is None:
+        from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+        model_name = os.environ.get("LOCAL_TRANSLATION_MODEL", "Helsinki-NLP/opus-mt-en-zh").strip()
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+        model.eval()
+        _LOCAL_TRANSLATOR = tokenizer, model
+    tokenizer, model = _LOCAL_TRANSLATOR
+    chunks = [f">>cmn_Hans<< {chunk}" for chunk in split_translation_chunks(paper.abstract)]
+    encoded = tokenizer(chunks, return_tensors="pt", padding=True, truncation=True, max_length=512)
+    generated = model.generate(**encoded, max_new_tokens=512, num_beams=4)
+    translated = " ".join(tokenizer.batch_decode(generated, skip_special_tokens=True)).strip()
+    if not translated:
+        raise ValueError("Local translation model returned an empty translation")
+    item = fallback_analysis(paper, config)
+    item["abstract_zh"] = compact_space(translated)
+    item["verification"] = "已使用本地英译中模型完整翻译数据源摘要；一两句话速读仍由规则生成。"
+    return item
 
 
 def ensure_chinese_analyses(
@@ -697,9 +711,9 @@ def ensure_chinese_analyses(
 ) -> dict[str, dict[str, Any]]:
     analyses = load_analysis_cache(cache_path)
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
-    github_token = os.environ.get("GITHUB_TOKEN", "").strip()
+    local_translation = os.environ.get("ENABLE_LOCAL_TRANSLATION", "").strip().lower() in {"1", "true", "yes"}
     changed = False
-    if api_key or github_token:
+    if api_key or local_translation:
         for paper in papers:
             key = stable_anchor(paper)
             if key in analyses and (not paper.abstract or analyses[key].get("abstract_zh")):
@@ -712,13 +726,13 @@ def ensure_chinese_analyses(
                     continue
                 except Exception as exc:
                     errors.append(f"OpenAI: {exc}")
-            if github_token:
+            if local_translation:
                 try:
-                    analyses[key] = generate_github_model_analysis(paper, config, github_token)
+                    analyses[key] = generate_local_translation_analysis(paper, config)
                     changed = True
                     continue
                 except Exception as exc:
-                    errors.append(f"GitHub Models: {exc}")
+                    errors.append(f"local translation: {exc}")
             detail = "; ".join(errors) or "no translation provider configured"
             print(f"WARNING: Chinese analysis failed for {paper.title}: {detail}", file=sys.stderr)
     if changed:
