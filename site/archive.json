@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-08-19",
+      "window": "2026-08-18 至 2026-08-19（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-19.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-08-19",
+          "file": "literature_tracking_2026-08-19.html",
+          "id": "paper-ca045b145d",
+          "title": "代码不是法律:基于人工智能的公共管理中的合同问题和合法性的限制",
+          "original_title": "Code is not Law: The Congruence Dilemma and the Limits of Legality in AI-based Public Administration",
+          "authors": "Craig S Wright"
+        }
+      ]
+    },
+    {
       "date": "2026-08-18",
       "window": "2026-08-17 至 2026-08-18（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-18.html",
