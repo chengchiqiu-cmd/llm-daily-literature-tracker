@@ -1,6 +1,49 @@
 {
   "reports": [
     {
+      "date": "2026-08-20",
+      "window": "2026-08-19 至 2026-08-20（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-20.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1,
+        "平台经济、市场设计与竞争": 1,
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-08-20",
+          "file": "literature_tracking_2026-08-20.html",
+          "id": "paper-962daca370",
+          "title": "简单的法官制造了提取:阅读转录的跨销售人员研究10个工作和10个失败的LLM秘密提取框架",
+          "original_title": "Naive Judges Fabricate the Extraction: A Read-the-Transcript Cross-Vendor Study of Ten Working and Ten Failing LLM Secret-Extraction Framings",
+          "authors": "Mohammadreza Rashidi"
+        },
+        {
+          "date": "2026-08-20",
+          "file": "literature_tracking_2026-08-20.html",
+          "id": "paper-3741b508d4",
+          "title": "内容生成:人类创造者,人工智能学习和平台设计",
+          "original_title": "Content Generation: Human Creators, AI Learning, and Platform Design",
+          "authors": "Seyedeh Parisa Moosavi / Azarakhsh Malekian / Ali Makhdoumi"
+        },
+        {
+          "date": "2026-08-20",
+          "file": "literature_tracking_2026-08-20.html",
+          "id": "paper-2e985e3743",
+          "title": "通过混合型密集语音转换,仅用于解码器的大型语言模型的单步语音推理",
+          "original_title": "LLM2Spike: Single-Step Spiking Inference for Decoder-Only Large Language Modelsvia Hybrid Dense-Spiking Conversion",
+          "authors": "Wanyi Jia / Chenlin Zhou / Qiuyang Chen / Yunhao Ma / Qingyan Meng / Zhengyu Ma / Huihui Zhou"
+        }
+      ]
+    },
+    {
       "date": "2026-08-19",
       "window": "2026-08-18 至 2026-08-19（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-19.html",
