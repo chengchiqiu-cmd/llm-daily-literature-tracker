@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-08-22",
+      "window": "2026-08-21 至 2026-08-22（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-22.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-08-22",
+          "file": "literature_tracking_2026-08-22.html",
+          "id": "paper-0fa43a72e4",
+          "title": "人工智能调整的知识市场作为可管理的数字经济体:源头,访问,解决和系统性信任的结构架构",
+          "original_title": "AI-Mediated Knowledge Markets as Governable Digital Economies: A Structural Architecture for Provenance, Access, Settlement, and Systemic Trust",
+          "authors": "Y. Hori"
+        }
+      ]
+    },
+    {
       "date": "2026-08-21",
       "window": "2026-08-20 至 2026-08-21（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-21.html",
