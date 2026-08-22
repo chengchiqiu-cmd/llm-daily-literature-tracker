@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-08-23",
+      "window": "2026-08-22 至 2026-08-23（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-23.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-08-23",
+          "file": "literature_tracking_2026-08-23.html",
+          "id": "paper-c5c0751b3b",
+          "title": "人工智能的碳悖论: 人工智能数据中心和算法登记将在中国增加城市水平的碳排放吗?",
+          "original_title": "The Carbon Paradox of AI: Will AI Data Centers and Algorithm Registration Exacerbate City-Level Carbon Emissions in China?",
+          "authors": "Yuning Gao / Xuetian WANG / Yuan WANG"
+        }
+      ]
+    },
+    {
       "date": "2026-08-22",
       "window": "2026-08-21 至 2026-08-22（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-22.html",
