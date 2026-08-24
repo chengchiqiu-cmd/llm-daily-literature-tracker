@@ -1,6 +1,16 @@
 {
   "reports": [
     {
+      "date": "2026-08-25",
+      "window": "2026-08-24 至 2026-08-25（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-25.html",
+      "total": 0,
+      "sources": {},
+      "types": {},
+      "statuses": {},
+      "papers": []
+    },
+    {
       "date": "2026-08-24",
       "window": "2026-08-23 至 2026-08-24（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-24.html",
