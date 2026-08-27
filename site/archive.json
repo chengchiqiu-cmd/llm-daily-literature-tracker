@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-08-27",
+      "window": "2026-08-26 至 2026-08-27（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-27.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "LLM 推理排队与调度": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-08-27",
+          "file": "literature_tracking_2026-08-27.html",
+          "id": "paper-0a95bb8e89",
+          "title": "超越连接:对长文本LLM培训的序列包装调查",
+          "original_title": "Beyond Concatenation: A Survey of Sequence Packing for Long-Context LLM Training",
+          "authors": "Yue Min / Ruining Chen / Yuan Cheng / Tianze Xu / Jianghao Yang / Bowei He / Meng Ding / Tian Zhang / Yujun Li"
+        }
+      ]
+    },
+    {
       "date": "2026-08-26",
       "window": "2026-08-25 至 2026-08-26（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-26.html",
