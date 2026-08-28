@@ -1,6 +1,49 @@
 {
   "reports": [
     {
+      "date": "2026-08-28",
+      "window": "2026-08-27 至 2026-08-28（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-28.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 1,
+        "arXiv": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "Token 定价、订阅与额度套餐": 2
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-08-28",
+          "file": "literature_tracking_2026-08-28.html",
+          "id": "paper-98cc225428",
+          "title": "法律法师可以设计接近最佳的OR算法",
+          "original_title": "LLMs Can Design Near-Optimal OR Algorithms",
+          "authors": "Jackie Baek"
+        },
+        {
+          "date": "2026-08-28",
+          "file": "literature_tracking_2026-08-28.html",
+          "id": "paper-14604a0c29",
+          "title": "全球南方的算法公平感知:孟加拉国关于骑车共享,美容过器和大型车辆的证据",
+          "original_title": "Algorithmic Fairness Perceptions in the Global South: Evidence from Bangladesh on Ride-Sharing, Beauty Filters, and Large",
+          "authors": "Ahmed Abdal Shafi Rasel / Ahmed Mustafa Amlan / Tasmim Shajahan Mim"
+        },
+        {
+          "date": "2026-08-28",
+          "file": "literature_tracking_2026-08-28.html",
+          "id": "paper-2052906cfd",
+          "title": "驾驶人工智能基础设施繁荣:政策支持韩国电力设备出口第二次增长",
+          "original_title": "Riding the AI Infrastructure Boom: Policy Support for a Second Surge in Korea's Power Equipment Exports",
+          "authors": "Sungjin Kim"
+        }
+      ]
+    },
+    {
       "date": "2026-08-27",
       "window": "2026-08-26 至 2026-08-27（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-27.html",
