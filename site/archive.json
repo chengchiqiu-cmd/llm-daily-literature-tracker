@@ -1,6 +1,49 @@
 {
   "reports": [
     {
+      "date": "2026-08-29",
+      "window": "2026-08-28 至 2026-08-29（Asia/Shanghai）",
+      "file": "literature_tracking_2026-08-29.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1,
+        "Token 定价、订阅与额度套餐": 1,
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-08-29",
+          "file": "literature_tracking_2026-08-29.html",
+          "id": "paper-04867b0e4a",
+          "title": "人类人工智能协作中的多模式信任校准使用生理信号和大语言模型解释",
+          "original_title": "Multimodal Trust Calibration in Human AI Collaboration Using Physiological Signals and Large Language Model Explanations",
+          "authors": "Sai Doondi Kothapalli"
+        },
+        {
+          "date": "2026-08-29",
+          "file": "literature_tracking_2026-08-29.html",
+          "id": "paper-977b49022e",
+          "title": "代理实验性资产定价:方法学基础 *",
+          "original_title": "Agentic Empirical Asset Pricing: Methodological Foundations *",
+          "authors": "Yingjian Pan / Xiaowei Ding / Kay Giesecke"
+        },
+        {
+          "date": "2026-08-29",
+          "file": "literature_tracking_2026-08-29.html",
+          "id": "paper-ac76c85946",
+          "title": "创建人工智能和首席执行官补偿",
+          "original_title": "Generative AI and CEO Compensation",
+          "authors": "Joanna (Xiaoyu) Wang / Zhangchao Li"
+        }
+      ]
+    },
+    {
       "date": "2026-08-28",
       "window": "2026-08-27 至 2026-08-28（Asia/Shanghai）",
       "file": "literature_tracking_2026-08-28.html",
