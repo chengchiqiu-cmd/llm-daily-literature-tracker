@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-09-02",
+      "window": "2026-09-01 至 2026-09-02（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-02.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-09-02",
+          "file": "literature_tracking_2026-09-02.html",
+          "id": "paper-fec1e4e806",
+          "title": "PRISM:通过智能场景和优先管理进行LLM指导的持续跟踪",
+          "original_title": "PRISM: LLM-Guided Persistent Tracking with Intelligent Scene and Priority Management",
+          "authors": "Chandrakanth Vipparla"
+        },
+        {
+          "date": "2026-09-02",
+          "file": "literature_tracking_2026-09-02.html",
+          "id": "paper-7d8754a5cf",
+          "title": "人工智能在网上评论中的作用",
+          "original_title": "The Role of AI in Online Reviews",
+          "authors": "Valeria Lerman / Oren Rigbi / Yaniv Dover"
+        }
+      ]
+    },
+    {
       "date": "2026-09-01",
       "window": "2026-08-31 至 2026-09-01（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-01.html",
