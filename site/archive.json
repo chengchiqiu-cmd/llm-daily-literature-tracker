@@ -1,6 +1,39 @@
 {
   "reports": [
     {
+      "date": "2026-09-03",
+      "window": "2026-09-02 至 2026-09-03（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-03.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 2
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-09-03",
+          "file": "literature_tracking_2026-09-03.html",
+          "id": "paper-0a394ff024",
+          "title": "一个层次的制造智能平台,整合 Ontologies,知识图,预测分析和智能工厂运营的自主代理",
+          "original_title": "A Layered Manufacturing Intelligence Platform Integrating Ontologies, Knowledge Graphs, Predictive Analytics, and Autonomous Agents for Intelligent Factory Operations",
+          "authors": "Khemais Jannadi"
+        },
+        {
+          "date": "2026-09-03",
+          "file": "literature_tracking_2026-09-03.html",
+          "id": "paper-b7ccedd990",
+          "title": "memLLM-net:用于在设备上提供LLM语境的Wi-Fi,共享内存和RDMA运输的经验比较",
+          "original_title": "memLLM-net: An Empirical Comparison of Wi-Fi, Shared-memory, and RDMA Transports for On-device LLM Context Delivery",
+          "authors": "Hari Prasad Sampatirao"
+        }
+      ]
+    },
+    {
       "date": "2026-09-02",
       "window": "2026-09-01 至 2026-09-02（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-02.html",
