@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-09-04",
+      "window": "2026-09-03 至 2026-09-04（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-04.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-09-04",
+          "file": "literature_tracking_2026-09-04.html",
+          "id": "paper-9e130e86e6",
+          "title": "以聚合商为中心的居民能源社区计算协调：异质性学习、大语言模型与基准测试综述",
+          "original_title": "Aggregator-Centric Computational Coordination in Residential Energy Communities: A Review of Heterogeneous Learning, Large Language Models, and Benchmarking",
+          "authors": "Reza Sepehrzad / Milad Moafi / Ali Kazemian / Jeremy Watson / Nima Khosravi / HOSSEIN HOSSEINALIBEIKI / Mahdieh S. Sadabadi"
+        }
+      ]
+    },
+    {
       "date": "2026-09-03",
       "window": "2026-09-02 至 2026-09-03（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-03.html",
