@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-09-06",
+      "window": "2026-09-05 至 2026-09-06（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-06.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-09-06",
+          "file": "literature_tracking_2026-09-06.html",
+          "id": "paper-599c883beb",
+          "title": "买更大的模型，还是使用更长提示：面向准确率的LLM推理能耗前沿",
+          "original_title": "Buy Bigger or Prompt Longer: Accuracy-Targeted Energy Frontiers for LLM Inference",
+          "authors": "Dhairya Sarin / Gokul Prabhu"
+        }
+      ]
+    },
+    {
       "date": "2026-09-05",
       "window": "2026-09-04 至 2026-09-05（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-05.html",
