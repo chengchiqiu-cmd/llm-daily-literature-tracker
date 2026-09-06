@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-09-07",
+      "window": "2026-09-06 至 2026-09-07（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-07.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-09-07",
+          "file": "literature_tracking_2026-09-07.html",
+          "id": "paper-849d451e7e",
+          "title": "建筑运营中的维护优先级分类自然语言处理：基于词典、BERT 与大语言模型方法的比较研究",
+          "original_title": "Natural language processing for maintenance priority classification in building operation: a comparative study of lexicon-based, BERT, and large language model approaches",
+          "authors": "Marco D'Orazio / Elisa Di Giuseppe / Gabriele Bernardini"
+        }
+      ]
+    },
+    {
       "date": "2026-09-06",
       "window": "2026-09-05 至 2026-09-06（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-06.html",
