@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-09-12",
+      "window": "2026-09-11 至 2026-09-12（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-12.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-09-12",
+          "file": "literature_tracking_2026-09-12.html",
+          "id": "paper-8b5064856a",
+          "title": "面向推理工作负载的基于指标驱动、支持动态 MPS GPU 共享的 Kubernetes Operator",
+          "original_title": "A Metric-Driven Kubernetes Operator for Dynamic MPS-Based GPU Sharing in Inference Workloads",
+          "authors": "Papon Choonhaklai / Kohei Ichikawa / Kundjanasith Thonglek / Hajimu Iida"
+        },
+        {
+          "date": "2026-09-12",
+          "file": "literature_tracking_2026-09-12.html",
+          "id": "paper-5363ad7ce3",
+          "title": "将大型语言模型智能体与强化学习进行基准比较：用于建筑需求响应",
+          "original_title": "Benchmarking Large Language Model Agents against Reinforcement Learning for Building Demand Response",
+          "authors": "Rui Wang"
+        }
+      ]
+    },
+    {
       "date": "2026-09-11",
       "window": "2026-09-10 至 2026-09-11（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-11.html",
