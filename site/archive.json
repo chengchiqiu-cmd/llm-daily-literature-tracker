@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-09-13",
+      "window": "2026-09-12 至 2026-09-13（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-13.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-09-13",
+          "file": "literature_tracking_2026-09-13.html",
+          "id": "paper-11009bce8e",
+          "title": "从脆弱性到韧性：绿色金融与生成式人工智能在G7气候适应中的非线性作用",
+          "original_title": "From Vulnerability to Resilience: The Non-Linear Role of Green Finance and Generative AI in G7 Climate Adaptation",
+          "authors": "Numan Khan / Mudeer Khattak / Noman Arshed / Ling-Foon Chan"
+        }
+      ]
+    },
+    {
       "date": "2026-09-12",
       "window": "2026-09-11 至 2026-09-12（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-12.html",
