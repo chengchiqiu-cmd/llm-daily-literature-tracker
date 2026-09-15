@@ -1,6 +1,48 @@
 {
   "reports": [
     {
+      "date": "2026-09-16",
+      "window": "2026-09-15 至 2026-09-16（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-16.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 2,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-09-16",
+          "file": "literature_tracking_2026-09-16.html",
+          "id": "paper-34e80b874e",
+          "title": "AI时代的定价：每位企业领导者都需要了解什么",
+          "original_title": "Pricing in the Age of AI: What Every Business Leader Needs to Know",
+          "authors": "Maxime C. Cohen"
+        },
+        {
+          "date": "2026-09-16",
+          "file": "literature_tracking_2026-09-16.html",
+          "id": "paper-f1457c366d",
+          "title": "AI 音乐生态系统的演化：Suno 从生成器到平台的转型",
+          "original_title": "The Evolution of the AI Music Ecosystem Suno's Transformation from Generator to Platform",
+          "authors": "Myles Mangram"
+        },
+        {
+          "date": "2026-09-16",
+          "file": "literature_tracking_2026-09-16.html",
+          "id": "paper-e4dbe73a66",
+          "title": "由良知驱动的全息元认知：五维心智模型",
+          "original_title": "Conscience-Driven Holographic Metacognition: The 5D Mind Model",
+          "authors": "Grit Meng"
+        }
+      ]
+    },
+    {
       "date": "2026-09-15",
       "window": "2026-09-14 至 2026-09-15（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-15.html",
