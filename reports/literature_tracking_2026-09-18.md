@@ -1,0 +1,182 @@
+# 2026-09-18 LLM 服务系统每日文献简报
+
+> 检索窗口：2026-09-17 至 2026-09-18（北京时间 / Asia/Shanghai）；本期确认 8 篇，其中直接 LLM 服务研究 6 篇、机制桥接 2 篇。
+
+## Executive Summary
+
+本报告用于快速筛选：每篇论文先用一两句话概括研究内容，再附完整中文摘要翻译和英文原摘要。模型、公式和完整结论留到后续精读。
+
+## 1. 学习外部性与 LLM 市场中的价格歧视
+
+> 英文原标题：Learning Externalities and Price Discrimination in LLM Markets
+
+- **作者：** Evangelos Constantinou
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-17；SSRN/Crossref
+- **分类：** Token 定价、订阅与额度套餐；直接 LLM 服务研究；相关性评分 17
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7478049) · [DOI](https://doi.org/10.2139/ssrn.7478049)
+
+### 一两句话看懂
+
+本文研究大型语言模型（LLM）提供商如何根据不同用户对模型后续改进的贡献来制定价格。作者使用一个两期模型进行分析，发现对能贡献训练数据的用户提供折扣，可以提高最终模型质量和总剩余；两部收费还可能实现最优资源配置，并解释为何高贡献用户总支付更多、但单位价格更低。
+
+### 中文摘要（翻译）
+
+大型语言模型（large-language-model，LLM）提供商通常会推出订阅服务，其边际使用价格可能低于边际推理成本，即使不同用户的服务成本存在显著差异。本文研究一种相反方向的力量：重度用户会产生与训练相关的交互，从而改善后续的模型质量。在一个两期模型中，休闲用户和重度用户的差异仅在于他们对未来模型质量的边际贡献，而企业用户能够从质量提升中受益，但在合同上排除其数据被用于训练。提供商会根据用户的学习价值，按比例向具有贡献的用户提供折扣。在统一的线性定价下，与统一定价相比，价格歧视既提高了最终质量，也提高了总剩余，因为静态配置扭曲是二阶的，而动态收益更大。然而，学习程度并非有效率的，因为提供商提高质量的边际回报小于社会的边际回报；消费者会在第二期消费者剩余中获得剩余的回报。两部收费使提供商能够完全攫取这部分剩余，从而实现第一最佳配置，并预测出这样一种已观察到的模式：高贡献用户支付的总额更多，但每单位支付更少。
+
+### 英文原摘要
+
+Large-language-model (LLM) providers commonly offer subscriptions whose marginal usage price can fall below marginal inference cost, even though users differ substantially in what they cost to serve. This paper studies a countervailing force: intensive users generate training-relevant interactions that improve subsequent model quality. In a two-period model, casual and power users differ only in their marginal contribution to future model quality, while enterprise users benefit from quality improvements but contractually exclude their data from training. The provider optimally discounts contributing users in proportion to their learning value. Under linear pricing, price discrimination raises both terminal quality and total surplus relative to uniform pricing, since the static allocation distortion is second-order relative to the dynamic gain. However, the level of learning is inefficient, because the provider's marginal return to higher quality is smaller than the marginal social return; consumers appropriate the remaining return in their period-2 consumer surplus. A two-part tariff enables the provider to appropriate that surplus in full, achieving the first-best allocation and predicting the observed pattern in which high-contribution users pay more in total and less per unit.
+
+## 2. LUMINOS：面向电信级网络管理中大语言模型推理工作负载的服务等级指标与目标
+
+> 英文原标题：LUMINOS: Service Level Indicators and Objectives for LLM Inference Workloads in Carrier-Grade Network Management
+
+- **作者：** Sumit Kumar Mitra
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-17；SSRN/Crossref
+- **分类：** LLM 推理排队与调度；直接 LLM 服务研究；相关性评分 11
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7466083) · [DOI](https://doi.org/10.2139/ssrn.7466083)
+
+### 一两句话看懂
+
+本文研究现有电信网络性能测量规范如何描述大语言模型（LLM）推理工作负载，以及哪些关键指标缺失。作者提出 12 种新的测量类型，覆盖延迟、吞吐量、质量和效率，并为三类典型电信 LLM 工作负载设计服务等级目标（SLO）模板；摘要称这些方案可复用现有管理接口，不需要新增管理接口。
+
+### 中文摘要（翻译）
+
+ETSI GS NFV-IFA 027 V5.3.1 为虚拟计算资源、VNF 实例、操作系统容器、CIS 集群节点以及能效指标中的性能测量定义了一套全面的词汇。它是一份成熟且结构良好的规范——但在结构上无法描述 LLM 推理工作负载内部发生的事情。一个运行用于意图翻译的基础模型的 VNF，在 IFA 027 中表现为一个通用容器：CPU、内存、GPU 利用率。无论该模型是在 180 毫秒还是 4,200 毫秒内生成首个 token，无论其 KV 缓存命中率达到 85% 还是 12%，无论输出质量是否发生漂移——IFA 027 都没有任何测量类型能够表达这些情况。本文提出了 12 种面向 LLM 推理工作负载的新 IFA 027 测量类型，并将其分为四类：延迟、吞吐量、质量和效率。本文为三类典型的电信 LLM 工作负载——意图翻译、根因分析（RCA）辅助和配置生成——定义了服务等级目标（SLO）模板。本文引入了三级告警分类，用于区分基础设施退化、模型漂移和对抗性注入。所有提出的测量均复用了 IFA 027 现有的性能测量（PM）作业生命周期、阈值越界通知模式以及 SOL005/SOL011 API 接口。无需新增管理接口。缺失的是词汇，而不是架构。
+
+### 英文原摘要
+
+ETSI GS NFV-IFA 027 V5.3.1 defines a comprehensive vocabulary for performance measurements across virtual compute resources, VNF instances, OS containers, CIS cluster nodes, and energy efficiency indicators. It is a mature, wellstructured specification-and it is structurally blind to what happens inside an LLM inference workload. A VNF running a foundation model for intent translation presents to IFA 027 as a generic container: CPU, memory, GPU utilisation. Whether the model is delivering first tokens in 180 milliseconds or 4,200 milliseconds, whether its KV cache is achieving 85% hit rate or 12%, whether output quality has drifted-IFA 027 has no measurement type to express any of it. This paper proposes twelve new IFA 027 measurement types for LLM inference workloads, organised across four categories: latency, throughput, quality, and efficiency. It defines SLO templates for three canonical telecom LLM workloads-intent translation, RCA assistance, and configuration generation. It introduces a three-tier alerting taxonomy distinguishing infrastructure degradation, model drift, and adversarial injection. All proposed measurements reuse IFA 027's existing PM job lifecycle, threshold-crossing notification pattern, and SOL005/SOL011 API surface. No new management interfaces are required. The gap is vocabulary, not architecture.
+
+## 3. Adobe Inc.：演进、数字媒体生态系统、人工智能战略、商业模式与社会技术影响
+
+> 英文原标题：Adobe Inc.: Evolution, Digital Media Ecosystem, AI Strategy, Business Model, and Socio-technical Impact
+
+- **作者：** Samuelson G
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-17；SSRN/Crossref
+- **分类：** Token 定价、订阅与额度套餐；直接 LLM 服务研究；相关性评分 11
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7472438) · [DOI](https://doi.org/10.2139/ssrn.7472438)
+
+### 一两句话看懂
+
+论文从历史、技术、商业和伦理等角度分析 Adobe 如何从套装软件转向云订阅平台，并拓展到生成式人工智能、客户体验编排和品牌可见性等领域。摘要指出，Adobe 2025 财年收入达到 237.69 亿美元，数字媒体约占总收入的 74%，数字体验约占 25%；论文认为，其未来竞争力取决于在专业创作控制力、商业上更安全的人工智能、创作者信任、定价公平、互操作性和真实性标准之间取得平衡。
+
+### 中文摘要（翻译）
+
+Adobe Inc. 是数字出版、视觉设计、文档生产力、营销技术和创意人工智能发展史上最具影响力的软件公司之一。从 PostScript 和 Photoshop，到 PDF、Creative Cloud、Acrobat、Experience Cloud、Firefly 以及代理型创意工具，Adobe 塑造了个人、企业、出版商、教育工作者、营销人员和创意专业人士制作与管理数字内容的方式。本文从历史、技术、商业和伦理视角考察 Adobe。文章分析了 Adobe 从套装软件向云订阅平台的转型、其通过 PDF 标准化文档工作流所发挥的作用、其日益重视生成式人工智能的趋势，以及其向客户体验编排和品牌可见性领域的扩张。Adobe 2025 财年的收入达到 $23.769 billion，其中数字媒体约占总收入的 74%，数字体验约占 25%，这表明该公司具有强大的订阅驱动型平台模式。（Adobe）本文得出结论认为，Adobe 未来的竞争力取决于能否在专业级创作控制力、商业上更安全的人工智能、创作者信任、定价公平、互操作性和真实性标准之间取得平衡。
+
+### 英文原摘要
+
+Adobe Inc. is one of the most influential software companies in the history of digital publishing, visual design, document productivity, marketing technology, and creative artificial intelligence. From PostScript and Photoshop to PDF, Creative Cloud, Acrobat, Experience Cloud, Firefly, and agentic creative tools, Adobe has shaped how individuals, businesses, publishers, educators, marketers, and creative professionals produce and manage digital content. This paper examines Adobe through historical, technological, business, and ethical perspectives. It analyzes Adobe's transition from packaged software to cloud subscription platforms, its role in standardizing document workflows through PDF, its growing emphasis on generative AI, and its expansion into customer experience orchestration and brand visibility. Adobe's fiscal 2025 revenue reached $23.769 billion, with Digital Media accounting for about 74% of total revenue and Digital Experience accounting for about 25%, showing the company's strong subscription-driven platform model. (Adobe) The paper concludes that Adobe's future competitiveness depends on balancing professional-grade creative control, commercially safer AI, creator trust, pricing fairness, interoperability, and authenticity standards.
+
+## 4. 有隔离社区的最后一公里人道主义物流规划
+
+> 英文原标题：Last-Mile Humanitarian Logistics Planning with Isolated Communities
+
+- **作者：** Mahdi Noorizadegan、Mohammad Fattahi、Esmaeil Keyvanshokooh、Jon M. Stauffer
+- **来源/日期：** Manufacturing & Service Operations Management；2026-09-17；UTD24 正式发表/OpenAlex
+- **分类：** Token 定价、订阅与额度套餐；高质量服务运营机制桥接；相关性评分 10
+- **链接：** [论文页](https://doi.org/10.1287/msom.2024.1197) · [DOI](https://doi.org/10.1287/msom.2024.1197)
+
+### 一两句话看懂
+
+论文研究灾害发生后，如何在部分配送点因道路或桥梁损坏而与外界隔离、需求和行程时间存在不确定性的情况下，规划人道主义援助的配送网络与车队。作者建立了带有不确定性约束的路线优化模型，并用定制的精确算法求解；案例和合成数据表明，该方法能够分析稳健性与投入、配送时间目标、隔离程度以及空中车队构成之间的权衡。
+
+### 中文摘要（翻译）
+
+问题定义：本文研究灾害发生后在不确定性条件下将人道主义援助运送至配送点（PoDs）的关键挑战，尤其关注一些配送点因道路或桥梁受损而与外界隔离的情形。受洪都拉斯Eta和Iota飓风的启发，我们提出一个新的最后一公里人道主义物流规划问题，需要联合决定：中转区（SAs）的位置与容量、异质移动单元（包括地面和空中移动单元）的车队规模、移动单元向中转区的分配，以及路线决策，以确保在目标配送时间内服务所有配送点。移动单元可以在这一时间窗口内执行多次配送行程，从而实现高效的车队规模优化。 方法与结果：我们将该问题构建为一个带位置和车队规模决策的并行无人机—车辆路径问题，并将其建模为路线型混合整数规划。该模型通过统一的机会约束框架，刻画需求和行程时间中的不确定性。该框架兼容多种不确定性建模方法，包括标准机会约束、基于CVaR的约束和分布鲁棒机会约束，以及一个确定性基准，使决策者能够在数据可获得性不同的情况下控制稳健性水平。为精确求解这一复杂问题，我们开发了一种定制的分支定价算法；其中，非线性定价子问题被重新表述为带机会约束的最短路径问题，并通过一种带有新支配条件的定制动态规划方法高效求解。值得注意的是，不确定性模型的复杂度与确定性对应模型相当，因此使该方法具有实用性和可扩展性。 管理启示：案例研究和合成实例展示了该框架的多功能性与实际相关性。结果揭示了稳健性与投资之间的关键权衡、配送时间目标和隔离状况对网络结构与车队规模的影响，以及不同不确定性建模方法之间的差异。结果还强调了空中车队构成对运营效率和经济绩效的作用。这些分析为在人道主义响应中通常面临数据和资源有限的情况下进行网络配置、车队规模确定以及选择合适的建模方法提供了可执行的指导。
+
+### 英文原摘要
+
+Problem Definition: This paper addresses the critical challenge of delivering humanitarian aid to points of distribution (PoDs) after a disaster under uncertainty, particularly when some PoDs become isolated due to road/bridge damages. Motivated by the Eta and Iota hurricanes in Honduras, we introduce a new Last-mile Humanitarian Logistics Planning problem that jointly determines: the location and capacity of staging areas (SAs), the fleet-sizes of heterogeneous mobile units-ground and aerial, the allocation of mobile units to SAs, and routing decisions ensuring all PoDs are served within a target delivery time. Mobile units can perform multiple trips within this window, enabling efficient fleet-size optimization. Methodology/Results: We formulate this problem as a Parallel Drone–Vehicle Routing Problem with Location and Fleet-Size Decisions, modeled as a route-based mixed-integer program that captures uncertainty in demand and travel times via a unified chance constraint framework. This framework accommodates multiple uncertainty modeling approaches—standard chance-constraints, CVaR-based constraints, and distributionally robust chance-constraints along with a deterministic benchmark, allowing decision-makers to control robustness levels under varying data availability. To solve this complex problem exactly, we develop a tailored Branch-and-Price algorithm, where the nonlinear pricing subproblem is reformulated as a Shortest-Path Problem with Chance-Constraints, efficiently solved by a customized dynamic programming approach with new dominance conditions. Notably, the complexity of the uncertainty model remains comparable to the deterministic counterpart, making our approach practical and scalable. Managerial Implications: A case study and synthetic instances demonstrate our framework’s versatility and practical relevance. Our results uncover critical trade-offs between robustness and investment, the effects of delivery time targets and isolation on network structure and fleet-size, and differences across uncertainty-modeling approaches. They also highlight the role of aerial fleet composition on operational efficiency and economic performance. These analyses provide actionable guidance on network configuration, fleet-sizing, and preferred modeling approaches under limited data and resources typically seen in humanitarian response.
+
+## 5. 在混合与虚拟环境中运用基于模型的情景开发进行愿景未来的意义建模
+
+> 英文原标题：Meaning-Based Modelling of Aspirational Futures with Model-based Scenario Development in Hybrid and Virtual Environments
+
+- **作者：** Camelia Florela Voinea
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-17；SSRN/Crossref
+- **分类：** 优先权、SLO 与差异化服务；直接 LLM 服务研究；相关性评分 9
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7479398) · [DOI](https://doi.org/10.2139/ssrn.7479398)
+
+### 一两句话看懂
+
+本文研究如何通过“意义生成模型”来探索人们对未来的愿景，以及价值观、情绪和身份等因素如何在社会与政治情景中形成意义。作者提出并应用 VEM 模型分析罗马尼亚1989年革命等案例；初步结果支持该方法，并表明知识碎片化可能改变社会与政治孤立环境中的意义生成过程，同时加深对人和机构的不信任。
+
+### 中文摘要（翻译）
+
+本文的方法基于预期民主研究中的“愿景未来”（aspirational futures）概念（Bezold，2010）。该方法聚焦于一种采用基于模型的情景开发的研究方法，并为当前类似的建模方法提出一种替代方案，即：（a）行为生成模型（Agent-Based Model，ABM）；以及（b）内容生成模型（Large Language Model，LLM）。该方法提出了一类新的模型，称为“意义生成模型”（meaning-generative models，MGM）。“价值观、情绪与意义”（Values, Emotions and Meanings，VEM）建模与仿真（Voinea，2026a、2026b、2025a、2025b、2022）在本文中被作为一种面向预期民主研究中前瞻方法的意义生成建模方法加以介绍。VEM模型通过对混合与虚拟环境中的政治文化项目所关联的相关性因素和优先权因素进行映射，生成意义。该模型被用于案例研究，以分析与政治文化项目相关的相关性因素和优先权因素的映射如何产生意义；这些政治文化项目包括价值观、信念、态度、情绪和身份，并存在于涉及1989年罗马尼亚历史现象的社会与政治情景中。基于意义生成模型的情景开发研究方法被用于对社会与政治背景进行视觉分析和分析性研究，例如1989年罗马尼亚革命以及共产主义政权的倒台。案例研究系列包括以下社群的研究：（a）完全合作的社群；（b）部分合作的社群（两极化社群）；以及（c）不合作的社群（封闭型社群）。初步结果为以下方面提供了支持：（i）使用VEM模型进行意义生成建模与仿真的概念和实验支持；（ii）在完全合作和部分合作社群情景中开展基于意义生成建模的情景开发所需的实验和分析支持；以及（iii）在不合作（封闭型）社群情景中开展基于意义生成建模的情景开发所需的概念和实验支持。这些结果强调了关于以下研究假设的初步实证证据：在一个由混合环境构成的模拟混合社会中，当多个完全合作和部分合作社群之间存在一个不合作社群时，认识论碎片化如何在社会与政治孤立的背景下改变意义生成过程。此类情景的初步结果支持进一步发展这一研究方法，用于研究错误信息/虚假信息以及信息环境脆弱性等因素如何加深人们对个人和机构的不信任，并通过降低个人和社群参与社会与政治互动的程度和质量，增强社会与政治孤立现象在混合与虚拟环境中的影响。
+
+### 英文原摘要
+
+The approach in this paper is based on the concept of ‘aspirational futures’ (Bezold, 2010) in Anticipatory Democracy research. The approach is focused on a research methodology with model-based scenario development and introduces an alternative to current similar modelling approaches, that is: (a) behaviour-generative models (Agent-Based Model, ABM), and (b) content-generative models (Large Language Model, LLM). This approach introduces a new class of models which are called "meaning-generative models" (MGM). "Values, Emotions and Meanings" (VEM) Modelling & Simulation (Voinea, 2026a, 2026b, 2025a,2025b, 2022) is presented in this paper as a meaning-generative modelling approach to foresight methodologies for Anticipatory Democracy research. VEM Model generates meanings from mappings of relevance and priority factors associated with political culture items in hybrid and virtual environments. The model is employed in Case Studies on the emergence of meanings from the mappings of relevance and priority factors associated with political culture items, like values, beliefs, attitudes, emotions, and identities in social and political scenarios addressing historical phenomena in Romania in 1989. Meaning-generative model-based scenario development research methodology is employed in the visual analysis and analytics of social and political contexts, like the 1989 Romanian Revolution and the deposing of communist regime. The Case Studies Series includes studies of (a) fully collaborative, (b) partially collaborative (polarized communities), and (c) non-collaborative communities (insular). The preliminary results provide (i) conceptual and experimental support to the meaning-generative modelling and simulation with the VEM Model, (ii) experimental and analytical support to the meaning-generative modelling in scenario development on fully and partially collaborative communities scenarios, and (iii) conceptual and experimental support to the meaning-generative modelling in scenario development on non-collaborative (insular) communities scenarios, stressing preliminary empirical evidence for the research hypothesis of how epistemic fragmentation modifies the meaning generation in the context of social and political insularity with a single non-collaborative community amongst several fully and partially collaborative communities in a simulated mixed society with hybrid environments. The preliminary results on this kind of scenarios provide support to a further development of this research approach on how factors like misinformation/disinformation and information environment fragility deepens the distrust in people and institutions, increasing the impact of the social and political insularity phenomena by decreasing the degree and quality of involvement of both individuals and communities in social and political interaction in hybrid and virtual environments.
+
+## 6. 结构引导的检索：LLM 指引的目录导航与预计算语义传染相结合的混合式 RAG 架构
+
+> 英文原标题：Structure-Guided Retrieval with LLM-Directed Table-of-Contents Navigation and Precomputed Semantic Contagion: A Hybrid RAG Architecture
+
+- **作者：** Mohamed Majri
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-17；SSRN/Crossref
+- **分类：** Token 定价、订阅与额度套餐；直接 LLM 服务研究；相关性评分 8
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7470078) · [DOI](https://doi.org/10.2139/ssrn.7470078)
+
+### 一两句话看懂
+
+这篇论文研究一种混合式检索增强生成（RAG）架构，试图同时解决“找到相关句子却缺少上下文”和“按大段检索却丢失文档整体结构”这两类问题。作者将其应用于 FinanceBench 的 150 个公开问题，摘要称该方法的答案准确率超过 HiREC、页面召回率远超 HiREC，同时使用单个未经微调的语言模型完成单次检索；但其直接测得的单次查询 token 消耗高于根据 HiREC 数据间接推导出的下界。
+
+### 中文摘要（翻译）
+
+检索增强生成（retrieval-augmented generation，RAG）系统通常会以两种互补的方式之一失败：细粒度的嵌入检索找到了相关句子，却返回了被剥离周围语境的句子，而这些语境对于理解该句子是必要的，这就是“干草堆中的针”（needle in a haystack）问题；而基于粗粒度文本块的检索则会丢失文档的整体结构，使生成的答案无法覆盖问题实际要求的更广泛内容。我们提出一种混合式 RAG 架构，通过三个组成部分同时应对这两类失败模式：（1）向一个大语言模型（LLM）提供语料库经扁平化和扩展后的目录（table of contents，TOC），由该模型自行决定检索哪些完整章节的原文，从而利用 LLM 的结构推理能力，而不是依赖嵌入相似度；（2）在同一次 LLM 调用中，模型独立提出若干个关键词组合——一个主要表述以及可选的同义表述——并分别通过各自针对段落级单元的 BM25 查询进行匹配；每个组合都有一个配额，用于规定其贡献多少个段落，以避免单个占主导地位的概念排挤其他概念；（3）在每个组合筛选出的文本块中，候选锚点单元会按照三层词法匹配强度进行排序：主要表述的完整词匹配、同义表述的完整词匹配，或部分词项匹配；随后，这些锚点会通过语义传染组（semantic contagion groups）扩展为连贯且连续的段落。语义传染组是基于句子嵌入余弦相似度构建的邻接链，并且完全在离线阶段预先计算，因此查询时不会进行向量计算，也不会将任何嵌入与问题或其关键词进行比较。我们将该方法应用于 FinanceBench [Islam et al., 2023]。FinanceBench 是一个由真实 SEC 财务文件构成的公开基准，其文档具有真实的多层级章节结构，而且其标准答案经常是综合多个步骤的财务推理结果，而不是短小的抽取式文本片段。我们之所以选择这一语料库，是因为它特别符合该方法的设计目标；相比之下，一些答案为单句的扁平化基准并不符合这一目标。在 FinanceBench 公开发布的 150 个问题上，我们的方法取得了高于 HiREC [Choe et al., 2025] 所报告数值的答案准确率，以及远高于该数值的页面召回率。HiREC 是一个经过同行评审的层级检索系统，其基础包括经过微调的交叉编码器、迭代式互补检索循环，以及由两个模型（GPT-4o 和 Qwen2.5-7B-Instruct）组成的架构；相比之下，我们自己的架构只使用一个未经微调的 LLM，并且只进行一次处理。进一步地，根据 HiREC 自己公布的 token 成本表中的构成和权重，我们推导出 HiREC 在 FinanceBench 上每次查询 token 消耗的一个下界；该下界高于 HiREC 报告的跨基准平均值。我们只能间接确定这一点，因为在我们调研的金融问答文献中，token 成本的报告方式不一致，或者根本没有报告；而且，这个下界已经低于我们自己直接测得的数值，不过 HiREC 在 FinanceBench 上的真实具体成本是否同样低于我们的成本，仍有待确定。
+
+### 英文原摘要
+
+Retrieval-augmented generation (RAG) systems commonly fail in one of two complementary ways: fine-grained embedding retrieval finds a relevant sentence but returns it stripped of the surrounding context needed to interpret it (the "needle in a haystack" problem), while coarse chunk-based retrieval loses the document's global structure, producing answers that miss the broader picture a question actually calls for. We propose a hybrid RAG architecture that addresses both failure modes simultaneously through three components: (1) an LLM is given a flattened, enriched table of contents (TOC) of the corpus and decides itself which whole sections to retrieve verbatim, exploiting the LLM's structural reasoning rather than embedding similarity; (2) the same LLM call independently proposes several keyword combinations-a principal phrasing plus optional synonym phrasings-each matched independently via its own BM25 query over paragraph-level units, with a per-combination quota governing how many passages each contributes, so that a single dominant concept cannot crowd out the others; (3) within a combination's shortlisted blocks, candidate anchor units are ranked by a threetier lexical-match strength (exact whole-word match of the principal phrasing, of a synonym phrasing, or a partial term match) before being expanded into a coherent, contiguous passage via semantic contagion groups-adjacency chains over sentence-embedding cosine similarity, precomputed entirely offline, so that no vector computation, and no comparison of any embedding against the question or its keywords, occurs at query time. We port the method to FinanceBench [Islam et al., 2023], a public benchmark of real SEC financial filings whose documents exhibit a genuine multi-level section hierarchy and whose gold answers are frequently synthesized, multi-step financial reasoning rather than short extractive spans-a corpus chosen specifically to match the method's design intent, unlike flatter benchmarks with single-sentence answers. On the 150 publicly released FinanceBench questions, our method attains an Answer Accuracy exceeding, and a Page Recall far exceeding, the figures reported by HiREC [Choe et al., 2025], a peer-reviewed hierarchical-retrieval system built on fine-tuned cross-encoders, an iterative complementary-retrieval loop, and a two-model architecture (GPT-4o plus Qwen2.5-7B-Instruct)-while our own architecture uses a single, non-fine-tuned LLM in a single pass. From the composition and weighting of HiREC's own published token-cost table, we further derive a lower bound, exceeding its own reported combined-benchmark average, on its per-query token consumption specifically on FinanceBench-a bound we can only establish indirectly, because token cost is reported inconsistently, or not at all, across the financial-QA literature we survey, and which already falls below our own directly measured figure, though whether HiREC's true FinanceBench-specific cost does as well remains open.
+
+## 7. 数字化扩张并未带来统一的服务韧性：来自埃及卫生系统（2014—2023年）的时间序列证据
+
+> 英文原标题：Digital Expansion without Uniform Service Resilience: Time-Series Evidence from Egypt's Health System, 2014-2023
+
+- **作者：** Farouk Eldakhlawy
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-17；SSRN/Crossref
+- **分类：** 容量、云资源与服务运营；直接 LLM 服务研究；相关性评分 8
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7463959) · [DOI](https://doi.org/10.2139/ssrn.7463959)
+
+### 一两句话看懂
+
+论文研究埃及2014—2023年数字基础设施扩张是否伴随着卫生服务韧性的普遍改善。作者分析世界银行和世界卫生组织的公开数据，发现不同卫生服务指标的变化并不一致，数字基础设施指数与多维服务韧性指数基本无关。
+
+### 中文摘要（翻译）
+
+2014—2023年，埃及的数字基础设施快速扩张，但这种扩张是否与卫生服务韧性的普遍改善同时发生，尚不清楚。本研究分析了世界银行和世界卫生组织的公开二手数据，涵盖互联网使用率、安全互联网服务器密度、四项全民健康覆盖（Universal Health Coverage）服务子指数、预期寿命和婴儿死亡率。互联网使用率提高了40.1个百分点，安全互联网服务器密度增加了7.2倍。各项结果存在异质性：传染病服务覆盖率提高了2个百分点，整个期间的预期寿命上升，婴儿死亡率下降；与此同时，非传染性疾病子指数下降了3个百分点，服务能力和可及性下降了6个百分点。标准化数字基础设施指数与多维服务韧性指数基本无关（Spearman秩相关系数ρ=-0.02，p=0.960）。2020—2021年冲击窗口与预期寿命和综合服务指数的显著暂时性下降相关。研究结果不支持一种简单的“技术带来韧性”路径。相反，研究结果表明，数字基础设施是一种互补性投入，其收益取决于劳动力、流程、安全、融资和组织实施能力。人工智能披露：生成式人工智能工具曾协助进行语言编辑、文档格式编排和编程支持。在提交前，作者必须独立核验所有数据来源、计算结果、代码、引文、表格、图表、解释和结论，并对最终稿件承担全部责任。
+
+### 英文原摘要
+
+Egypt's digital infrastructure expanded rapidly during 2014-2023, but whether this expansion coincided with uniform improvement in health-service resilience is unclear. This study analyzes public secondary data from the World Bank and World Health Organization covering internet use, secure internet-server density, four Universal Health Coverage service subindices, life expectancy, and infant mortality. Internet use increased by 40.1 percentage points and secureserver density rose 7.2-fold. Outcomes were heterogeneous: infectious-disease service coverage increased by 2 points, life expectancy rose over the full period, and infant mortality declined, while the non-communicable-disease subindex fell by 3 points and service capacity and access fell by 6 points. A standardized digital-infrastructure index was essentially unrelated to the multidimensional service-resilience index (Spearman rho=-0.02, p=0.960). The 2020-2021 shock window was associated with a marked temporary reduction in life expectancy and the composite service index. The findings do not support a simple technology-to-resilience pathway. They instead indicate that digital infrastructure is a complementary input whose benefits depend on workforce, process, security, financing, and organizational implementation capabilities. AI disclosure. Generative AI tools assisted with language editing, document formatting, and programming support. Before submission, the author must independently verify all data sources, calculations, code, citations, tables, figures, interpretations, and conclusions and accept full responsibility for the final manuscript.
+
+## 8. 集装箱航运业一类新型超售问题的先知不等式
+
+> 英文原标题：Prophet Inequalities for a New Class of Overbooking Problems in Container Shipping
+
+- **作者：** Jacob Feldman、Yukai Huang、Panos Kouvelis
+- **来源/日期：** Operations Research；2026-09-17；UTD24 正式发表/OpenAlex
+- **分类：** 平台经济、市场设计与竞争；高质量服务运营机制桥接；相关性评分 8
+- **链接：** [论文页](https://doi.org/10.1287/opre.2024.0842) · [DOI](https://doi.org/10.1287/opre.2024.0842)
+
+### 一两句话看懂
+
+论文研究集装箱航运中的在线订舱问题：托运人预订舱位后可能不携带相应货物到场，给承运人造成损失。作者在押金机制下，针对两种不同的爽约情形设计并分析在线策略；结果表明，随机阈值策略至少达到全知情形利润的81.9%，简单贪心策略在舱位数趋于无穷时渐近达到最优水平的0.5，仿真也显示出较强且稳健的实际表现。
+
+### 中文摘要（翻译）
+
+集装箱航运业中的一类新型超售问题 当托运人预订舱位却未携带相应货物到场时，集装箱承运人每年会损失数十亿美元。本文研究一种基于押金的机制下的在线订舱问题，该机制旨在更好地协调激励并减轻超售成本。作者针对两种需求情形推导了近似最优的在线策略：一种情形是托运人的爽约行为通过现货市场相互关联，另一种情形是爽约行为彼此独立。在相互关联的情形下，一种随机化阈值策略保证至少达到全知情形利润的81.9%。在相互独立的情形下，研究表明，随着舱位数量趋于无穷，一种简单的贪心策略在渐近意义下达到最优水平的0.5。大量仿真进一步表明，这些策略在实际应用中表现强劲且稳健。
+
+### 英文原摘要
+
+A New Class of Overbooking Problems in Container Shipping Industry Container carriers lose billions of dollars each year when shippers reserve slots but fail to show up with the corresponding cargo. This paper studies an online booking problem under a deposit-based mechanism designed to better align incentives and mitigate the costs of overbooking. The authors derive near-optimal online policies for two demand settings: one in which shippers’ no-show behavior is coupled through a spot market, and another in which no-shows are independent. In the coupled setting, a randomized threshold policy guarantees at least 81.9% of clairvoyant profit. In the independent setting, a simple greedy policy is shown to be asymptotically 0.5-optimal as the number of slots tends to infinity. Extensive simulations further demonstrate strong and robust practical performance.
+
+## 阅读说明
+
+- 中文概括仅依据数据源摘要，用于快速判断是否值得精读，不代表完成全文核验。
+- 每篇先展示忠实的中文摘要翻译，再完整保留英文原摘要；如果数据源没有摘要，会明确说明。
+- 同题名、同 DOI 的预印本与期刊版本会合并；首次发布日期与最近更新日期分开显示。
+- 机制桥接条目不是直接研究 LLM，而是可迁移到 LLM 服务系统的高质量模型论文。
