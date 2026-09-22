@@ -1,0 +1,119 @@
+# 2026-09-23 LLM 服务系统每日文献简报
+
+> 检索窗口：2026-09-22 至 2026-09-23（北京时间 / Asia/Shanghai）；本期确认 5 篇，其中直接 LLM 服务研究 4 篇、机制桥接 1 篇。
+
+## Executive Summary
+
+本报告用于快速筛选：每篇论文先用一两句话概括研究内容，再附完整中文摘要翻译和英文原摘要。模型、公式和完整结论留到后续精读。
+
+## 1. 在生成人工智能生态系统中定价和竞争
+
+> 英文原标题：Pricing and Competition in Generative AI Ecosystems
+
+- **作者：** Zhongju Zhang
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-22；SSRN/Crossref
+- **分类：** Token 定价、订阅与额度套餐；直接 LLM 服务研究；相关性评分 19
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7494418) · [DOI](https://doi.org/10.2139/ssrn.7494418)
+
+### 一两句话看懂
+
+这篇论文关注“Token 定价、订阅与额度套餐”，重点涉及 generative ai、pricing、subscription、usage-based pricing。从摘要看，作者建立理论或分析模型；下方附有数据源提供的完整原始摘要，可直接核对研究内容。
+
+### 中文摘要（翻译）
+
+快速采用生成人工智能 (Gen AI) 技术导致了不同于传统数字服务的独特的双价格结构, 这种新兴生态系统的一个关键特征是垂直价格不匹配,上游代码人工智能服务提供商通常收取基于使用的 (基于代币) 费用,而下游人工智能应用程序提供商则依赖于最终用户的订阅价格.本文开发了二层次数字价值链的分析模型,以研究价格交互的经济影响. 我们以消费者使用和付费意愿的多元性来描述平衡价格,需求和利.分析揭示了基于使用的价格如何塑造应用程序提供商的订阅设计,市场覆盖率和收入结果,并确定了出现双边缘化和需求扭曲的条件. 我们的发现揭示了与不对称定价方案,多元性使用和基于平台的服务设置的垂直合约, 从实际角度来看,这些结果为人工智能一代服务提供商和应用程序开发人员提供了关于如何设计定价合同的指导,以及为有关人工智能一代生态系统市场权力和创新激励的行业利益相关者和决策者提供了见解.
+
+### 英文原摘要
+
+The rapid adoption of generative AI (Gen AI) technologies has given rise to a distinctive dual pricing structure that differs from traditional digital services, driven by the high marginal costs of inference for every user interaction. A key feature of this emerging ecosystem is a vertical pricing mismatch where upstream Gen AI service providers typically charge usagebased (token-based) fees, while downstream AI application providers rely on subscription pricing for end users. This paper develops an analytical model of a two-tier digital value chain to study the economic implications of this pricing interaction. We characterize equilibrium prices, demand, and profits, considering consumer heterogeneity in usage and willingness to pay. The analysis reveals how upstream usage-based pricing shapes the subscription design, market coverage, and revenue outcomes of the application provider, and identifies conditions under which double marginalization and demand distortion arise. Our findings shed light on vertical contracting with asymmetric pricing schemes, heterogeneous usage, and platform-based services-settings that are increasingly central in AI-driven markets. From a practical perspective, the results offer guidance for Gen AI service providers and application developers on how to design pricing contracts, as well as insights for industry stakeholders and policymakers concerned with market power and innovation incentives of the Gen AI ecosystem.
+
+## 2. 当小成本产生巨大影响时:与菜单成本的垂直合约
+
+> 英文原标题：When small costs make big impacts: Vertical contracts with menu costs
+
+- **作者：** Ciwei Dong、Xi Li、Xiutian Shi
+- **来源/日期：** Production and Operations Management；2026-09-22；UTD24 正式发表/OpenAlex
+- **分类：** Token 定价、订阅与额度套餐；高质量服务运营机制桥接；相关性评分 9
+- **链接：** [论文页](https://doi.org/10.1177/10591478261489979) · [DOI](https://doi.org/10.1177/10591478261489979)
+
+### 一两句话看懂
+
+这篇论文关注“Token 定价、订阅与额度套餐”，重点涉及 pricing、equilibrium。从摘要看，作者建立理论或分析模型；下方附有数据源提供的完整原始摘要，可直接核对研究内容。
+
+### 中文摘要（翻译）
+
+零售商在随着时间的推移而改变产品的价格时会承担价格调整成本,称为菜单成本.这些产品往往来自上游供应商,这些供应商以内观方式确定批发价格,这对零售价格产生了级影响. 在本文中,我们将考虑供应链成员在菜单成本的情况下的定价策略. 我们的分析表明,即使是微不足道的菜单成本也会对定价策略和平衡结果产生重大影响.上游制造商总是受益于菜单成本,而下游零售商则受益于适度的菜单成本,并且受到高和低的菜单成本的影响. 与此同时,菜单成本总是缓解双边缘化的问题,从而提高供应链利,消费者余和社会福利.本研究为频道成员提供了如何在菜单成本的情况下设定价格的指导.它还建议零售商最佳地保持适度的菜单成本.
+
+### 英文原摘要
+
+Retailers incur price-adjustment costs called menu costs when changing the prices of their products over time. These products are often sourced from upstream suppliers, who endogenously determine wholesale prices, which have cascading effects on retail prices. In this paper, we consider the pricing strategies of supply chain members in the presence of menu costs. Our analysis suggests that even a minuscule menu cost can substantially affect pricing strategies and the equilibrium outcome. Upstream manufacturers always benefit from a menu cost whereas downstream retailers benefit from only a moderate menu cost and are hurt by both high and low menu costs. Meanwhile, menu costs always alleviate the issue of double marginalization, thereby improving supply chain profits, consumer surplus, and social welfare. This study provides channel members with guidance on how to set prices in the presence of menu costs. It also recommends retailers to optimally maintain a moderate menu cost.
+
+## 3. 卢西姆:城市规划的LLM驱动空间平衡模拟器
+
+> 英文原标题：LUSim: An LLM-Driven Spatial-Equilibrium Simulator for Urban Planning
+
+- **作者：** Mengzhong Ma、Jingwei Zhou、Te Bao、Lin William Cong、Yonggang Wen
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-22；SSRN/Crossref
+- **分类：** 平台经济、市场设计与竞争；直接 LLM 服务研究；相关性评分 9
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7492538) · [DOI](https://doi.org/10.2139/ssrn.7492538)
+
+### 一两句话看懂
+
+这篇论文关注“平台经济、市场设计与竞争”，重点涉及 large language model、large language models、llm、equilibrium。从摘要看，作者建立理论或分析模型；下方附有数据源提供的完整原始摘要，可直接核对研究内容。
+
+### 中文摘要（翻译）
+
+在城市政策前面的量化评估历史上依赖于封闭形式的空间平衡和低维度的离散选择模型,这些模型将分析限制在均的代理和固定形式的参数公用品上,从而在校准的基线周围平衡比例的响应. 将大型语言模型集成到多代理模拟中缓解了这些限制,但现有的LLM驱动平台缺乏量化政策评估所需的市场清算机制和外部校准参数. 我们介绍了LUSim (LLM驱动的城市模拟器),这是一个多代理模拟器,多种家庭通过一个大语言模型和一个在外部校准的一般平衡城市内清晰的住房和劳动市场来选择居住和工作场所, 我们在Ahlfeldt et al. (2015) 校准的96区柏林实例上模拟了一个新的快速过渡线. 结构发动机只能按比例重量化校准的城市,将其响应集中在新站点上,而在LLM驱动的家庭中,搬迁人数大约是8倍,收益转移到边缘地区. 为了测试哪个发动机能预测真正的城市变化, 我们启动了1986年分化的柏林的每一个发动机, 让它预测重新统一的城市, 与LLM驱动家庭的模拟比任何结构基线都更好地预测这些变化, 地区名称也被保留以免依赖记忆历史, 而对比存在于第二条铁路走廊,扩大地板空间的区块化政策和第二个模型家庭中. 我们将这些结果解释为证据, 基于LLM的决策规则, 在校准环境中通过市场清算进行纪律, 预测城市变化超出结构模型的范围.
+
+### 英文原摘要
+
+Quantitative ex-ante urban-policy evaluation has historically relied on closedform spatial-equilibrium and low-dimensional discrete-choice models that constrain analysis to homogeneous agents and fixed-form parametric utilities, and thereby to smooth proportional responses around the calibrated baseline. Integrating large language models into multi-agent simulation alleviates these constraints, but existing LLM-driven platforms lack the market-clearing mechanism and externally calibrated parameters that quantitative policy evaluation requires. We present LUSim (LLM-driven Urban Simulator), a multi-agent simulator in which heterogeneous households choose residence and workplace through a large language model and clear housing and labour markets inside an externally calibrated general-equilibrium city, with structural decision rules as baselines under identical conditions. We simulate a new rapid-transit line on a 96-zone Berlin instance calibrated from Ahlfeldt et al. (2015). The structural engines, which can only reweight the calibrated city in proportion, concentrate their response at the new stations, whereas with LLM-driven households approximately eight times as many relocate and the gains shift to peripheral districts. To test which engine predicts real urban change, we initialise every engine on the divided Berlin of 1986, let it predict the reunified city, and score, by criteria fixed in advance, its prediction of which districts gain or lose residents, jobs, prices, and wages against the changes observed by 2006. The simulation with LLM-driven households predicts these changes better than every structural baseline, also with district names withheld so that it cannot rely on memorised history, and the contrast persists across a second rail corridor, a zoning policy that expands floor space, and a second model family. We interpret these results as evidence that LLM-driven decision rules, disciplined by market clearing in a calibrated environment, predict urban change beyond the reach of structural models.
+
+## 4. BiCAL-LLM:区域建筑集群电荷预测双向跨模式LLM
+
+> 英文原标题：BiCAL-LLM: A Bidirectional Cross-Modal LLM for Regional Building-Cluster Electric Load Forecasting
+
+- **作者：** Yingjun Ruan、Zihan Tang、Jun Xu、Yuting Yao、Hua Meng、Yueqiu Xia、Zhexiao Pan、Pengcheng Yin
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-22；SSRN/Crossref
+- **分类：** LLM 推理排队与调度；直接 LLM 服务研究；相关性评分 8
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7506437) · [DOI](https://doi.org/10.2139/ssrn.7506437)
+
+### 一两句话看懂
+
+这篇论文关注“LLM 推理排队与调度”，重点涉及 llm、scheduling。从摘要看，作者通过实验、仿真或系统测试进行评估；下方附有数据源提供的完整原始摘要，可直接核对研究内容。
+
+### 中文摘要（翻译）
+
+对于建筑集群需求响应和能源规划来说,对多个建筑物未来电荷的准确预测是必不可少的.这需要模拟每个建筑物负载及其历史负载,其他建筑物负载,天气变量和当前运营条件下的时间特征之间的关系. 然而,现有的时间序列模型往往无法充分捕捉这些动态变量间的依赖性.基于LLM的方法也具有数值时间序列和文本提示之间的相互作用建模能力有限.为了解决这些局限性,我们提出了BiCAL-LLM,这是区域建筑集群的联合电负载预测模型. 它的动态依赖增强模块 (DDE) 为每个建筑级输出生成结构增强的时代表示,而双向跨模式对齐 (BiCAL) 允许时间和文本提示表示之间的双向互动.一个结的GPT-2脊柱然后执行文本建模并生成预测. 在实际校园建筑集群的实验中,考虑了跨越不同季节,预测地平线和有限数据场景的13个设置.BiCAL-LLM在所有设置中的平均建筑水平和区域总体指标中超过了五个代表基线.在夏季的1小时单步预测中,建筑水平平均MAE比最强的基线低32.9%. 在168小时前景下,区域总体MAE保持12.3%的降低.删除DDE或BiCAL分别提高了建筑水平平均MAE的15.8%和8.1%,这表明了两个模块的贡献. 这些发现表明,动态变量间依赖性建模和双向数字文本互动可以改善区域建筑集群的联合多建筑电负载预测.
+
+### 英文原摘要
+
+Accurate forecasting of future electric loads across multiple buildings is essential for demand response and energy scheduling in building clusters. This requires modelling the relationships between each building’s load and its historical load, those of other buildings, weather variables, and temporal features under current operating conditions. However, existing time-series models often fail to adequately capture these dynamic inter-variable dependencies. LLM-based methods also have limited capability for modelling interactions between numerical time series and textual prompts. To address these limitations, we propose BiCAL-LLM, a joint electric-load forecasting model for regional building clusters. Its Dynamic Dependency Enhancement module (DDE) generates structure-enhanced temporal representations for each building-level output, while Bidirectional Cross-Modal Alignment (BiCAL) enables bidirectional interaction between temporal and textual prompt representations. A frozen GPT-2 backbone then performs contextual modelling and generates the forecasts. Experiments on a real campus building cluster considered 13 settings spanning different seasons, forecast horizons, and limited-data scenarios. BiCAL-LLM outperformed five representative baselines in both mean building-level and regional aggregate metrics across all settings. For 1 h one-step forecasting in summer, the mean building-level MAE was 32.9% lower than that of the strongest baseline. At the 168 h horizon, the regional aggregate MAE remained 12.3% lower. Removing DDE or BiCAL increased the mean building-level MAE by 15.8% and 8.1%, respectively, demonstrating the contributions of both modules. These findings demonstrate that dynamic inter-variable dependency modelling and bidirectional numerical–text interaction can improve joint multi-building electric-load forecasting for regional building clusters.
+
+## 5. 一项任务将4497个模型排名榜的顶部翻页:关于决策分断点的伴侣注释
+
+> 英文原标题：One Task Flips the Top of a 4,497-Model Leaderboard: A Companion Note on the Decision Breakdown Point
+
+- **作者：** Sudhanshu Rai
+- **来源/日期：** SSRN working paper；首次发布 2026；最近更新 2026-09-22；SSRN/Crossref
+- **分类：** Token 定价、订阅与额度套餐；直接 LLM 服务研究；相关性评分 8
+- **链接：** [论文页](https://doi.org/10.2139/ssrn.7503319) · [DOI](https://doi.org/10.2139/ssrn.7503319)
+
+### 一两句话看懂
+
+这篇论文关注“Token 定价、订阅与额度套餐”，重点涉及 llm、pricing。从摘要看，作者通过实验、仿真或系统测试进行评估；下方附有数据源提供的完整原始摘要，可直接核对研究内容。
+
+### 中文摘要（翻译）
+
+"当最好的预测模型是平衡时:在扩展利引发器中对数据修订进行定价模型选择" (SSRN 7503218).论文的诊断 决策分期,k*,最少的评估期期,其删除将合并获胜者翻转 将未变地应用于公共机器学习排名表:开放的LLM排名表v2,4,497个模型在六项基准任务上得分. 在前30组中,k* = 1 of 6:删除单个任务 (MUSR) 将排名最高的模型转换为其绑定竞争对手.尽管如此,板块是通过对50转换零度进行校准的拥挤测量相对比较地识别的,范围限制检查显示,顶部组的近零交叉任务相关性是削减的结果,而不是脆弱性的独立证据. 报纸的固定的脆弱规则在反转腿上燃烧;笔记报告了为什么,并读取结果作为一个分化判决比报纸的系列更震动的冠冕,在一个不混乱的板上.
+
+### 英文原摘要
+
+Companion note to "When the Best Forecasting Model Is a Tie: Pricing Model Choice Against Data Revision in the Extended Benefits Trigger" (SSRN 7503218). The paper's diagnostic — the decision breakdown point, k*, the fewest evaluation periods whose removal flips a pooled winner — is applied unchanged to a public machine-learning leaderboard: the Open LLM Leaderboard v2, 4,497 models scored on six benchmark tasks. On the top-30 pool, k* = 1 of 6: deleting a single task (MUSR) flips the top-ranked model to its binding rival. The board is nonetheless comparatively identified by a crowding measure calibrated against a 50-permutation null, and a range-restriction check shows the top pool's near-zero cross-task correlation is a consequence of the cut, not independent evidence of fragility. The paper's fixed Fragile rule fires on the reversal leg; the note reports why, and reads the result as a differentiated verdict — a shakier crown than the paper's series, on a board that is not chaotic.
+
+## 阅读说明
+
+- 中文概括仅依据数据源摘要，用于快速判断是否值得精读，不代表完成全文核验。
+- 每篇先展示忠实的中文摘要翻译，再完整保留英文原摘要；如果数据源没有摘要，会明确说明。
+- 同题名、同 DOI 的预印本与期刊版本会合并；首次发布日期与最近更新日期分开显示。
+- 机制桥接条目不是直接研究 LLM，而是可迁移到 LLM 服务系统的高质量模型论文。
