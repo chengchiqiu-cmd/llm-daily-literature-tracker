@@ -1,6 +1,48 @@
 {
   "reports": [
     {
+      "date": "2026-09-24",
+      "window": "2026-09-23 至 2026-09-24（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-24.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 2,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-09-24",
+          "file": "literature_tracking_2026-09-24.html",
+          "id": "paper-03b949d16c",
+          "title": "大型语言模型作为对行为参数的校准测量仪器",
+          "original_title": "Large Language Models as Calibrated Measurement Instruments for Behavioral Parameters",
+          "authors": "Brandon Yee"
+        },
+        {
+          "date": "2026-09-24",
+          "file": "literature_tracking_2026-09-24.html",
+          "id": "paper-b6eab174f6",
+          "title": "大语言模型理论概述:第一部分:语义理想气体的概念基础",
+          "original_title": "Outline of a Theory of Large Language Models:Part 1. Conceptual Foundations of a Semantic Ideal Gas",
+          "authors": "Venkat Venkatasubramanian"
+        },
+        {
+          "date": "2026-09-24",
+          "file": "literature_tracking_2026-09-24.html",
+          "id": "paper-adb35ce419",
+          "title": "一个在果上运行的多语言地底检测器:训练有素的代币分类与LLM法官和仅使用英语的检测器在31种语言中",
+          "original_title": "A Multilingual Groundedness Detector that Runs on a Raspberry Pi: Trained Token Classification against LLM Judges and English-only Detectors in 31 Languages",
+          "authors": "Aghasalim Mustafazada / Teymur Eyvazov"
+        }
+      ]
+    },
+    {
       "date": "2026-09-23",
       "window": "2026-09-22 至 2026-09-23（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-23.html",
