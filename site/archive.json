@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-09-26",
+      "window": "2026-09-25 至 2026-09-26（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-26.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-09-26",
+          "file": "literature_tracking_2026-09-26.html",
+          "id": "paper-3f9c6a8b94",
+          "title": "关闭形式成本,延迟和流量限制在实时流处理中的LLM电话",
+          "original_title": "Gating Beats Batching: Closed-form Cost, Latency, and Concurrency Bounds for LLM Calls in Real-Time Stream Processing",
+          "authors": "Sagar Vishnubhai Sheta"
+        }
+      ]
+    },
+    {
       "date": "2026-09-25",
       "window": "2026-09-24 至 2026-09-25（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-25.html",
