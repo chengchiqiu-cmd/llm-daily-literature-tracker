@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-09-28",
+      "window": "2026-09-27 至 2026-09-28（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-28.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-09-28",
+          "file": "literature_tracking_2026-09-28.html",
+          "id": "paper-da426c77d2",
+          "title": "ACAT-TP:在验证的微仿真沙箱中,监控运输信号优先级和动态公交车道的警卫机械环境意识控制",
+          "original_title": "ACAT-TP: Guarded agentic context-aware control of transit signal priority and dynamic bus lanes in a validated microsimulation sandbox",
+          "authors": "Md. Shadman Sakib Chowdhury / Md. Mizanur Rahman"
+        }
+      ]
+    },
+    {
       "date": "2026-09-27",
       "window": "2026-09-26 至 2026-09-27（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-27.html",
