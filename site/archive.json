@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-09-29",
+      "window": "2026-09-28 至 2026-09-29（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-29.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "平台经济、市场设计与竞争": 1,
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-09-29",
+          "file": "literature_tracking_2026-09-29.html",
+          "id": "paper-153e05a665",
+          "title": "卢西姆:城市规划的LLM驱动空间平衡模拟器",
+          "original_title": "LUSIM: An LLM-Driven Spatial-Equilibrium Simulator for Urban Planning",
+          "authors": "Mengzhong Ma / Jingwei Zhou / Te Bao / Lin William Cong / Yonggang Wen"
+        },
+        {
+          "date": "2026-09-29",
+          "file": "literature_tracking_2026-09-29.html",
+          "id": "paper-cdb9e4e13f",
+          "title": "自主网络运营的演变:自动利用生成智能框架 (AEG) 的审查",
+          "original_title": "The Evolution of Autonomous Cyber Operations: A Review of Intelligent Frameworks for Automated Exploit Generation (AEG)",
+          "authors": "Rilwan Ali Zira / Kabiru Sunusi Alaramma / Maryam Abdullahi Musa"
+        }
+      ]
+    },
+    {
       "date": "2026-09-28",
       "window": "2026-09-27 至 2026-09-28（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-28.html",
