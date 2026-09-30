@@ -1,6 +1,65 @@
 {
   "reports": [
     {
+      "date": "2026-09-30",
+      "window": "2026-09-29 至 2026-09-30（Asia/Shanghai）",
+      "file": "literature_tracking_2026-09-30.html",
+      "total": 5,
+      "sources": {
+        "SSRN/Crossref": 5
+      },
+      "types": {
+        "LLM 推理排队与调度": 3,
+        "Token 定价、订阅与额度套餐": 1,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 5
+      },
+      "papers": [
+        {
+          "date": "2026-09-30",
+          "file": "literature_tracking_2026-09-30.html",
+          "id": "paper-5ca28346cd",
+          "title": "CertiGATE:设施管理中基于大型语言模型的工作顺序安排的监护基准和质量证书协议",
+          "original_title": "CertiGATE: A Guard Benchmark and Quality-Certificate Protocol for Large Language Model-Based Work-Order Scheduling in Facility Management",
+          "authors": "Ziheng Zhang / Tzu Pei Ku Chia / Xiaofei Yang / Xiangyu Chang / Shuyi Wang / Jichuan Tang / Wei Zhang"
+        },
+        {
+          "date": "2026-09-30",
+          "file": "literature_tracking_2026-09-30.html",
+          "id": "paper-a9028fee99",
+          "title": "在梯子类型碳交易下,集成能源系统规划的LLM驱动奖励进化",
+          "original_title": "LLM-Driven Reward Evolution for Integrated Energy System Scheduling under Ladder-Type Carbon Trading",
+          "authors": "Xinquan Shao / Kai Zhao / Qianwen Xu / Xin Yu / shuai Liu"
+        },
+        {
+          "date": "2026-09-30",
+          "file": "literature_tracking_2026-09-30.html",
+          "id": "paper-9e5a54a94c",
+          "title": "异质共享:在边缘计算上进行LLM推理培训的职能部门工作架构",
+          "original_title": "Heterogeneous Co-Serving: A Functional Division-of-Labor Architecture for LLM Inference-Training on Edge Computing",
+          "authors": "Zhicheng Guo / Wei Gao / Xiaoze Jiang / Chenglei Fan"
+        },
+        {
+          "date": "2026-09-30",
+          "file": "literature_tracking_2026-09-30.html",
+          "id": "paper-f78c366272",
+          "title": "提供生成人工智能:均的价格,不平等的负担和人工智能传播的两个边缘",
+          "original_title": "Affording Generative AI: Uniform Prices, Unequal Burdens, and the Two Margins of AI Diffusion",
+          "authors": "TaeHwan Oh"
+        },
+        {
+          "date": "2026-09-30",
+          "file": "literature_tracking_2026-09-30.html",
+          "id": "paper-625c38f304",
+          "title": "什么时候LLM管弦演唱会支付?GEAR:根据推理预算的适应性路由的图表控制执行",
+          "original_title": "When Does LLM Orchestration Pay? GEAR: Graph-Controlled Execution with Adaptive Routing under Inference Budgets",
+          "authors": "Cheng Zhu / Bai Jiangyao / Zhaoyun Ding / Yijia Fu / Lailong luo"
+        }
+      ]
+    },
+    {
       "date": "2026-09-29",
       "window": "2026-09-28 至 2026-09-29（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-29.html",
