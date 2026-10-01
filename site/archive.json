@@ -1,6 +1,58 @@
 {
   "reports": [
     {
+      "date": "2026-10-01",
+      "window": "2026-09-30 至 2026-10-01（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-01.html",
+      "total": 4,
+      "sources": {
+        "SSRN/Crossref": 4
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "Token 定价、订阅与额度套餐": 1,
+        "数据中心能源、碳与跨时段转移": 1,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 4
+      },
+      "papers": [
+        {
+          "date": "2026-10-01",
+          "file": "literature_tracking_2026-10-01.html",
+          "id": "paper-04928a2af5",
+          "title": "神经检查器:基于非同步学习的关键-值缓存预集管道,以实现高效的大型语言模型推理",
+          "original_title": "Neuro-Fetcher: An Asynchronous Learning-Based Key-Value Cache Pre-fetching Pipeline for Efficient Large Language Model Inference",
+          "authors": "Shenyu Liu / Fengxun Qi / Yu Chen / Caifeng Shan"
+        },
+        {
+          "date": "2026-10-01",
+          "file": "literature_tracking_2026-10-01.html",
+          "id": "paper-d31ae0311f",
+          "title": "大学招生中的人工智能政策:对机构景观及其经济利益的调查",
+          "original_title": "AI Policy In College Admissions: A Survey Of The Institutional Landscape And Its Economic Stakes",
+          "authors": "Mani Deepika Adusumilli / Tianming Liu / Triparna Ganguly / Zhengliang Liu / David B. Mustard"
+        },
+        {
+          "date": "2026-10-01",
+          "file": "literature_tracking_2026-10-01.html",
+          "id": "paper-5d0d69c8a5",
+          "title": "运营GPU能源和开放权重LLM推理的估计碳排放跨模型尺度和背景长度",
+          "original_title": "Operational GPU Energy and Estimated Carbon Emissions ofOpen-Weight LLM Inference Across Model Scale and ContextLength",
+          "authors": "Anupam Dhakal / Keshav Raj Sharma / Saimon Neupane"
+        },
+        {
+          "date": "2026-10-01",
+          "file": "literature_tracking_2026-10-01.html",
+          "id": "paper-c0bd82e4a5",
+          "title": "人类人工智能操作中集中或委托生成人工智能?决策权威,责任和工作分配",
+          "original_title": "Centralize or Delegate Generative AI in Human--AI Operations? Decision Authority, Responsibility, and Work Allocation",
+          "authors": "Lingchen Huang / Kun Wang / Xiangfeng Chen"
+        }
+      ]
+    },
+    {
       "date": "2026-09-30",
       "window": "2026-09-29 至 2026-09-30（Asia/Shanghai）",
       "file": "literature_tracking_2026-09-30.html",
