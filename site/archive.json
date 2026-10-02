@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-02",
+      "window": "2026-10-01 至 2026-10-02（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-02.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "LLM 推理排队与调度": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-02",
+          "file": "literature_tracking_2026-10-02.html",
+          "id": "paper-40d9eedae1",
+          "title": "使用经济数据和基础模型的中期多分辨率电荷预测",
+          "original_title": "Medium-Term Multi-Resolution Electric Load Forecasting using Economic Data and Foundation Model",
+          "authors": "Eloi Lindas / Yannig Goude / Philippe Ciais"
+        }
+      ]
+    },
+    {
       "date": "2026-10-01",
       "window": "2026-09-30 至 2026-10-01（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-01.html",
