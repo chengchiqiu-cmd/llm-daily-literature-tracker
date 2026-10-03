@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-04",
+      "window": "2026-10-03 至 2026-10-04（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-04.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-04",
+          "file": "literature_tracking_2026-10-04.html",
+          "id": "paper-6a19da1a96",
+          "title": "巴西相关和全球门户目录的公共LLMAPI定价",
+          "original_title": "Public LLM API Pricing across Brazil-related and Global Gateway Catalogs",
+          "authors": "Puchi Fan"
+        }
+      ]
+    },
+    {
       "date": "2026-10-03",
       "window": "2026-10-02 至 2026-10-03（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-03.html",
