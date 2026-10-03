@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-03",
+      "window": "2026-10-02 至 2026-10-03（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-03.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "LLM 推理排队与调度": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-03",
+          "file": "literature_tracking_2026-10-03.html",
+          "id": "paper-189dcf2870",
+          "title": "数字双集成人工智能建模和适应性PI收益优化在滚动到滚动制造中的回旋压力控制",
+          "original_title": "Digital Twin–Integrated AI Modeling and Adaptive PI Gain Optimization for Rewinder Tension Control in Roll-to-Roll Manufacturing",
+          "authors": "Muhammad Irfan / Uzair Ali / Qasim Shahzad / Yunseon Byun / Seung-Hyun Lee / Inyoung Kim / Taik-Min Lee"
+        }
+      ]
+    },
+    {
       "date": "2026-10-02",
       "window": "2026-10-01 至 2026-10-02（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-02.html",
