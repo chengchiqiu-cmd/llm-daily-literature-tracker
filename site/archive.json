@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-05",
+      "window": "2026-10-04 至 2026-10-05（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-05.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-05",
+          "file": "literature_tracking_2026-10-05.html",
+          "id": "paper-e212f44527",
+          "title": "人工智能管理敏捷项目:从助理到人工智能软件工厂",
+          "original_title": "AI for Managing Agile Projects: From Assistant to AI Software Factory",
+          "authors": "Rajendra Kumar Harsh / vittal Anantatmula"
+        }
+      ]
+    },
+    {
       "date": "2026-10-04",
       "window": "2026-10-03 至 2026-10-04（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-04.html",
