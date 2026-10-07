@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-07",
+      "window": "2026-10-06 至 2026-10-07（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-07.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-07",
+          "file": "literature_tracking_2026-10-07.html",
+          "id": "paper-4f08b64d87",
+          "title": "对于LLM请求路由的政策约束,知情的部署保证",
+          "original_title": "Policy-Bounded, Provenance-Aware Deployment Assurance for LLM Request Routing",
+          "authors": "Yihua Xu / Jiani He / Ishita Chirag Talati / Yitian Qian / Youting Wang / Zhenyu Xu / Dingyan Shang"
+        }
+      ]
+    },
+    {
       "date": "2026-10-06",
       "window": "2026-10-05 至 2026-10-06（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-06.html",
