@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-08",
+      "window": "2026-10-07 至 2026-10-08（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-08.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-08",
+          "file": "literature_tracking_2026-10-08.html",
+          "id": "paper-3974156cd5",
+          "title": "代理商提出,代码决定:建立股权阿尔法模型的自主研究循环框架",
+          "original_title": "Agents Propose, Code Decides: An Autonomous Research Loop Framework to Build an Equity Alpha Model",
+          "authors": "Erfan Sadeghi"
+        }
+      ]
+    },
+    {
       "date": "2026-10-07",
       "window": "2026-10-06 至 2026-10-07（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-07.html",
