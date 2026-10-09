@@ -1,6 +1,39 @@
 {
   "reports": [
     {
+      "date": "2026-10-09",
+      "window": "2026-10-08 至 2026-10-09（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-09.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 2
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-10-09",
+          "file": "literature_tracking_2026-10-09.html",
+          "id": "paper-f49f9c4cc2",
+          "title": "在生产驱动的重播中,行动机会和因果总部有什么影响?",
+          "original_title": "When Does LLM-Serving Scheduler Adaptation Matter? Action Opportunity and Causal Headroom in Production-Derived Replay",
+          "authors": "Soroush Vahidi"
+        },
+        {
+          "date": "2026-10-09",
+          "file": "literature_tracking_2026-10-09.html",
+          "id": "paper-5740fe949f",
+          "title": "生产和运营管理中的大型语言模型:使用情况和运营价值",
+          "original_title": "Large Language Models in Production and Operations Management: Use Cases and Operational Value",
+          "authors": "Wilma Enroth / Xinru Liu / Siavash H. Khajavi"
+        }
+      ]
+    },
+    {
       "date": "2026-10-08",
       "window": "2026-10-07 至 2026-10-08（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-08.html",
