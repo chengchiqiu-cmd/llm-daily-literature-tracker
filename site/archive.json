@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-11",
+      "window": "2026-10-10 至 2026-10-11（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-11.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-11",
+          "file": "literature_tracking_2026-10-11.html",
+          "id": "paper-8f749a9a5c",
+          "title": "在移动人工智能工具中部署大型语言模型 (LLM) 的模型蒸技术",
+          "original_title": "Model Distillation Techniques for Deploying Large Language Models (LLMs) in Mobile AI Tools",
+          "authors": "Jeffery Podolski"
+        }
+      ]
+    },
+    {
       "date": "2026-10-10",
       "window": "2026-10-09 至 2026-10-10（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-10.html",
