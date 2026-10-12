@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-12",
+      "window": "2026-10-11 至 2026-10-12（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-12.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-12",
+          "file": "literature_tracking_2026-10-12.html",
+          "id": "paper-59c7e44c95",
+          "title": "超越光束:穿越内皮层语音解码与声学候选扩展和自信门式语言模型恢复",
+          "original_title": "Beyond the Beam: Cross-Fitted Intracortical Speech Decoding with Phonetic Candidate Expansion and Confidence-Gated Language-Model Rescoring",
+          "authors": "Anik Biswas / Md. Shohanur Rahman"
+        }
+      ]
+    },
+    {
       "date": "2026-10-11",
       "window": "2026-10-10 至 2026-10-11（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-11.html",
