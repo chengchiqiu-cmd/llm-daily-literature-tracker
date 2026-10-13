@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-10-13",
+      "window": "2026-10-12 至 2026-10-13（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-13.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-10-13",
+          "file": "literature_tracking_2026-10-13.html",
+          "id": "paper-ffe4579d8c",
+          "title": "通过工程语义和液压反来限制的水转移规划代理",
+          "original_title": "An agent for water-transfer scheduling constrained by engineering semantics and hydraulic feedback",
+          "authors": "Jie Zhu / Xia Yue / Xiaohui Lei"
+        },
+        {
+          "date": "2026-10-13",
+          "file": "literature_tracking_2026-10-13.html",
+          "id": "paper-e75d448225",
+          "title": "默认已改变:边界语言模型作为意识的候选人",
+          "original_title": "The Default has Shifted: Frontier Language Models as Candidates for Consciousness",
+          "authors": "John DeVadoss"
+        }
+      ]
+    },
+    {
       "date": "2026-10-12",
       "window": "2026-10-11 至 2026-10-12（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-12.html",
