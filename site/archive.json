@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-10-16",
+      "window": "2026-10-15 至 2026-10-16（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-16.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-10-16",
+          "file": "literature_tracking_2026-10-16.html",
+          "id": "paper-1e88d840e1",
+          "title": "Dobson R (2026) 从内部测量架子:操作员编制的自测带用于宪法运行时间在托管语言模型上",
+          "original_title": "Dobson R (2026) Measuring a scaffold from inside: an operator-authored self-measurement harness for a constitutional runtime over a hosted language model",
+          "authors": "Richard Dobson"
+        },
+        {
+          "date": "2026-10-16",
+          "file": "literature_tracking_2026-10-16.html",
+          "id": "paper-e53e66b4ca",
+          "title": "蒸洗衣:监管仲裁和AI中潜在的北京影响",
+          "original_title": "Distillation Laundering: Regulatory Arbitrage and a Potential Beijing Effect in AI",
+          "authors": "Laura Edelson / Filippo Lancieri"
+        }
+      ]
+    },
+    {
       "date": "2026-10-15",
       "window": "2026-10-14 至 2026-10-15（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-15.html",
