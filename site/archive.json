@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-10-17",
+      "window": "2026-10-16 至 2026-10-17（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-17.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 1,
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-10-17",
+          "file": "literature_tracking_2026-10-17.html",
+          "id": "paper-5eec37b305",
+          "title": "基于基础模型的多代理系统的诊断和基础设施:运行时间堆的审查",
+          "original_title": "Diagnostics and Infrastructure for Foundation Model-Based Multi-Agent Systems: A Review of the Runtime Stack",
+          "authors": "Yu Sun / Zuodong Xiang / Yike Zhang / Xinyu Guan / Pengcheng Xu / Yizirui Fang / Zhenhua Huang / Hailu Xu"
+        },
+        {
+          "date": "2026-10-17",
+          "file": "literature_tracking_2026-10-17.html",
+          "id": "paper-bb6fb831f0",
+          "title": "DEI 感觉变化和洗衣和洗衣的价格",
+          "original_title": "DEI Sentiment Shifts and the Pricing of Washing and Hushing",
+          "authors": "Chengzhe Li / Yimeng Li / Ganapathi S. Narayanamoorthy / Bohan Song"
+        }
+      ]
+    },
+    {
       "date": "2026-10-16",
       "window": "2026-10-15 至 2026-10-16（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-16.html",
