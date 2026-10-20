@@ -1,6 +1,57 @@
 {
   "reports": [
     {
+      "date": "2026-10-20",
+      "window": "2026-10-19 至 2026-10-20（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-20.html",
+      "total": 4,
+      "sources": {
+        "SSRN/Crossref": 4
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 2,
+        "LLM 推理排队与调度": 1,
+        "数据中心能源、碳与跨时段转移": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 4
+      },
+      "papers": [
+        {
+          "date": "2026-10-20",
+          "file": "literature_tracking_2026-10-20.html",
+          "id": "paper-57c7400c54",
+          "title": "在生成人工智能领域的竞争:消费者需求的证据",
+          "original_title": "Competition in Generative AI: Evidence from Consumer Demand",
+          "authors": "Mark Egan / Dominic Russel / Claire Shi / Vincent Yao"
+        },
+        {
+          "date": "2026-10-20",
+          "file": "literature_tracking_2026-10-20.html",
+          "id": "paper-f3326c805d",
+          "title": "知识指导的进化程序 在动态制造规划系统中寻找自动化测量设计",
+          "original_title": "Knowledge-Guided Evolutionary Program Search for Automated Heuristic Design in Dynamic Manufacturing Scheduling Systems",
+          "authors": "Woongjae Na / Younghoon Kim"
+        },
+        {
+          "date": "2026-10-20",
+          "file": "literature_tracking_2026-10-20.html",
+          "id": "paper-17dd3d96df",
+          "title": "与人工智能沟通:在生成人工智能使用中沟通目的和感知沟通效率",
+          "original_title": "Communicating With AI: Communication Purposes and Perceived Communication Effectiveness in Generative AI Use",
+          "authors": "Yi-Ning Katherine Chen"
+        },
+        {
+          "date": "2026-10-20",
+          "file": "literature_tracking_2026-10-20.html",
+          "id": "paper-48deab74e3",
+          "title": "算法虚拟惯性:通过静止冲动控制来快速频率响应的LLM推理的动态定量化",
+          "original_title": "Algorithmic Virtual Inertia: Dynamic Quantization of LLM Inference for Fast Frequency Response via Stochastic Impulse Control",
+          "authors": "Inesh B. Sumad"
+        }
+      ]
+    },
+    {
       "date": "2026-10-19",
       "window": "2026-10-18 至 2026-10-19（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-19.html",
