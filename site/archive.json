@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-21",
+      "window": "2026-10-20 至 2026-10-21（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-21.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-21",
+          "file": "literature_tracking_2026-10-21.html",
+          "id": "paper-588923710d",
+          "title": "大曼彻斯特职业暴露,增强替代边界和人工智能定价问题",
+          "original_title": "Artificial Intelligence and Labour Replacement in Greater Manchester Occupational Exposure, the Augmentation-Substitution Frontier and the AI Pricing Problem",
+          "authors": "Richard Whittle / Dan Olner / James Ransom"
+        }
+      ]
+    },
+    {
       "date": "2026-10-20",
       "window": "2026-10-19 至 2026-10-20（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-20.html",
