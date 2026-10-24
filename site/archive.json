@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-25",
+      "window": "2026-10-24 至 2026-10-25（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-25.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "LLM 推理排队与调度": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-25",
+          "file": "literature_tracking_2026-10-25.html",
+          "id": "paper-258db2184d",
+          "title": "HiKnow-LAS:云端GPU集群的层次知识驱动的LLM增强计划架构",
+          "original_title": "HiKnow-LAS: Hierarchical Knowledge-Driven LLM-Augmented Scheduling Architecture for Cloud-Edge GPU Cluster",
+          "authors": "Chao Liang / Xingwei Wang / Qiang He / Bo Peng / Zhijiang Wang / Min Huang"
+        }
+      ]
+    },
+    {
       "date": "2026-10-24",
       "window": "2026-10-23 至 2026-10-24（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-24.html",
