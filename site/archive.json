@@ -1,6 +1,40 @@
 {
   "reports": [
     {
+      "date": "2026-10-27",
+      "window": "2026-10-26 至 2026-10-27（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-27.html",
+      "total": 2,
+      "sources": {
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "平台经济、市场设计与竞争": 1,
+        "Token 定价、订阅与额度套餐": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 2
+      },
+      "papers": [
+        {
+          "date": "2026-10-27",
+          "file": "literature_tracking_2026-10-27.html",
+          "id": "paper-e43c928c1c",
+          "title": "在HANK经济体中的LLM驱动家庭",
+          "original_title": "LLM-Driven Households in HANK Economies",
+          "authors": "Mengzhong Ma / Jingwei Zhou / Wilfried Ariel Mulyawan / Te Bao / Lin William Cong / Yonggang Wen"
+        },
+        {
+          "date": "2026-10-27",
+          "file": "literature_tracking_2026-10-27.html",
+          "id": "paper-ad2bf1e5f6",
+          "title": "人类审查限制下的小型服务企业创建人工智能工具的选择",
+          "original_title": "Selecting Generative AI Tools for Small Service Firms Under Human Review Constraints",
+          "authors": "Nadia Zahoor"
+        }
+      ]
+    },
+    {
       "date": "2026-10-26",
       "window": "2026-10-25 至 2026-10-26（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-26.html",
