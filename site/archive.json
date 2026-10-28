@@ -1,6 +1,48 @@
 {
   "reports": [
     {
+      "date": "2026-10-28",
+      "window": "2026-10-27 至 2026-10-28（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-28.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "LLM 推理排队与调度": 2,
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-10-28",
+          "file": "literature_tracking_2026-10-28.html",
+          "id": "paper-80923ea275",
+          "title": "限制式大型语言模型辅助任务解析和多模式合作控制用于航空发动机高度测试",
+          "original_title": "Constrained Large Language Model-Assisted Task Parsing and Multimodal Cooperative Control for Aero-Engine Altitude Tests",
+          "authors": "bo feng / Hehong Zhang / Chun-Yang Zhang / Chao Zhai / Baiyi Zhang"
+        },
+        {
+          "date": "2026-10-28",
+          "file": "literature_tracking_2026-10-28.html",
+          "id": "paper-108df597c5",
+          "title": "当人工智能误认为不可见性是无关紧要的时:在生成人工智能营销中的反复市场排除理论",
+          "original_title": "When AI Mistakes Invisibility for Irrelevance: A Theory of Recursive Market Exclusion in Generative-AI Marketing",
+          "authors": "Ihsaan Basharat Want"
+        },
+        {
+          "date": "2026-10-28",
+          "file": "literature_tracking_2026-10-28.html",
+          "id": "paper-21159290bf",
+          "title": "有限缓冲式批发服务队列,有限的排列长度依赖的假期和国家依赖的批次抵达:适用于LLM推断批次",
+          "original_title": "A finite-buffer bulk-service queue with bounded queue-length-dependent vacations and state-dependent batch arrivals: application to LLM inference batching",
+          "authors": "Gopal Gupta"
+        }
+      ]
+    },
+    {
       "date": "2026-10-27",
       "window": "2026-10-26 至 2026-10-27（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-27.html",
