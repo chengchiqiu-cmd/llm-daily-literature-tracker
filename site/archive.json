@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-29",
+      "window": "2026-10-28 至 2026-10-29（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-29.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-29",
+          "file": "literature_tracking_2026-10-29.html",
+          "id": "paper-805aa932e5",
+          "title": "金融市场中的人工智能单种植悖论",
+          "original_title": "The AI Monoculture Paradox in Financial Markets",
+          "authors": "Jose Blanchet / Chenghan Xie / Renyuan Xu"
+        }
+      ]
+    },
+    {
       "date": "2026-10-28",
       "window": "2026-10-27 至 2026-10-28（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-28.html",
