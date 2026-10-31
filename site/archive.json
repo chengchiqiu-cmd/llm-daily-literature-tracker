@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-10-31",
+      "window": "2026-10-30 至 2026-10-31（Asia/Shanghai）",
+      "file": "literature_tracking_2026-10-31.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-10-31",
+          "file": "literature_tracking_2026-10-31.html",
+          "id": "paper-a0638f1c62",
+          "title": "没有共同标志的错误:金融管道中量子和LLM组件的认证评估",
+          "original_title": "Errors With No Common Sign: Certified Evaluation of Quantum and LLM Components in Financial Pipelines",
+          "authors": "Chevin Jeon / Byungkwon Jeon / Michelle Jeon"
+        }
+      ]
+    },
+    {
       "date": "2026-10-30",
       "window": "2026-10-29 至 2026-10-30（Asia/Shanghai）",
       "file": "literature_tracking_2026-10-30.html",
