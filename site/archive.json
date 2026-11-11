@@ -1,6 +1,47 @@
 {
   "reports": [
     {
+      "date": "2026-11-11",
+      "window": "2026-11-10 至 2026-11-11（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-11.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 3
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 3
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-11-11",
+          "file": "literature_tracking_2026-11-11.html",
+          "id": "paper-6b455c7863",
+          "title": "法学士竞争和集成经济",
+          "original_title": "LLM Competition and the Aggregator Economy",
+          "authors": "Fupeng Sun / Zhe Liu / Wolfram Wiesemann"
+        },
+        {
+          "date": "2026-11-11",
+          "file": "literature_tracking_2026-11-11.html",
+          "id": "paper-3f0d5baad3",
+          "title": "大型语言模型服务的最佳缓存时间和价格",
+          "original_title": "Optimal Cache Duration and Pricing for Large Language Model Serving",
+          "authors": "Zhuyu Liu / Meichun Lin / Woonghee Tim Huh"
+        },
+        {
+          "date": "2026-11-11",
+          "file": "literature_tracking_2026-11-11.html",
+          "id": "paper-510437773d",
+          "title": "资产价格的大型语言模型:文献评论",
+          "original_title": "Large Language Models in Asset Pricing: A Literature Review",
+          "authors": "Mohammad Gheidi"
+        }
+      ]
+    },
+    {
       "date": "2026-11-10",
       "window": "2026-11-09 至 2026-11-10（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-10.html",
