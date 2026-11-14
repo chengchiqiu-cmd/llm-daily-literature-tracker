@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-11-14",
+      "window": "2026-11-13 至 2026-11-14（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-14.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-11-14",
+          "file": "literature_tracking_2026-11-14.html",
+          "id": "paper-7d9dfb6245",
+          "title": "在数字微保险中评估生成人工智能聊天机器人和政策保留动态的随机控制试验",
+          "original_title": "Nudging the Frontier: A Randomized Controlled Trial Evaluating Generative AI Chatbots and Policy Retention Dynamics in Digital Microinsurance",
+          "authors": "Isaac Nketsiah / Kweku Awumey Isaac / Aaron Yorke"
+        }
+      ]
+    },
+    {
       "date": "2026-11-13",
       "window": "2026-11-12 至 2026-11-13（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-13.html",
