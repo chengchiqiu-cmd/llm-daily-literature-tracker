@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-11-16",
+      "window": "2026-11-15 至 2026-11-16（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-16.html",
+      "total": 1,
+      "sources": {
+        "OpenAlex": 1
+      },
+      "types": {
+        "LLM 推理排队与调度": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-11-16",
+          "file": "literature_tracking_2026-11-16.html",
+          "id": "paper-d04d389afa",
+          "title": "RPS-Service: \"岩石,石头和沙子:多模式LLM推理的规范性意识规划\" (SIGOPS ATC '26) 的艺术品",
+          "original_title": "RPS-Serve: Artifact for \"Rocks, Pebbles and Sand: Modality-aware Scheduling for Multimodal LLM Inference\" (SIGOPS ATC '26)",
+          "authors": "Konstantinos Papaioannou / Thaleia Dimitra Doudali"
+        }
+      ]
+    },
+    {
       "date": "2026-11-15",
       "window": "2026-11-14 至 2026-11-15（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-15.html",
