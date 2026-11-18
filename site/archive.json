@@ -1,6 +1,73 @@
 {
   "reports": [
     {
+      "date": "2026-11-18",
+      "window": "2026-11-17 至 2026-11-18（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-18.html",
+      "total": 6,
+      "sources": {
+        "SSRN/Crossref": 2,
+        "arXiv": 4
+      },
+      "types": {
+        "LLM 推理排队与调度": 3,
+        "优先权、SLO 与差异化服务": 3
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 6
+      },
+      "papers": [
+        {
+          "date": "2026-11-18",
+          "file": "literature_tracking_2026-11-18.html",
+          "id": "paper-d7ac4a9b28",
+          "title": "在延迟目标下的GPU效率:对批量,KV-缓存配置和LLM推理的阶段意识规划的模拟研究",
+          "original_title": "GPU Efficiency Under Latency Objectives: A Simulation Study of Batching, KV-Cache Allocation, and Phase-Aware Scheduling for LLM Inference",
+          "authors": "Bhavin Kotak"
+        },
+        {
+          "date": "2026-11-18",
+          "file": "literature_tracking_2026-11-18.html",
+          "id": "paper-d6c634a25b",
+          "title": "XAccel:限制指导的跨加速器输入优化,延迟,成本和能源效率",
+          "original_title": "XAccel: Constraint-Guided Cross-Accelerator Inference Optimization for Latency, Cost, and Energy Efficiency",
+          "authors": "Wenyu Zhao / Boyuan Wang"
+        },
+        {
+          "date": "2026-11-18",
+          "file": "literature_tracking_2026-11-18.html",
+          "id": "paper-8d21218a6a",
+          "title": "HyCoInfer:对异性GPU-FPGA架构的大型语言模型的云端协作推理",
+          "original_title": "HyCoInfer: Cloud-Edge Collaborative Inference for Large Language Models on Heterogeneous GPU-FPGA Architectures",
+          "authors": "Zewen Huang / Xiangwen Zhuge / Yingkun Hu / Zheng Yang / Qiang Ma"
+        },
+        {
+          "date": "2026-11-18",
+          "file": "literature_tracking_2026-11-18.html",
+          "id": "paper-d170b4e6c4",
+          "title": "在国内芯片和框架上推进边界代理模式",
+          "original_title": "TeleChat to Xing4: Advancing Frontier Agentic Models on Domestic Chips and Frameworks",
+          "authors": "Xingchen AGI Lab / : / Baotian Hu / Bingkai Yang / Boyang Wang / Changzai Pan / Chao Lyu / Chao Wang / Chen Li / Chenshuo Pan / Chenyu Lin / Chenyuan Zhang / Chongming Liu / Dawei Fan / Di Wu / Dong Guo / Dong Li / Dongfang Li / Enlin Liu / Fanye Xiao / Fengkai Li / Fubei Yao / Gang Lin / Han Gao / Hanming Wu / Haowei He / Huapeng Liu / Hua Wang / Huinan Xu / Jiahong Xiong / Jiaxin Peng / Jianxiang Ma / Jianxing Zhuge / Jie Zhang / Ji Xiong / Jinglin Chen / Jingqi Li / Jingxuan Li / Jiwang Ye / Junchen Li / Junbiao Li / Junyang Wu / Kaidong Yu / Kaipeng Jia / Kehai Chen / Kuai Li / Laobin Liu / Lei Li / Libo Qin / Lingling Shi / Luwen Pu / Menghao Xu / Mengjiao Bao / Mengqi Chen / Min Zhang / Mingrui Wang / Naying Wang / Peicong Han / Peiming Guo / Pengfei Li / Qiang Feng / Qi Wang / Qingjun Zhu / Qingli Li / Qitai Ding / Qiyi Xie / Quanchao Zhao / Rongbao Han / Rui Xue / Ruiyu Fang / Ruiting Song / Shijie Li / Shiquan Wang / Shuangyong Song / Sishi Xiong / Teng Su / Wankang Bao / Weijie Zhang / Wei Mao / Weiwei Fu / Weiyang Huang / Wenmin Deng / Wenqing Hu / Wujie Zhong / Xi Yu / Xiaohui Hu / Xiaomin Fang / Xiaomeng Huang / Xiaoqiong Shi / Xiaotong Shang / Xiaoyu Li / Xinglei Xu / Xin Jiang / Xin Wang / Xin Zhang / Xinzhang Liu / Xue Liu / Xuefeng Bai / Xuewei He / Yahan Li / Yanhan Zhang / Yanlei Xue / Yanzhang Wu / Yang Yu / Yi Liu / Yin Zhang / Yingyan Li / Yitong Yao / Yixuan Li / Yongqiang Xia / Yongxiang Li / Yinzhou Zhu / Yu Zhao / Yuhao Jiang / Yunpeng Zhang / Yuting Lin / Yuxuan Wu / Yuyao Huang / Yuyi Wang / Zebo Peng / Zhenwu Pei / Zhenxiong Li / Zhao Wang / Zhaoxi Zhang / Zhihao Yang / Zhiqiang Dong / Zhiwei Yan / Zhilong Lu / Zhonghao Guo / Zhongheng Wu / Zhongjiang He / Zhongqiu Li / Zhu Yuan / Zhuoru Jiang / Zhuoyi Wei / Zijia Guo / Zilu Huang / Zhipeng Guo / Zirui Li / Zihan Wang"
+        },
+        {
+          "date": "2026-11-18",
+          "file": "literature_tracking_2026-11-18.html",
+          "id": "paper-9cb6bd7abb",
+          "title": "在超高分辨率远程传感中获得无需培训的有效证据的统一空间概率",
+          "original_title": "GeoJeV: Unified Spatial Probability for Training-Free Efficient Evidence Acquisition in Ultra-High-Resolution Remote Sensing",
+          "authors": "Xinyi Niu / Lingfeng Chen / Jiehua Zhang / Panhe Hu / Li Liu / Zhen Liu / Yongxiang Liu"
+        },
+        {
+          "date": "2026-11-18",
+          "file": "literature_tracking_2026-11-18.html",
+          "id": "paper-9f160ea353",
+          "title": "有趣搜索和结构化的SAT搜索弱的Schur分区",
+          "original_title": "FunSearch and Structured SAT Search for Weak Schur Partitions",
+          "authors": "Rebecca Vicenzi / Pablo Christofferson / Caleb Hartman / Jingxuan Feng / Suleman Khan / Omar M. Elshinawy / Eric Ramos"
+        }
+      ]
+    },
+    {
       "date": "2026-11-17",
       "window": "2026-11-16 至 2026-11-17（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-17.html",
