@@ -1,6 +1,50 @@
 {
   "reports": [
     {
+      "date": "2026-11-19",
+      "window": "2026-11-18 至 2026-11-19（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-19.html",
+      "total": 3,
+      "sources": {
+        "SSRN/Crossref": 2,
+        "arXiv": 1
+      },
+      "types": {
+        "容量、云资源与服务运营": 1,
+        "Token 定价、订阅与额度套餐": 1,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-11-19",
+          "file": "literature_tracking_2026-11-19.html",
+          "id": "paper-12620c7b42",
+          "title": "经过LLM指导的运输中心能力规划与文本业务输入",
+          "original_title": "LLM-guided Transportation Hub Capacity Planning with Textual Business Inputs",
+          "authors": "Xiaoyue Liu / Zheng Dong"
+        },
+        {
+          "date": "2026-11-19",
+          "file": "literature_tracking_2026-11-19.html",
+          "id": "paper-cbaea333d4",
+          "title": "规范基于LLM的升级估计的治疗泄漏",
+          "original_title": "Regularizing Treatment Leakage for LLM-based Uplift Estimation",
+          "authors": "Bojing Feng / Jinqiu Deng / Zihan Hong / Yuan Xue / Wenqi Xiang / Shuhan Wang / Feng Xiao / Shiwei Wang / Zijiang Liu / Shaomin Li / Yongzhi Qi"
+        },
+        {
+          "date": "2026-11-19",
+          "file": "literature_tracking_2026-11-19.html",
+          "id": "paper-2a973a133d",
+          "title": "算法的丰富性:全球动态CGE模型中的生成人工智能,就业和不平等",
+          "original_title": "The Wealth of Algorithms: Generative AI, Jobs and Inequality in a Global Dynamic CGE Model",
+          "authors": "David Radi"
+        }
+      ]
+    },
+    {
       "date": "2026-11-18",
       "window": "2026-11-17 至 2026-11-18（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-18.html",
