@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-11-21",
+      "window": "2026-11-20 至 2026-11-21（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-21.html",
+      "total": 1,
+      "sources": {
+        "SSRN/Crossref": 1
+      },
+      "types": {
+        "优先权、SLO 与差异化服务": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-11-21",
+          "file": "literature_tracking_2026-11-21.html",
+          "id": "paper-861d1ad570",
+          "title": "对研究,工作和决策的生成人工智能工具 (ChatGPT,Claude和同等工具) 的依赖:证据的叙述审查 (2022-2026年),研究缺口和未经研究的印度环境",
+          "original_title": "Reliance on Generative AI Tools (ChatGPT, Claude and Equivalents) for Study, Work and Decision-Making: A Narrative Review of Evidence (2022-2026), Research Gaps, and the Under-Studied Indian Context",
+          "authors": "Wazid Ali Mansoori"
+        }
+      ]
+    },
+    {
       "date": "2026-11-20",
       "window": "2026-11-19 至 2026-11-20（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-20.html",
