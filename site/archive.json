@@ -1,6 +1,49 @@
 {
   "reports": [
     {
+      "date": "2026-11-22",
+      "window": "2026-11-21 至 2026-11-22（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-22.html",
+      "total": 3,
+      "sources": {
+        "OpenAlex": 1,
+        "SSRN/Crossref": 2
+      },
+      "types": {
+        "LLM 推理排队与调度": 2,
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 3
+      },
+      "papers": [
+        {
+          "date": "2026-11-22",
+          "file": "literature_tracking_2026-11-22.html",
+          "id": "paper-63db6282e7",
+          "title": "在云和无服务器平台中进行阶段分类的LLM推理的碳意识计划:审查和模拟",
+          "original_title": "Carbon-Aware Scheduling for Phase-Disaggregated LLM Inference in Cloud and Serverless Platforms: Review and Simulation",
+          "authors": "Umar Iqbal"
+        },
+        {
+          "date": "2026-11-22",
+          "file": "literature_tracking_2026-11-22.html",
+          "id": "paper-3140c1ce49",
+          "title": "从试点到生产:制造业管理人工智能以决策为中心的框架",
+          "original_title": "From Pilot to Production: A Decision-Centred Framework for Governed AI in Manufacturing Operations",
+          "authors": "Farhood Salami Araghi"
+        },
+        {
+          "date": "2026-11-22",
+          "file": "literature_tracking_2026-11-22.html",
+          "id": "paper-1238c5e3a0",
+          "title": "服务连锁结构的工作,具有较大的内存足迹,应用到较大的基础模型服务",
+          "original_title": "Serving Chain-structured Jobs with Large Memory Footprints with Application to Large Foundation Model Serving",
+          "authors": "Tingyang Sun / Ting He / I-Hong Hou"
+        }
+      ]
+    },
+    {
       "date": "2026-11-21",
       "window": "2026-11-20 至 2026-11-21（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-21.html",
