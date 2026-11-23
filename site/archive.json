@@ -1,6 +1,31 @@
 {
   "reports": [
     {
+      "date": "2026-11-23",
+      "window": "2026-11-22 至 2026-11-23（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-23.html",
+      "total": 1,
+      "sources": {
+        "OpenAlex": 1
+      },
+      "types": {
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 1
+      },
+      "papers": [
+        {
+          "date": "2026-11-23",
+          "file": "literature_tracking_2026-11-23.html",
+          "id": "paper-1238c5e3a0",
+          "title": "服务连锁结构的工作,具有较大的内存足迹,应用到较大的基础模型服务",
+          "original_title": "Serving Chain-structured Jobs with Large Memory Footprints with Application to Large Foundation Model Serving",
+          "authors": "Tingyang Sun / Ting He / I-Hong Hou"
+        }
+      ]
+    },
+    {
       "date": "2026-11-22",
       "window": "2026-11-21 至 2026-11-22（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-22.html",
