@@ -1,6 +1,65 @@
 {
   "reports": [
     {
+      "date": "2026-11-24",
+      "window": "2026-11-23 至 2026-11-24（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-24.html",
+      "total": 5,
+      "sources": {
+        "SSRN/Crossref": 1,
+        "arXiv": 4
+      },
+      "types": {
+        "LLM 推理排队与调度": 4,
+        "平台经济、市场设计与竞争": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 5
+      },
+      "papers": [
+        {
+          "date": "2026-11-24",
+          "file": "literature_tracking_2026-11-24.html",
+          "id": "paper-04453fd8c6",
+          "title": "实现协议效应的明确性:超级基板互连探索的LLM-to-packet模拟",
+          "original_title": "Making Protocol Effects Explicit: LLM-to-Packet Simulation for Superpod Interconnect Exploration",
+          "authors": "Yu Zhu / Xinhao Yang / Zhaoshi Li / Baodong Wu / Boxun Li / Wenxue Li / Guohao Dai / Hongyang Jia / Shuwen Deng / Huazhong Yang / Yuan Xie / Zhenhua Zhu / Yu Wang"
+        },
+        {
+          "date": "2026-11-24",
+          "file": "literature_tracking_2026-11-24.html",
+          "id": "paper-66f973635a",
+          "title": "自动SECO:自动化技能演变与一般目的LLM代理人进行跨问题结合优化",
+          "original_title": "AutoSECO: Automated Skill Evolution for Cross-Problem Combinatorial Optimization with General-Purpose LLM Agents",
+          "authors": "Zirui Zhu / Cong Zhang / Ni Zhang / Kuan Xu / Zhiguang Cao"
+        },
+        {
+          "date": "2026-11-24",
+          "file": "literature_tracking_2026-11-24.html",
+          "id": "paper-d170b4e6c4",
+          "title": "在国内芯片和框架上推进边界代理模式",
+          "original_title": "TeleChat to Xing4: Advancing Frontier Agentic Models on Domestic Chips and Frameworks",
+          "authors": "Xingchen AGI Lab / : / Baotian Hu / Bingkai Yang / Boyang Wang / Changzai Pan / Chao Lyu / Chao Wang / Chen Li / Chenshuo Pan / Chenyu Lin / Chenyuan Zhang / Chongming Liu / Dawei Fan / Di Wu / Dong Guo / Dong Li / Dongfang Li / Enlin Liu / Fengkai Li / Fubei Yao / Gang Lin / Han Gao / Hanming Wu / Haowei He / Huapeng Liu / Hua Wang / Huinan Xu / Jiahong Xiong / Jiaxin Peng / Jianxiang Ma / Jianxing Zhuge / Jie Zhang / Ji Xiong / Jinglin Chen / Jingqi Li / Jingxuan Li / Jinhao Li / Jiwang Ye / Junchen Li / Junbiao Li / Junyang Wu / Kaidong Yu / Kaipeng Jia / Kehai Chen / Kuai Li / Laobin Liu / Lei Li / Libo Qin / Lingling Shi / Luwen Pu / Menghao Xu / Mengjiao Bao / Mengqi Chen / Min Zhang / Mingrui Wang / Naying Wang / Peicong Han / Peiming Guo / Pengfei Li / Pengyu Wang / Qiang Feng / Qi Wang / Qingjun Zhu / Qingli Li / Qitai Ding / Qiyi Xie / Quanchao Zhao / Rongbao Han / Rui Xue / Ruiyu Fang / Ruiting Song / Shijie Li / Shiquan Wang / Shuangyong Song / Sishi Xiong / Teng Su / Wankang Bao / Weijie Zhang / Wei Mao / Weiwei Fu / Weiyang Huang / Wenmin Deng / Wenqing Hu / Wujie Zhong / Xi Yu / Xiaohui Hu / Xiaomin Fang / Xiaomeng Huang / Xiaoqiong Shi / Xiaotong Shang / Xiaoyu Li / Xinglei Xu / Xin Jiang / Xin Wang / Xin Zhang / Xinzhang Liu / Xue Liu / Xuefeng Bai / Xuewei He / Yahan Li / Yanhan Zhang / Yanlei Xue / Yanzhang Wu / Yang Yu / Yefan Xiao / Yi Liu / Yin Zhang / Yingyan Li / Yitong Yao / Yixuan Li / Yongqiang Xia / Yongxiang Li / Yinzhou Zhu / Yu Zhao / Yuhao Jiang / Yunpeng Zhang / Yuting Lin / Yuxuan Wu / Yuyao Huang / Yuyi Wang / Zebo Peng / Zhenwu Pei / Zhenxiong Li / Zhao Wang / Zhaoxi Zhang / Zhihao Yang / Zhiqiang Dong / Zhiwei Yan / Zhilong Lu / Zhonghao Guo / Zhongheng Wu / Zhongjiang He / Zhongqiu Li / Zhu Yuan / Zhuoru Jiang / Zhuoyi Wei / Zijia Guo / Zilu Huang / Zhipeng Guo / Zirui Li / Zihan Wang"
+        },
+        {
+          "date": "2026-11-24",
+          "file": "literature_tracking_2026-11-24.html",
+          "id": "paper-256cc9aaaa",
+          "title": "MemT-1.0:向记忆原生进化",
+          "original_title": "MemT-1.0: Towards Memory-Native Evolution",
+          "authors": "Zhiyu Li / Zeyu Zhang / Linyun Liu / Yiwei Bu / Chenyang Xi / Xichong Zhang / Yi Yu / Yu Yu / Zhichen Liu / Yuxiao Yi / Chunyu Li / Haoran Liu / Zhenkai Ding / Le Zhou / Juncheng Zhang / Boyu Chen / Zehao Lin / Guorui Li / Renyu Fu / Ji Li / Youyang Xia / Jiajun Shen / Harvey Li / Jinsong Zhou / Helan Hu / Tong Shen / Tianxiao Xu / Chenye Han / Weijie Li / Zhongquan Zhou / Hongming Xu / Yuekeng Li / Erenkai Zhu / Peng Yu / Wenhao Li / Jingyi Kang / Xixuan Hao / Xuzhou Zhu / Can Chen / Jiawei Liu / Chen Jiang / Tao Jiang / Fangwei Xiang / Zepeng Yao / Kai Chen / Guang Yang / Mingfei Lu / Chunhui Li / Zhengxuan Jiang / Bo Tang / Shiyu Zhan / Yihang Sun / Jie Chu / Wenjun Xiong / Zhenxiang Hua / Chen Lin / Detong Su / Dongyu Deng / Qiuping Ding / Guofeng Ding / Si Chen / Guohua Wen / Xu Chen / Zhi-Qin John Xu / Ying-Cong Chen / Ningyu Zhang / Haofen Wang / Muning Wen / Haotian Chen / Wentao Zhang / Xuanhe Zhou / Rita Zhang / Junchi Yan / Feiyu Xiong"
+        },
+        {
+          "date": "2026-11-24",
+          "file": "literature_tracking_2026-11-24.html",
+          "id": "paper-b6b34508a7",
+          "title": "人工智能媒介科学宪法规则:扩大理性选择 科学知识新制度主义理论",
+          "original_title": "Constitutional Rules for AI-Mediated Science: Extending the Rational Choice Neo-Institutionalist Theory of Scientific Knowledge",
+          "authors": "Yanfei Shi"
+        }
+      ]
+    },
+    {
       "date": "2026-11-23",
       "window": "2026-11-22 至 2026-11-23（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-23.html",
