@@ -1,6 +1,115 @@
 {
   "reports": [
     {
+      "date": "2026-11-25",
+      "window": "2026-11-24 至 2026-11-25（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-25.html",
+      "total": 11,
+      "sources": {
+        "SSRN/Crossref": 2,
+        "arXiv": 9
+      },
+      "types": {
+        "LLM 推理排队与调度": 5,
+        "容量、云资源与服务运营": 2,
+        "Token 定价、订阅与额度套餐": 1,
+        "优先权、SLO 与差异化服务": 3
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 11
+      },
+      "papers": [
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-3785fc9970",
+          "title": "诺恩:环境长度知情优化重量和KV缓存配置用于卸载LLM推理",
+          "original_title": "Norn: Context-Length-Aware Optimization of Weight and KV Cache Placement for Offloaded LLM Inference",
+          "authors": "Naoto Sugiura / Hiroki Matsutani"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-e99473e746",
+          "title": "LoomKV:从GPU内存到SSD进行无损KV缓存压缩,用于LLM服务",
+          "original_title": "LoomKV: Lossless KV Cache Compression from GPU Memory to SSD for LLM Serving",
+          "authors": "Wentao Zhu / Ziao Sheng / Peng Deng / Huiqi Hu / Xuan Zhou / Xing Wei / Zhuang Wang"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-9340a0ec6d",
+          "title": "复制:服务的LLM代理人联合请求和代表安排",
+          "original_title": "RePrism: Joint Request and Representation Scheduling for LLM Agent Serving",
+          "authors": "Xijiang Shen / Aoli Zhu / Yanbo Tan / Xiyuan Hu / Huailiang Tan"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-e2b64683df",
+          "title": "无线OptSG:无线资源分配的多代理优化框架",
+          "original_title": "Wireless-OptSG: A Versatile Multi-Agent Optimization Framework for Wireless Resource Allocation",
+          "authors": "Wenhe Zhang / Xin Li / Hanzhi Chen / Chau Yuen"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-fbd20f8896",
+          "title": "无阻延期:通过JAMN机器人支持学生,这是一个基于RAG的移动政策助理",
+          "original_title": "Unjamming Deferrals: Supporting Students Through JAMN Bot, a Mobile RAG-Grounded Policy Assistant",
+          "authors": "Mark Farinas / Alesandra Garcia / Maria Reyes / Jethro Nueva / Nawaf Qureshi / Mahmoud Elsaadany / Shokry Shamseldin"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-1987335361",
+          "title": "我的代币去哪里?可验证的代币账单",
+          "original_title": "Where Did My Tokens Go? Verifiable Token Billing for LLM Services",
+          "authors": "Jiayuan Du / Yebo Feng / Lin Zhang / Konglin Zhu"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-1c36ad3e2f",
+          "title": "透露但被忽略:人工智能调整风险评估中的披露率",
+          "original_title": "Disclosed but Overlooked: Disclosure Prevalence in AI-Mediated Risk Review",
+          "authors": "Kun Li / Lin Hu / Xueyan Yin / Pei-Yu Chen"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-83e1ed2afe",
+          "title": "沉默的仲裁:大型语言模型如何解决与权力相冲突的指示",
+          "original_title": "Silent Arbitration: How Large Language Models Resolve Co-Authoritative Conflicting Instructions",
+          "authors": "Sihyeon Lee / Jiwoo Kum / Jihun Song / Kyojun Choo / Chanwoo Kim / Chanjun Park"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-cacdd159aa",
+          "title": "视觉思维:无需培训的活跃感知,用于计算和定位难以找到的物体",
+          "original_title": "Visual Thinking: Training-Free Active Perception for Counting and Localizing Hard-to-Find Objects",
+          "authors": "Emil Kielar / Pratik Chaudhari"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-e5c77b111e",
+          "title": "在SAP S/4HANA中,人工智能驱动的金融分析:改善决策和金融转型",
+          "original_title": "AI-Driven Financial Analytics in SAP S/4HANA: Improving Decision-Making and Finance Transformation",
+          "authors": "Nandini Nandipati"
+        },
+        {
+          "date": "2026-11-25",
+          "file": "literature_tracking_2026-11-25.html",
+          "id": "paper-34bf1e24b6",
+          "title": "GreenDynaMix:热敏动态混合精密MoE LLM推理系统",
+          "original_title": "GreenDynaMix: Thermal-Aware Dynamic Mixed-Precision MoE LLM Inference Systems",
+          "authors": "Han-Yi Lin / Kieran Griperay / Qiang Zhou / Xiangyu Zhou / Nate Bonacci / Zinachidi Achikeh / Li He / Shaofei Qi / Hongqiang Wang / Jeff Zhang / Tianlong Chen / Pi-Cheng Hsiu / Jingtong Hu"
+        }
+      ]
+    },
+    {
       "date": "2026-11-24",
       "window": "2026-11-23 至 2026-11-24（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-24.html",
