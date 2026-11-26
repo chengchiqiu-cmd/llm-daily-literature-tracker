@@ -1,6 +1,57 @@
 {
   "reports": [
     {
+      "date": "2026-11-26",
+      "window": "2026-11-25 至 2026-11-26（Asia/Shanghai）",
+      "file": "literature_tracking_2026-11-26.html",
+      "total": 4,
+      "sources": {
+        "arXiv": 4
+      },
+      "types": {
+        "Token 定价、订阅与额度套餐": 1,
+        "优先权、SLO 与差异化服务": 2,
+        "容量、云资源与服务运营": 1
+      },
+      "statuses": {
+        "直接 LLM 服务研究": 4
+      },
+      "papers": [
+        {
+          "date": "2026-11-26",
+          "file": "literature_tracking_2026-11-26.html",
+          "id": "paper-dd47e0a678",
+          "title": "大型语言模型中的信息辨识",
+          "original_title": "Information Discernment in Large Language Models",
+          "authors": "Joshua Ashkinaze / Laura Kurek / Alina Faisal / Tongyuan Miao / Mariam Joseph / Ceren Budak / Eric Gilbert"
+        },
+        {
+          "date": "2026-11-26",
+          "file": "literature_tracking_2026-11-26.html",
+          "id": "paper-9bb1aaaf0a",
+          "title": "AiFlow:修改版LLM服务的建筑到退休标准",
+          "original_title": "AiFlow: Construction-to-Retirement Conformance for Versioned LLM Services",
+          "authors": "Qunhui Zhang"
+        },
+        {
+          "date": "2026-11-26",
+          "file": "literature_tracking_2026-11-26.html",
+          "id": "paper-fc95e235e1",
+          "title": "在精细调整之前的试验:可行性关键选择和监测对固定物理平台实体基础模型的适应",
+          "original_title": "Triage Before Fine-Tuning: Feasibility-Gated Selection and Monitored Adaptation of Embodied Foundation Models for a Fixed Physical Platform",
+          "authors": "Zilin Huang / Zhengyang Wan / Zihao Sheng / Boyue Wang / Ruolin Yang / Yuhao Luo / Sikai Chen"
+        },
+        {
+          "date": "2026-11-26",
+          "file": "literature_tracking_2026-11-26.html",
+          "id": "paper-5e2305a8bf",
+          "title": "不是每一个输入都需要一切:统一专家关门,模范布和代理管弦乐",
+          "original_title": "Not Every Input Needs Everything: Unifying Expert Gating, Model Cascades, and Agent Orchestration",
+          "authors": "Dat Tat Mai / Hung Tran Quy / Thai Viet Pham / James Jin Kang"
+        }
+      ]
+    },
+    {
       "date": "2026-11-25",
       "window": "2026-11-24 至 2026-11-25（Asia/Shanghai）",
       "file": "literature_tracking_2026-11-25.html",
